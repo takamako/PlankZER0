@@ -1,5 +1,5 @@
 # enpit2019_v.i.p
-aaaaaa
+aaaaaatesttest	
 enPiT2019のgitリポジトリです。
 
 チーム名:vip(仮)
