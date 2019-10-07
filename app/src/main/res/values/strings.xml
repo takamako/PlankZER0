@@ -3,4 +3,7 @@
     <string name="SelectPhoto">Photo</string>
     <string name="description">camera picture</string>
     <string name="app_name">Plank</string>
+    <string name="movie_button">movie</string>
+    <string name="return_button">return home</string>
+    <string name="return_sub">RETURN</string>
 </resources>
