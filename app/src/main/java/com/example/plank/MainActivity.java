@@ -2,6 +2,8 @@ package com.example.plank;
 
 import androidx.appcompat.app.AppCompatActivity;
 //追加
+import android.app.Activity;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +22,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 //ここまで
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import java.io.FileDescriptor;
+import java.io.IOException;
+import java.util.Locale;
 
 import android.os.Bundle;
 
@@ -48,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         imageView = findViewById(R.id.image_view);
 
+        Button sendButton = findViewById(R.id.movie_button);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), MovieActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button cameraButton = findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +89,28 @@ public class MainActivity extends AppCompatActivity {
                 //ここまで
             }
         });
-    }
+        Button PhotoButton = findViewById(R.id.ViewImg);
+        //PhotoButton.setOnClickListener (new View.OnClickListener() {
+            PhotoButton.setOnClickListener(new View.OnClickListener()
+
+            {
+                public void onClick (View v){
+                // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file browser.
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+
+                // Filter to only show results that can be "opened", such as a
+                // file (as opposed to a list of contacts or timezones)
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+                // Filter to show only images, using the image MIME data type.
+                // it would be "*/*".
+                intent.setType("*/*");
+
+                startActivityForResult(intent, RESULT_OK);
+            }
+            });
+        }
+
     //10/2作成　カメラ保存
     private void cameraIntent(){
         // 保存先のフォルダー
@@ -125,7 +170,46 @@ public class MainActivity extends AppCompatActivity {
 
             //imageView.setImageBitmap(bitmap);
         }
+        // The ACTION_OPEN_DOCUMENT intent was sent with the request code
+        // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
+        // response to some other intent, and the code below shouldn't run at all.
+        if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
+            // The document selected by the user won't be returned in the intent.
+            // Instead, a URI to that document will be contained in the return intent
+            // provided to this method as a parameter.
+            // Pull that URI using resultData.getData().
+            if (data.getData() != null) {
+
+                ParcelFileDescriptor pfDescriptor = null;
+                try {
+                    Uri uri = data.getData();
+                    // Uriを表示
+                    //textView.setText(
+                    //String.format(Locale.US, "Uri:　%s", uri.toString()));
+
+                    pfDescriptor = getContentResolver().openFileDescriptor(uri, "r");
+                    if (pfDescriptor != null) {
+                        FileDescriptor fileDescriptor = pfDescriptor.getFileDescriptor();
+                        Bitmap bmp = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+                        pfDescriptor.close();
+                        imageView.setImageBitmap(bmp);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (pfDescriptor != null) {
+                            pfDescriptor.close();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }
     }
+
 
     //以下の関数10/2追加
     // アンドロイドのデータベースへ登録する
@@ -194,4 +278,47 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    /*@Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+
+        // The ACTION_OPEN_DOCUMENT intent was sent with the request code
+        // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
+        // response to some other intent, and the code below shouldn't run at all.
+        if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
+            // The document selected by the user won't be returned in the intent.
+            // Instead, a URI to that document will be contained in the return intent
+            // provided to this method as a parameter.
+            // Pull that URI using resultData.getData().
+            if (resultData.getData() != null) {
+
+                ParcelFileDescriptor pfDescriptor = null;
+                try {
+                    Uri uri = resultData.getData();
+                    // Uriを表示
+                    //textView.setText(
+                            //String.format(Locale.US, "Uri:　%s", uri.toString()));
+
+                    pfDescriptor = getContentResolver().openFileDescriptor(uri, "r");
+                    if (pfDescriptor != null) {
+                        FileDescriptor fileDescriptor = pfDescriptor.getFileDescriptor();
+                        Bitmap bmp = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+                        pfDescriptor.close();
+                        imageView.setImageBitmap(bmp);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (pfDescriptor != null) {
+                            pfDescriptor.close();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }
+    }*/
 }
+
