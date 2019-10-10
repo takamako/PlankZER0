@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         sendButton_sensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), MovieActivity.class);
+                Intent intent = new Intent(getApplication(), SensorActivity.class);
                 startActivity(intent);
             }
         });

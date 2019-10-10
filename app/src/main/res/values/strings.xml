@@ -6,4 +6,6 @@
     <string name="movie_button">movie</string>
     <string name="return_button">return home</string>
     <string name="return_sub">RETURN</string>
+    <string name="return_butten_semsor">RETURN</string>
+    <string name="sensor_button">sensor</string>
 </resources>
