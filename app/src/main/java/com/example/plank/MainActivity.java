@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         Button cameraButton = findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +111,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, RESULT_OK);
             }
             });
+        //センサーようの移動ボタン
+        Button sendButton_sensor = findViewById(R.id.sensor_button);
+        sendButton_sensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), MovieActivity.class);
+                startActivity(intent);
+            }
+        });
         }
 
     //10/2作成　カメラ保存
