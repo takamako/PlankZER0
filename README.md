@@ -27,15 +27,15 @@ enPiT2019のgitリポジトリです。
 
 ## 実行環境のURL
 
-プロダクトバックログのURL
++ プロダクトバックログのURL
 
 https://docs.google.com/spreadsheets/d/1eZbUSZB0zCzLx7_7K2IpM9xiXFGm2x754NFPzddrOB0/edit#gid=891834841
 
-hackmd
++ 話し合い
 
 https://hackmd.io/0kVWkFYpR1GFhtapA0Bsjw
 
-具体的なドキュメントのURL
++ 具体的なドキュメントのURL
 
 https://hackmd.io/UG0VPO1yQjeqhTAwLyNLYg
 
