@@ -1,25 +1,36 @@
 package com.example.plank;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 //import android.support.v7.app.AppCompatActivity;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.List;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
+import android.util.Log;
+import android.view.animation.RotateAnimation;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private TextView textView, textInfo;
+    private SoundPool soundPool;
+    private int soundOne, soundTwo;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         setContentView(R.layout.activity_sensor);
 
@@ -34,9 +45,41 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         returnButton_sensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);//音声ならす
                 finish();
             }
         });
+    //以下追加
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                // USAGE_MEDIA
+                // USAGE_GAME
+                .setUsage(AudioAttributes.USAGE_GAME)
+                // CONTENT_TYPE_MUSIC
+                // CONTENT_TYPE_SPEECH, etc.
+                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                .build();
+
+        soundPool = new SoundPool.Builder()
+                .setAudioAttributes(audioAttributes)
+                // ストリーム数に応じて
+                .setMaxStreams(2)
+                .build();
+
+        // one.wav をロードしておく
+        soundOne = soundPool.load(this, R.raw.one, 1);
+
+
+
+        // load が終わったか確認する場合
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                Log.d("debug","sampleId="+sampleId);
+                Log.d("debug","status="+status);
+            }
+        });
+
+
     }
 
 
