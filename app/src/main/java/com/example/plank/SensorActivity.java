@@ -122,6 +122,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             textView.setText(strTmp);
 
             showInfo(event);
+            //音センサー追加
+            if(sensorZ>11 || sensorX>11 || sensorY>11){
+                soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+            }
         }
     }
 
