@@ -9,4 +9,7 @@
     <string name="sensor_button">sensor</string>
     <string name="SelectPhoto">SelectPhoto</string>
     <string name="one">One</string>
+    <string name="two">Two</string>
+    <string name="three">Three</string>
+
 </resources>

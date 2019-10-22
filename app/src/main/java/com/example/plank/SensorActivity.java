@@ -23,7 +23,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private SensorManager sensorManager;
     private TextView textView, textInfo;
     private SoundPool soundPool;
-    private int soundOne, soundTwo;
+    private int soundOne, soundTwo, soundThree;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -45,11 +45,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         returnButton_sensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);//音声ならす
+                //soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);//音声ならす
                 finish();
             }
         });
-    //以下追加
+        //以下追加
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 // USAGE_MEDIA
                 // USAGE_GAME
@@ -67,8 +67,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         // one.wav をロードしておく
         soundOne = soundPool.load(this, R.raw.one, 1);
-
-
+        soundTwo = soundPool.load(this, R.raw.two, 1);
+        soundThree = soundPool.load(this, R.raw.three, 1);
 
         // load が終わったか確認する場合
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
@@ -78,7 +78,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 Log.d("debug","status="+status);
             }
         });
-
 
     }
 
@@ -123,8 +122,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
             showInfo(event);
             //音センサー追加
-            if(sensorZ>11 || sensorX>11 || sensorY>11){
+            //サウンド追加
+            if (sensorZ > 11) {
                 soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+            } else if (sensorX > 11) {
+                soundPool.play(soundTwo, 1.0f, 1.0f, 0, 1, 1);
+            } else if (sensorY > 11) {
+                soundPool.play(soundThree, 1.0f, 1.0f, 0, 1, 1);
             }
         }
     }
