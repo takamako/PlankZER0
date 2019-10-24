@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 // it would be "*/*".
                 intent.setType("*/*");
 
-                startActivityForResult(intent, RESULT_OK);
+                startActivityForResult(intent, RESULT_CAMERA);
             }
             });
         //センサーようの移動ボタン
