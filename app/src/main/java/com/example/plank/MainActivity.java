@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             //imageView.setImageBitmap(bitmap);
         }
 
-        //ファイル読み込みの処理
+        //ファイル(写真)読み込みの処理
         if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
 
             if (data.getData() != null) {
@@ -281,6 +281,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    
+
 }
 
