@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 // it would be "*/*".
                 intent.setType("*/*");
 
-                startActivityForResult(intent, RESULT_OK);
+                startActivityForResult(intent, RESULT_CAMERA);
             }
             });
         //センサーようの移動ボタン
@@ -168,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             */
+
+        //カメラの処理
         if (requestCode == RESULT_CAMERA) {
 
             if(cameraUri != null){
@@ -184,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
         // The ACTION_OPEN_DOCUMENT intent was sent with the request code
         // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
         // response to some other intent, and the code below shouldn't run at all.
+        //ファイル読み込みの処理
         if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
             // The document selected by the user won't be returned in the intent.
             // Instead, a URI to that document will be contained in the return intent
