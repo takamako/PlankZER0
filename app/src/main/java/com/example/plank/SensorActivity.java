@@ -24,6 +24,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private TextView textView, textInfo;
     private SoundPool soundPool;
     private int soundOne, soundTwo, soundThree;
+    float nextX =0;
+    float nextY =0;
+    float nextZ =0;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -109,6 +112,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     public void onSensorChanged(SensorEvent event) {
         float sensorX, sensorY, sensorZ;
 
+
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             sensorX = event.values[0];
             sensorY = event.values[1];
@@ -123,14 +127,21 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             showInfo(event);
             //音センサー追加
             //サウンド追加
-            if (sensorZ > 11) {
+            if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5 ) {
                 soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
-            } else if (sensorX > 11) {
+            } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
                 soundPool.play(soundTwo, 1.0f, 1.0f, 0, 1, 1);
-            } else if (sensorY > 11) {
+            } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
                 soundPool.play(soundThree, 1.0f, 1.0f, 0, 1, 1);
             }
+            nextX = sensorX;
+            nextY = sensorY;
+            nextZ = sensorZ;
+
         }
+
+
+
     }
 
     // （お好みで）加速度センサーの各種情報を表示
