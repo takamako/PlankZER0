@@ -124,7 +124,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     + " Z: " + sensorZ;
             textView.setText(strTmp);
 
-            showInfo(event);
+            //showInfo(event);
             //音センサー追加
             //サウンド追加
             if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5 ) {
@@ -145,6 +145,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     }
 
     // （お好みで）加速度センサーの各種情報を表示
+    /*
     private void showInfo(SensorEvent event){
         // センサー名
         StringBuffer info = new StringBuffer("Name: ");
@@ -205,7 +206,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         info.append(String.valueOf(fData));
         info.append(" mA\n");
         textInfo.setText(info);
-    }
+    }*/
 
 
     @Override
