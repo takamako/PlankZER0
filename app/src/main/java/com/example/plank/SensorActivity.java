@@ -3,6 +3,7 @@ package com.example.plank;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 //import android.support.v7.app.AppCompatActivity;
+import android.os.CountDownTimer;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,23 +17,40 @@ import java.util.List;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.util.Log;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import android.view.animation.RotateAnimation;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
+    private TextView timerText;//タイマーの表示ぶん
+    private SimpleDateFormat dataFormat =
+            new SimpleDateFormat("mm:ss.SSS", Locale.US);//https://akira-watson.com/android/countdowntimer.html
     private TextView textView, textInfo;
     private SoundPool soundPool;
     private int soundOne, soundTwo, soundThree;
+    float nextX =0;
+    float nextY =0;
+    float nextZ =0;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_sensor);
+
+        // 3分= 3x60x1000 = 180000 msec
+        long countNumber = 180000;
+        // インターバル msec
+        long interval = 10;
+        Button startButton = findViewById(R.id.start_button);//タイマーのボタン
+        Button stopButton = findViewById(R.id.stop_button);//タイマーのボタン
+        timerText = findViewById(R.id.timer);
+        timerText.setText(dataFormat.format(0));
+        // CountDownTimer(long millisInFuture, long countDownInterval)
+        final CountDown countDown = new CountDown(countNumber, interval);
+
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -40,6 +58,24 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         // Get an instance of the TextView
         textView = findViewById(R.id.text_view);
+        //スタートボタンの処理
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 開始
+                countDown.start();
+            }
+        });
+        //ストップボタンの処理
+        stopButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // 中止
+                countDown.cancel();
+                timerText.setText(dataFormat.format(0));
+            }
+        });
+
 
         Button returnButton_sensor = findViewById(R.id.return_button_sensor);
         returnButton_sensor.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +145,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     public void onSensorChanged(SensorEvent event) {
         float sensorX, sensorY, sensorZ;
 
+
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             sensorX = event.values[0];
             sensorY = event.values[1];
@@ -120,20 +157,28 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     + " Z: " + sensorZ;
             textView.setText(strTmp);
 
-            showInfo(event);
+            //showInfo(event);
             //音センサー追加
             //サウンド追加
-            if (sensorZ > 11) {
+            if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5 ) {
                 soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
-            } else if (sensorX > 11) {
+            } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
                 soundPool.play(soundTwo, 1.0f, 1.0f, 0, 1, 1);
-            } else if (sensorY > 11) {
+            } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
                 soundPool.play(soundThree, 1.0f, 1.0f, 0, 1, 1);
             }
+            nextX = sensorX;
+            nextY = sensorY;
+            nextZ = sensorZ;
+
         }
+
+
+
     }
 
     // （お好みで）加速度センサーの各種情報を表示
+    /*
     private void showInfo(SensorEvent event){
         // センサー名
         StringBuffer info = new StringBuffer("Name: ");
@@ -194,11 +239,38 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         info.append(String.valueOf(fData));
         info.append(" mA\n");
         textInfo.setText(info);
-    }
+    }*/
 
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
+    class CountDown extends CountDownTimer {
+
+        CountDown(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onFinish() {
+            // 完了
+            timerText.setText(dataFormat.format(0));
+        }
+
+        // インターバルで呼ばれる
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // 残り時間を分、秒、ミリ秒に分割
+            //long mm = millisUntilFinished / 1000 / 60;
+            //long ss = millisUntilFinished / 1000 % 60;
+            //long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
+            //timerText.setText(String.format("%1$02d:%2$02d.%3$03d", mm, ss, ms));
+
+            timerText.setText(dataFormat.format(millisUntilFinished));
+
+        }
+    }
+
 }
