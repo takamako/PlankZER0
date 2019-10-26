@@ -30,6 +30,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private TextView textView, textInfo;
     private SoundPool soundPool;
     private int soundOne, soundTwo, soundThree;
+    private int frag =0;
     float nextX =0;
     float nextY =0;
     float nextZ =0;
@@ -41,13 +42,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         setContentView(R.layout.activity_sensor);
 
         // 3分= 3x60x1000 = 180000 msec
-        long countNumber = 180000;
+        long countNumber = 30000;
         // インターバル msec
         long interval = 10;
         Button startButton = findViewById(R.id.start_button);//タイマーのボタン
         Button stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         timerText = findViewById(R.id.timer);
-        timerText.setText(dataFormat.format(0));
+        timerText.setText(dataFormat.format(30000));
         // CountDownTimer(long millisInFuture, long countDownInterval)
         final CountDown countDown = new CountDown(countNumber, interval);
 
@@ -64,6 +65,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             public void onClick(View v) {
                 // 開始
                 countDown.start();
+                frag =1;
             }
         });
         //ストップボタンの処理
@@ -73,6 +75,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 // 中止
                 countDown.cancel();
                 timerText.setText(dataFormat.format(0));
+                frag =0;
             }
         });
 
@@ -160,12 +163,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //showInfo(event);
             //音センサー追加
             //サウンド追加
-            if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5 ) {
-                soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
-            } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
-                soundPool.play(soundTwo, 1.0f, 1.0f, 0, 1, 1);
-            } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
-                soundPool.play(soundThree, 1.0f, 1.0f, 0, 1, 1);
+            if(frag ==1) {//スターとじに1、ストッぷで0
+                if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5) {
+                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+                } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
+                    soundPool.play(soundTwo, 1.0f, 1.0f, 0, 1, 1);
+                } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
+                    soundPool.play(soundThree, 1.0f, 1.0f, 0, 1, 1);
+                }
             }
             nextX = sensorX;
             nextY = sensorY;
@@ -256,7 +261,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         @Override
         public void onFinish() {
             // 完了
-            timerText.setText(dataFormat.format(0));
+            timerText.setText(dataFormat.format(300003));
         }
 
         // インターバルで呼ばれる
