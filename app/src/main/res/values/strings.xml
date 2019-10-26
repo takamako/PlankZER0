@@ -1,6 +1,15 @@
 <resources>
-    <string name="Camera">Camera</string>
-    <string name="SelectPhoto">Photo</string>
+    <string name="button">Button</string>
     <string name="description">camera picture</string>
     <string name="app_name">Plank</string>
+    <string name="movie_button">movie</string>
+    <string name="return_button">return home</string>
+    <string name="return_sub">RETURN</string>
+    <string name="return_butten_semsor">RETURN</string>
+    <string name="sensor_button">sensor</string>
+    <string name="SelectPhoto">SelectPhoto</string>
+    <string name="one">One</string>
+    <string name="two">Two</string>
+    <string name="three">Three</string>
+
 </resources>
