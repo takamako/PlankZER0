@@ -78,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//10/2コメントアウト
-                //startActivityForResult(intent, RESULT_CAMERA);//10/2コメントアウト
                 //追加
                 // Android 6, API 23以上でパーミッシンの確認
                 if (Build.VERSION.SDK_INT >= 23) {
@@ -148,26 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //下10/2コメントアウト
-        /**
-        if (requestCode == RESULT_CAMERA) {
-            Bitmap bitmap;
-            // cancelしたケースも含む
-            if( data.getExtras() == null){
-                Log.d("debug","cancel ?");
-                return;
-            }
-            else{
-                bitmap = (Bitmap) data.getExtras().get("data");
-                if(bitmap != null){
-                    // 画像サイズを計測
-                    int bmpWidth = bitmap.getWidth();
-                    int bmpHeight = bitmap.getHeight();
-                    Log.d("debug",String.format("w= %d",bmpWidth));
-                    Log.d("debug",String.format("h= %d",bmpHeight));
-                }
-            }
-            */
+
         if (requestCode == RESULT_CAMERA) {
 
             if(cameraUri != null){
@@ -178,8 +157,6 @@ public class MainActivity extends AppCompatActivity {
             else{
                 Log.d("debug","cameraUri == null");
             }
-
-            //imageView.setImageBitmap(bitmap);
         }
         // The ACTION_OPEN_DOCUMENT intent was sent with the request code
         // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
@@ -289,47 +266,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    /*@Override
-    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-
-        // The ACTION_OPEN_DOCUMENT intent was sent with the request code
-        // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
-        // response to some other intent, and the code below shouldn't run at all.
-        if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
-            // The document selected by the user won't be returned in the intent.
-            // Instead, a URI to that document will be contained in the return intent
-            // provided to this method as a parameter.
-            // Pull that URI using resultData.getData().
-            if (resultData.getData() != null) {
-
-                ParcelFileDescriptor pfDescriptor = null;
-                try {
-                    Uri uri = resultData.getData();
-                    // Uriを表示
-                    //textView.setText(
-                            //String.format(Locale.US, "Uri:　%s", uri.toString()));
-
-                    pfDescriptor = getContentResolver().openFileDescriptor(uri, "r");
-                    if (pfDescriptor != null) {
-                        FileDescriptor fileDescriptor = pfDescriptor.getFileDescriptor();
-                        Bitmap bmp = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-                        pfDescriptor.close();
-                        imageView.setImageBitmap(bmp);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        if (pfDescriptor != null) {
-                            pfDescriptor.close();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        }
-    }*/
 }
 
