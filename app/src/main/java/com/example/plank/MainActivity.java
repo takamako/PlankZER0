@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         Button cameraButton = findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 //ここまで
             }
         });
+
         Button PhotoButton = findViewById(R.id.ViewImg);
         //PhotoButton.setOnClickListener (new View.OnClickListener() {
             PhotoButton.setOnClickListener(new View.OnClickListener()
@@ -106,9 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 // it would be "*/*".
                 intent.setType("*/*");
 
-                startActivityForResult(intent, RESULT_OK);
+                startActivityForResult(intent, RESULT_CAMERA);
             }
             });
+
         //センサーようの移動ボタン
         Button sendButton_sensor = findViewById(R.id.sensor_button);
         sendButton_sensor.setOnClickListener(new View.OnClickListener() {
