@@ -261,7 +261,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         @Override
         public void onFinish() {
             // 完了
-            timerText.setText(dataFormat.format(300003));
+            timerText.setText(dataFormat.format(30000));
+            frag =0;
         }
 
         // インターバルで呼ばれる
