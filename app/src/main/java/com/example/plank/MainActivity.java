@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         Log.d("debug","onCreate()");//10/2追加
         setContentView(R.layout.activity_main);
@@ -82,32 +83,26 @@ public class MainActivity extends AppCompatActivity {
                     checkPermission();
                 }
                 else {
-                    cameraIntent();//下に関数作成10/2
+                    cameraIntent();
                 }
-                //ここまで
+
             }
         });
 
         Button PhotoButton = findViewById(R.id.ViewImg);
-        //PhotoButton.setOnClickListener (new View.OnClickListener() {
-            PhotoButton.setOnClickListener(new View.OnClickListener()
+        PhotoButton.setOnClickListener(new View.OnClickListener() {
 
-            {
-                public void onClick (View v){
-                // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file browser.
-                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                public void onClick (View v) {
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    intent.setType("*/*");
+                    startActivityForResult(intent, RESULT_CAMERA);
 
-                // Filter to only show results that can be "opened", such as a
-                // file (as opposed to a list of contacts or timezones)
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    //Intent intent = new Intent(getApplication(), ImageActivity.class);
+                    //startActivity(intent);
+                }
 
-                // Filter to show only images, using the image MIME data type.
-                // it would be "*/*".
-                intent.setType("*/*");
-
-                startActivityForResult(intent, RESULT_CAMERA);
-            }
-            });
+        });
 
         //センサーようの移動ボタン
         Button sendButton_sensor = findViewById(R.id.sensor_button);
@@ -158,22 +153,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("debug","cameraUri == null");
             }
         }
-        // The ACTION_OPEN_DOCUMENT intent was sent with the request code
-        // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
-        // response to some other intent, and the code below shouldn't run at all.
+
         if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
-            // The document selected by the user won't be returned in the intent.
-            // Instead, a URI to that document will be contained in the return intent
-            // provided to this method as a parameter.
-            // Pull that URI using resultData.getData().
+
             if (data.getData() != null) {
 
                 ParcelFileDescriptor pfDescriptor = null;
                 try {
                     Uri uri = data.getData();
-                    // Uriを表示
-                    //textView.setText(
-                    //String.format(Locale.US, "Uri:　%s", uri.toString()));
 
                     pfDescriptor = getContentResolver().openFileDescriptor(uri, "r");
                     if (pfDescriptor != null) {
@@ -210,6 +197,8 @@ public class MainActivity extends AppCompatActivity {
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
     }
 
+
+
     // Runtime Permission check
     private void checkPermission(){
         // 既に許可している
@@ -241,9 +230,9 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,},
                     REQUEST_PERMISSION);
-
         }
     }
+/*
 
     // 結果の受け取り
     @Override
@@ -266,5 +255,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+ */
 }
 
