@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int RESULT_CAMERA = 1001;
     private final static int REQUEST_PERMISSION = 1002;//10/2追加
     private ImageView imageView;
+    private ImageView imageView2;
     private Uri cameraUri;//10/2追加
     private File cameraFile;//10/2追加
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debug","onCreate()");//10/2追加
         setContentView(R.layout.activity_main);
         imageView = findViewById(R.id.image_view);
+        imageView2 = findViewById(R.id.image_view2);
 
         Button sendButton = findViewById(R.id.movie_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -97,12 +99,14 @@ public class MainActivity extends AppCompatActivity {
         PhotoButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick (View v) {
+
                     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
                     intent.setType("*/*");
                     startActivityForResult(intent, RESULT_CAMERA);
 
-                    //Intent intent = new Intent(getApplication(), ImageActivity.class);
+
+                   // Intent intent = new Intent(getApplication(), ImageActivity.class);
                     //startActivity(intent);
                 }
 
@@ -183,11 +187,10 @@ public class MainActivity extends AppCompatActivity {
             */
 
         //カメラの処理
-
         if (requestCode == RESULT_CAMERA) {
 
             if(cameraUri != null){
-                imageView.setImageURI(cameraUri);
+                imageView2.setImageURI(cameraUri);
 
                 registerDatabase(cameraFile);
             }
@@ -197,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        //ファイル読み込みの処理
         if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
 
             if (data.getData() != null) {
