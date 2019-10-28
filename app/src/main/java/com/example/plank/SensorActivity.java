@@ -51,7 +51,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // CountDownTimer(long millisInFuture, long countDownInterval)
         final CountDown countDown = new CountDown(countNumber, interval);
 
-
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         textInfo = findViewById(R.id.text_info);
@@ -160,6 +159,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //showInfo(event);
             //音センサー追加
             //サウンド追加
+
             if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5 ) {
                 soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
             } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
@@ -256,6 +256,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         @Override
         public void onFinish() {
             // 完了
+
             timerText.setText(dataFormat.format(0));
         }
 
