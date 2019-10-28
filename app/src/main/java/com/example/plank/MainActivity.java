@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        //カメラボタン
         Button cameraButton = findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,24 +89,18 @@ public class MainActivity extends AppCompatActivity {
                 //ここまで
             }
         });
+        //写真表示
+        //https://akira-watson.com/android/gallery.html
         Button PhotoButton = findViewById(R.id.ViewImg);
-        //PhotoButton.setOnClickListener (new View.OnClickListener() {
             PhotoButton.setOnClickListener(new View.OnClickListener()
 
             {
                 public void onClick (View v){
-                // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file browser.
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-
-                // Filter to only show results that can be "opened", such as a
-                // file (as opposed to a list of contacts or timezones)
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
-
-                // Filter to show only images, using the image MIME data type.
-                // it would be "*/*".
                 intent.setType("*/*");
 
-                startActivityForResult(intent, RESULT_OK);
+                startActivityForResult(intent, RESULT_CAMERA);
             }
             });
         //センサーようの移動ボタン
@@ -147,6 +141,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        //下10/2コメントアウト
+        /**
+        if (requestCode == RESULT_CAMERA) {
+            Bitmap bitmap;
+            // cancelしたケースも含む
+            if( data.getExtras() == null){
+                Log.d("debug","cancel ?");
+                return;
+            }
+            else{
+                bitmap = (Bitmap) data.getExtras().get("data");
+                if(bitmap != null){
+                    // 画像サイズを計測
+                    int bmpWidth = bitmap.getWidth();
+                    int bmpHeight = bitmap.getHeight();
+                    Log.d("debug",String.format("w= %d",bmpWidth));
+                    Log.d("debug",String.format("h= %d",bmpHeight));
+                }
+            }
+            */
+
+        //カメラの処理
+
         if (requestCode == RESULT_CAMERA) {
 
             if(cameraUri != null){
@@ -158,14 +175,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("debug","cameraUri == null");
             }
         }
-        // The ACTION_OPEN_DOCUMENT intent was sent with the request code
-        // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
-        // response to some other intent, and the code below shouldn't run at all.
+
+        //ファイル読み込みの処理
         if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
-            // The document selected by the user won't be returned in the intent.
-            // Instead, a URI to that document will be contained in the return intent
-            // provided to this method as a parameter.
-            // Pull that URI using resultData.getData().
+
             if (data.getData() != null) {
 
                 ParcelFileDescriptor pfDescriptor = null;
@@ -266,5 +279,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
 
