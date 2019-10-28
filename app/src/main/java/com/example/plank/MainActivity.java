@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //写真表示
         Button PhotoButton = findViewById(R.id.ViewImg);
         PhotoButton.setOnClickListener(new View.OnClickListener() {
 
@@ -107,22 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
         });
-
-        //写真表示
-        //https://akira-watson.com/android/gallery.html
-        //Button PhotoButton = findViewById(R.id.ViewImg);
-          //  PhotoButton.setOnClickListener(new View.OnClickListener()
-
-            //{
-              //  public void onClick (View v){
-                //Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-              //  intent.addCategory(Intent.CATEGORY_OPENABLE);
-               // intent.setType("*/*");
-
-                //startActivityForResult(intent, RESULT_CAMERA);
-            //}
-
-            //});
 
 
 
@@ -164,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        //下10/2コメントアウト
+        //画像表示(撮影してすぐ)
         /**
         if (requestCode == RESULT_CAMERA) {
             Bitmap bitmap;
@@ -185,8 +169,7 @@ public class MainActivity extends AppCompatActivity {
             }
             */
 
-        //カメラの処理
-
+        //カメラの処理()
         if (requestCode == RESULT_CAMERA) {
 
             if(cameraUri != null){
