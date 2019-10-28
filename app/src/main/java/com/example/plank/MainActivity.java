@@ -124,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
             //});
 
+
+
         //センサーようの移動ボタン
         Button sendButton_sensor = findViewById(R.id.sensor_button);
         sendButton_sensor.setOnClickListener(new View.OnClickListener() {
@@ -196,10 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("debug","cameraUri == null");
             }
         }
-
-
-        //ファイル読み込みの処理
-
+        //ファイル読み込み
         if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
 
             if (data.getData() != null) {
@@ -302,8 +301,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-<<<<<<< HEAD
  */
-
 }
 
