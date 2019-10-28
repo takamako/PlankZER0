@@ -30,11 +30,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private TextView textView, textInfo;
     private SoundPool soundPool;
     private int soundOne, soundTwo, soundThree;
-    private int frag =0;
     float nextX =0;
     float nextY =0;
     float nextZ =0;
-
+    private int frag = 0;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +47,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         Button startButton = findViewById(R.id.start_button);//タイマーのボタン
         Button stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         timerText = findViewById(R.id.timer);
-        timerText.setText(dataFormat.format(30000));
+        timerText.setText(dataFormat.format(0));
         // CountDownTimer(long millisInFuture, long countDownInterval)
         final CountDown countDown = new CountDown(countNumber, interval);
-
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -64,8 +62,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             @Override
             public void onClick(View v) {
                 // 開始
+                frag=1;
                 countDown.start();
-                frag =1;
             }
         });
         //ストップボタンの処理
@@ -73,9 +71,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             @Override
             public void onClick(View v) {
                 // 中止
+                frag=0;
                 countDown.cancel();
                 timerText.setText(dataFormat.format(0));
-                frag =0;
             }
         });
 
@@ -163,7 +161,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //showInfo(event);
             //音センサー追加
             //サウンド追加
-            if(frag ==1) {//スターとじに1、ストッぷで0
+            if(frag==1) {
                 if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
                 } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
@@ -263,6 +261,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             // 完了
             timerText.setText(dataFormat.format(30000));
             frag =0;
+
+            timerText.setText(dataFormat.format(0));
         }
 
         // インターバルで呼ばれる
