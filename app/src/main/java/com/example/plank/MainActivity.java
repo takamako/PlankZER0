@@ -78,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//10/2コメントアウト
-                //startActivityForResult(intent, RESULT_CAMERA);//10/2コメントアウト
                 //追加
                 // Android 6, API 23以上でパーミッシンの確認
                 if (Build.VERSION.SDK_INT >= 23) {
@@ -135,13 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri);
-        startActivityForResult(intent, RESULT_CAMERA);
+        startActivityForResult(intent, RESULT_OK);
 
         Log.d("debug","startActivityForResult()");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         //下10/2コメントアウト
         /**
         if (requestCode == RESULT_CAMERA) {
@@ -164,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             */
 
         //カメラの処理
+
         if (requestCode == RESULT_CAMERA) {
 
             if(cameraUri != null){
@@ -174,8 +174,6 @@ public class MainActivity extends AppCompatActivity {
             else{
                 Log.d("debug","cameraUri == null");
             }
-
-            //imageView.setImageBitmap(bitmap);
         }
 
         //ファイル読み込みの処理
@@ -281,6 +279,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    
+
 }
 
