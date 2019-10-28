@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int RESULT_CAMERA = 1001;
     private final static int REQUEST_PERMISSION = 1002;//10/2追加
     private ImageView imageView;
+    private ImageView imageView2;
     private Uri cameraUri;//10/2追加
     private File cameraFile;//10/2追加
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debug","onCreate()");//10/2追加
         setContentView(R.layout.activity_main);
         imageView = findViewById(R.id.image_view);
+        imageView2 = findViewById(R.id.image_view2);
 
         Button sendButton = findViewById(R.id.movie_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         //カメラボタン
-
         Button cameraButton = findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,22 +93,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //写真表示
         Button PhotoButton = findViewById(R.id.ViewImg);
         PhotoButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick (View v) {
+
                     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
                     intent.setType("*/*");
                     startActivityForResult(intent, RESULT_CAMERA);
 
-                    //Intent intent = new Intent(getApplication(), ImageActivity.class);
+
+                   // Intent intent = new Intent(getApplication(), ImageActivity.class);
                     //startActivity(intent);
                 }
 
         });
-
 
 
         //センサーようの移動ボタン
@@ -169,11 +170,13 @@ public class MainActivity extends AppCompatActivity {
             }
             */
 
-        //カメラの処理()
+
+        //カメラの処理
+
         if (requestCode == RESULT_CAMERA) {
 
             if(cameraUri != null){
-                imageView.setImageURI(cameraUri);
+                imageView2.setImageURI(cameraUri);
 
                 registerDatabase(cameraFile);
             }
@@ -181,7 +184,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("debug","cameraUri == null");
             }
         }
-        //ファイル読み込み
+
+
         if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
 
             if (data.getData() != null) {
@@ -283,7 +287,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
  */
 }
 

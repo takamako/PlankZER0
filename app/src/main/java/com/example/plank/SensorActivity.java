@@ -41,9 +41,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         setContentView(R.layout.activity_sensor);
 
         // 3分= 3x60x1000 = 180000 msec
-
         long countNumber = 180000;
-
         // インターバル msec
         long interval = 10;
         Button startButton = findViewById(R.id.start_button);//タイマーのボタン
@@ -52,7 +50,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         timerText.setText(dataFormat.format(0));
         // CountDownTimer(long millisInFuture, long countDownInterval)
         final CountDown countDown = new CountDown(countNumber, interval);
-
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -75,7 +72,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 // 中止
                 countDown.cancel();
                 timerText.setText(dataFormat.format(0));
-
             }
         });
 
@@ -163,13 +159,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //showInfo(event);
             //音センサー追加
             //サウンド追加
+
             if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5 ) {
                 soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
             } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
                 soundPool.play(soundTwo, 1.0f, 1.0f, 0, 1, 1);
             } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
                 soundPool.play(soundThree, 1.0f, 1.0f, 0, 1, 1);
-
             }
             nextX = sensorX;
             nextY = sensorY;
@@ -260,6 +256,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         @Override
         public void onFinish() {
             // 完了
+
             timerText.setText(dataFormat.format(0));
         }
 
