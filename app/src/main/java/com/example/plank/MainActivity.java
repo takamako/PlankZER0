@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         //カメラボタン
-
         Button cameraButton = findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
 
         Button PhotoButton = findViewById(R.id.ViewImg);
@@ -123,9 +123,6 @@ public class MainActivity extends AppCompatActivity {
             //}
 
             //});
-
-
-
         //センサーようの移動ボタン
         Button sendButton_sensor = findViewById(R.id.sensor_button);
         sendButton_sensor.setOnClickListener(new View.OnClickListener() {
@@ -198,7 +195,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("debug","cameraUri == null");
             }
         }
-        //ファイル読み込み
+
+
+        //ファイル読み込みの処理
         if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
 
             if (data.getData() != null) {
@@ -300,7 +299,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
  */
 }
 
