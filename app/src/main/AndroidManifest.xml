@@ -30,6 +30,15 @@
         <activity
             android:name=".ImageActivity"
             android:label="Plank"></activity> <!-- センサーボタン -->
+        <activity
+            android:name=".CompareActivity"
+            android:label="Plank"></activity>
+        <activity
+            android:name=".OpencvActivity"
+            android:label="Plank"></activity>
+        <activity
+            android:name=".PosenetActivity"
+            android:label="Plank"></activity>
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/activity_image2" /> <!-- センサーボタン -->
