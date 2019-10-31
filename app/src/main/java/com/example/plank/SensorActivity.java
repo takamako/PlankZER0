@@ -36,7 +36,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     float nextY =0;
     float nextZ =0;
     private int frag = 0;
-    //private int timing = 0;
+    private int timing = 0;
     final Handler handler = new Handler();
 
     private Runnable delay;
@@ -83,7 +83,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 startButton.setEnabled(false);
                 countDown_before.start();
                 //wait_time();
-
+                timing =1;//countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
                 delay =  new Runnable(){//遅延定義 10/31
                     @Override
                     public void run() {
@@ -301,7 +301,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
             timerText.setText(dataFormat.format(30000));
             frag =0;
-            startButton.setEnabled(true);
+            if(timing ==1){
+            startButton.setEnabled(true);}
             //timerText.setText(dataFormat.format(0));
         }
 
