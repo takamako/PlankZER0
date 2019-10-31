@@ -8,6 +8,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.view.View.OnClickListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import android.view.animation.RotateAnimation;
+import android.os.Handler;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -34,22 +36,39 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     float nextY =0;
     float nextZ =0;
     private int frag = 0;
+    //private int timing = 0;
+    final Handler handler = new Handler();
+
+    private Runnable delay;
+    // 3分= 3x60x1000 = 180000 msec
+    long countNumber = 30000;
+    //スタート前
+    long countbefore = 10000;
+    // インターバル msec
+    long interval = 10;
+    final CountDown countDown = new CountDown(countNumber, interval);
+    Button startButton;
+    Button stopButton;
+    //private Runnable;
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
 
-        // 3分= 3x60x1000 = 180000 msec
-        long countNumber = 30000;
-        // インターバル msec
-        long interval = 10;
-        Button startButton = findViewById(R.id.start_button);//タイマーのボタン
-        Button stopButton = findViewById(R.id.stop_button);//タイマーのボタン
+
+        startButton = findViewById(R.id.start_button);//タイマーのボタン
+        stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         timerText = findViewById(R.id.timer);
         timerText.setText(dataFormat.format(0));
+
+
         // CountDownTimer(long millisInFuture, long countDownInterval)
-        final CountDown countDown = new CountDown(countNumber, interval);
+
+        final CountDown countDown_before = new CountDown(countbefore, interval);
+
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -60,10 +79,23 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         //スタートボタンの処理
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // 開始
-                frag=1;
-                countDown.start();
+            public void onClick(View view) {
+                startButton.setEnabled(false);
+                countDown_before.start();
+                //wait_time();
+
+                delay =  new Runnable(){//遅延定義 10/31
+                    @Override
+                    public void run() {
+                        soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+
+                        // 開始
+                        frag=1;
+                        //if(timing == 0){//いらない
+                            countDown.start();}
+                   // }
+                };
+                handler.postDelayed(delay, 10100);//遅延実行
             }
         });
         //ストップボタンの処理
@@ -71,8 +103,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             @Override
             public void onClick(View v) {
                 // 中止
+                startButton.setEnabled(true);
+                if(frag==1){
+                countDown.cancel();}
+                if(frag ==0){
+                countDown_before.cancel();}
+                handler.removeCallbacks(delay);
                 frag=0;
-                countDown.cancel();
                 timerText.setText(dataFormat.format(0));
             }
         });
@@ -250,6 +287,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     }
 
+
+
     class CountDown extends CountDownTimer {
 
         CountDown(long millisInFuture, long countDownInterval) {
@@ -259,11 +298,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         @Override
         public void onFinish() {
             // 完了
+
             timerText.setText(dataFormat.format(30000));
             frag =0;
-
-            timerText.setText(dataFormat.format(0));
+            startButton.setEnabled(true);
+            //timerText.setText(dataFormat.format(0));
         }
+
 
         // インターバルで呼ばれる
         @Override
@@ -273,10 +314,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //long ss = millisUntilFinished / 1000 % 60;
             //long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
             //timerText.setText(String.format("%1$02d:%2$02d.%3$03d", mm, ss, ms));
-
-            timerText.setText(dataFormat.format(millisUntilFinished));
+                timerText.setText(dataFormat.format(millisUntilFinished));
 
         }
     }
+
 
 }
