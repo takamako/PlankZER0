@@ -83,7 +83,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 startButton.setEnabled(false);
                 countDown_before.start();
                 //wait_time();
-                timing =1;//countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
+                //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
                 delay =  new Runnable(){//遅延定義 10/31
                     @Override
                     public void run() {
@@ -91,8 +91,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
                         // 開始
                         frag=1;
+                        timing =1;
                         //if(timing == 0){//いらない
                             countDown.start();}
+
                    // }
                 };
                 handler.postDelayed(delay, 10100);//遅延実行
