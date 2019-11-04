@@ -1,5 +1,6 @@
 package com.example.plank;
 
+import android.content.pm.ActivityInfo;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 //import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.view.View.OnClickListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +22,15 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import android.view.animation.RotateAnimation;
+import android.os.Handler;
+import android.graphics.Color;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
+import java.util.Locale;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -34,22 +45,81 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     float nextY =0;
     float nextZ =0;
     private int frag = 0;
+    private int timing = 0;
+    final Handler handler = new Handler();
+
+    private Runnable delay;
+    // 3分= 3x60x1000 = 180000 msec
+    long countNumber = 30000;
+    //スタート前
+    long countbefore = 10000;
+    // インターバル msec
+    long interval = 10;
+    final CountDown countDown = new CountDown(countNumber, interval);
+    Button startButton;
+    Button stopButton;
+    //private Runnable;
+
+
+
+
+    private Sensor accel;
+    private TextView textGraph;
+    private LineChart mChart;
+    private String[] labels = new String[]{
+            "linear_accelerationX",
+            "linear_accelerationY",
+            "linear_accelerationZ"};
+    private int[] colors = new int[]{
+            Color.BLUE,
+            Color.GRAY,
+            Color.MAGENTA};
+    private boolean lineardata = true;
+
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
 
-        // 3分= 3x60x1000 = 180000 msec
-        long countNumber = 30000;
-        // インターバル msec
-        long interval = 10;
-        Button startButton = findViewById(R.id.start_button);//タイマーのボタン
-        Button stopButton = findViewById(R.id.stop_button);//タイマーのボタン
+
+        startButton = findViewById(R.id.start_button);//タイマーのボタン
+        stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         timerText = findViewById(R.id.timer);
         timerText.setText(dataFormat.format(0));
+
+
         // CountDownTimer(long millisInFuture, long countDownInterval)
-        final CountDown countDown = new CountDown(countNumber, interval);
+
+        final CountDown countDown_before = new CountDown(countbefore, interval);
+
+
+        // 縦画面
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // Get an instance of the SensorManager
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        // Get an instance of the TextView
+        textGraph = findViewById(R.id.text_view);
+
+        mChart = findViewById(R.id.chart);
+        // インスタンス生成
+        //mChart.setData(new LineData());
+        // no description text
+        mChart.getDescription().setEnabled(false);
+        // Grid背景色
+        mChart.setDrawGridBackground(true);
+        // 右側の目盛り
+        mChart.getAxisRight().setEnabled(false);
+
+
+
+
+
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -60,10 +130,26 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         //スタートボタンの処理
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // 開始
-                frag=1;
-                countDown.start();
+            public void onClick(View view) {
+                startButton.setEnabled(false);
+                countDown_before.start();
+                //wait_time();
+                //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
+                delay =  new Runnable(){//遅延定義 10/31
+                    @Override
+                    public void run() {
+                        mChart.setData(new LineData());
+                        soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+
+                        // 開始
+                        frag=1;
+                        timing =1;
+                        //if(timing == 0){//いらない
+                            countDown.start();}
+
+                   // }
+                };
+                handler.postDelayed(delay, 10100);//遅延実行
             }
         });
         //ストップボタンの処理
@@ -71,8 +157,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             @Override
             public void onClick(View v) {
                 // 中止
+                startButton.setEnabled(true);
+                if(frag==1){
+                countDown.cancel();}
+                if(frag ==0){
+                countDown_before.cancel();}
+                handler.removeCallbacks(delay);
                 frag=0;
-                countDown.cancel();
                 timerText.setText(dataFormat.format(0));
             }
         });
@@ -177,6 +268,79 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         }
 
 
+        float gravity[] = new float[3];
+        float linear_acceleration[] = new float[3];
+
+        final float alpha = 0.6f;
+
+        if(frag==1) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER ) {
+
+            // alpha is calculated as t / (t + dT)
+            // with t, the low-pass filter's time-constant
+            // and dT, the event delivery rate
+
+            gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
+            gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
+            gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+
+            linear_acceleration[0] = event.values[0] - gravity[0];
+            linear_acceleration[1] = event.values[1] - gravity[1];
+            linear_acceleration[2] = event.values[2] - gravity[2];
+
+            String accelero;
+
+            if (!lineardata) {
+                accelero = String.format(Locale.US,
+                        "X: %.3f\nY: %.3f\nZ: %.3f",
+                        event.values[0], event.values[1], event.values[2]);
+            } else {
+                accelero = String.format(Locale.US,
+                        "X: %.3f\nY: %.3f\nZ: %.3f",
+                        gravity[0], gravity[1], gravity[2]);
+            }
+
+            textView.setText(accelero);
+
+
+            LineData data = mChart.getLineData();
+
+            if (data != null) {
+                for (int i = 0; i < 3; i++) {
+                    ILineDataSet set3 = data.getDataSetByIndex(i);
+                    if (set3 == null) {
+                        LineDataSet set = new LineDataSet(null, labels[i]);
+                        set.setLineWidth(2.0f);
+                        set.setColor(colors[i]);
+                        // liner line
+                        set.setDrawCircles(false);
+                        // no values on the chart
+                        set.setDrawValues(false);
+                        set3 = set;
+                        data.addDataSet(set3);
+                    }
+
+                    // data update
+                    if (!lineardata) {
+                        data.addEntry(new Entry(set3.getEntryCount(), event.values[i]), i);
+                    } else {
+                        data.addEntry(new Entry(set3.getEntryCount(), linear_acceleration[i]), i);
+                    }
+
+                    data.notifyDataChanged();
+                }
+
+                mChart.notifyDataSetChanged(); // 表示の更新のために変更を通知する
+                mChart.setVisibleXRangeMaximum(180); // 表示の幅を決定する
+                mChart.moveViewToX(data.getEntryCount()); // 最新のデータまで表示を移動させる
+            }
+            }
+        }
+
+
+
+
+
 
     }
 
@@ -250,6 +414,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     }
 
+
+
     class CountDown extends CountDownTimer {
 
         CountDown(long millisInFuture, long countDownInterval) {
@@ -259,11 +425,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         @Override
         public void onFinish() {
             // 完了
+
             timerText.setText(dataFormat.format(30000));
             frag =0;
-
-            timerText.setText(dataFormat.format(0));
+            if(timing ==1){
+            startButton.setEnabled(true);}
+            //timerText.setText(dataFormat.format(0));
         }
+
 
         // インターバルで呼ばれる
         @Override
@@ -273,10 +442,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //long ss = millisUntilFinished / 1000 % 60;
             //long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
             //timerText.setText(String.format("%1$02d:%2$02d.%3$03d", mm, ss, ms));
-
-            timerText.setText(dataFormat.format(millisUntilFinished));
+                timerText.setText(dataFormat.format(millisUntilFinished));
 
         }
     }
+
 
 }

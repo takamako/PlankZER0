@@ -7,11 +7,18 @@
     <string name="return_sub">RETURN</string>
     <string name="return_butten_semsor">RETURN</string>
     <string name="sensor_button">sensor</string>
-    <string name="SelectPhoto">SelectPhoto</string>
+    <string name="SelectPhoto">Image</string>
     <string name="one">One</string>
     <string name="two">Two</string>
     <string name="three">Three</string>
     <string name="todo">TODO</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="opencv">opencv</string>
+    <string name="posenet">posenet</string>
+    <string name="img_cmp">image compare</string>
+    <string name="home">Home</string>
+    <string name="return_sub_com">RETURN</string>
+    <string name="return_sub_open">RETURN</string>
+    <string name="return_sub_pose">RETURN</string>
 </resources>
