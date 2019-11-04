@@ -32,8 +32,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //implementation "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"//ここ有効にするとバグる
     implementation project(path: ':OpenCV410')
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 repositories {
     mavenCentral()
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+   // implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
