@@ -1,5 +1,6 @@
 package com.example.plank;
 
+import android.content.pm.ActivityInfo;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 //import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,14 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import android.view.animation.RotateAnimation;
 import android.os.Handler;
+import android.graphics.Color;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
+import java.util.Locale;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -52,6 +61,24 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     //private Runnable;
 
 
+
+
+    private Sensor accel;
+    private TextView textGraph;
+    private LineChart mChart;
+    private String[] labels = new String[]{
+            "linear_accelerationX",
+            "linear_accelerationY",
+            "linear_accelerationZ"};
+    private int[] colors = new int[]{
+            Color.BLUE,
+            Color.GRAY,
+            Color.MAGENTA};
+    private boolean lineardata = true;
+
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +95,30 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
         final CountDown countDown_before = new CountDown(countbefore, interval);
+
+
+        // 縦画面
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // Get an instance of the SensorManager
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        // Get an instance of the TextView
+        textGraph = findViewById(R.id.text_view);
+
+        mChart = findViewById(R.id.chart);
+        // インスタンス生成
+        //mChart.setData(new LineData());
+        // no description text
+        mChart.getDescription().setEnabled(false);
+        // Grid背景色
+        mChart.setDrawGridBackground(true);
+        // 右側の目盛り
+        mChart.getAxisRight().setEnabled(false);
+
+
+
+
 
 
         // Get an instance of the SensorManager
@@ -87,6 +138,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 delay =  new Runnable(){//遅延定義 10/31
                     @Override
                     public void run() {
+                        mChart.setData(new LineData());
                         soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
 
                         // 開始
@@ -214,6 +266,79 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             nextZ = sensorZ;
 
         }
+
+
+        float gravity[] = new float[3];
+        float linear_acceleration[] = new float[3];
+
+        final float alpha = 0.6f;
+
+        if(frag==1) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER ) {
+
+            // alpha is calculated as t / (t + dT)
+            // with t, the low-pass filter's time-constant
+            // and dT, the event delivery rate
+
+            gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
+            gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
+            gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+
+            linear_acceleration[0] = event.values[0] - gravity[0];
+            linear_acceleration[1] = event.values[1] - gravity[1];
+            linear_acceleration[2] = event.values[2] - gravity[2];
+
+            String accelero;
+
+            if (!lineardata) {
+                accelero = String.format(Locale.US,
+                        "X: %.3f\nY: %.3f\nZ: %.3f",
+                        event.values[0], event.values[1], event.values[2]);
+            } else {
+                accelero = String.format(Locale.US,
+                        "X: %.3f\nY: %.3f\nZ: %.3f",
+                        gravity[0], gravity[1], gravity[2]);
+            }
+
+            textView.setText(accelero);
+
+
+            LineData data = mChart.getLineData();
+
+            if (data != null) {
+                for (int i = 0; i < 3; i++) {
+                    ILineDataSet set3 = data.getDataSetByIndex(i);
+                    if (set3 == null) {
+                        LineDataSet set = new LineDataSet(null, labels[i]);
+                        set.setLineWidth(2.0f);
+                        set.setColor(colors[i]);
+                        // liner line
+                        set.setDrawCircles(false);
+                        // no values on the chart
+                        set.setDrawValues(false);
+                        set3 = set;
+                        data.addDataSet(set3);
+                    }
+
+                    // data update
+                    if (!lineardata) {
+                        data.addEntry(new Entry(set3.getEntryCount(), event.values[i]), i);
+                    } else {
+                        data.addEntry(new Entry(set3.getEntryCount(), linear_acceleration[i]), i);
+                    }
+
+                    data.notifyDataChanged();
+                }
+
+                mChart.notifyDataSetChanged(); // 表示の更新のために変更を通知する
+                mChart.setVisibleXRangeMaximum(180); // 表示の幅を決定する
+                mChart.moveViewToX(data.getEntryCount()); // 最新のデータまで表示を移動させる
+            }
+            }
+        }
+
+
+
 
 
 
