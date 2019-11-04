@@ -29,7 +29,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-
+import com.github.mikephil.charting.components.XAxis;
 import java.util.Locale;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
@@ -116,7 +116,12 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // 右側の目盛り
         mChart.getAxisRight().setEnabled(false);
 
+        // Grid縦軸を破線 x軸に関する処理
 
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setEnabled(false);//x軸のラベル消す
 
 
 
@@ -248,7 +253,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     + " X: " + sensorX + "\n"
                     + " Y: " + sensorY + "\n"
                     + " Z: " + sensorZ;
-            textView.setText(strTmp);
+            //textView.setText(strTmp);
 
             //showInfo(event);
             //音センサー追加
@@ -301,7 +306,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         gravity[0], gravity[1], gravity[2]);
             }
 
-            textView.setText(accelero);
+           // textView.setText(accelero);
 
 
             LineData data = mChart.getLineData();
@@ -330,6 +335,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
                     data.notifyDataChanged();
                 }
+
 
                 mChart.notifyDataSetChanged(); // 表示の更新のために変更を通知する
                 mChart.setVisibleXRangeMaximum(180); // 表示の幅を決定する
