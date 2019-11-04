@@ -29,7 +29,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-
+import com.github.mikephil.charting.components.XAxis;
 import java.util.Locale;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
@@ -40,7 +40,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             new SimpleDateFormat("mm:ss.SSS", Locale.US);//https://akira-watson.com/android/countdowntimer.html
     private TextView textView, textInfo;
     private SoundPool soundPool;
-    private int soundOne, soundTwo, soundThree;
+    private int soundOne, soundTwo, soundThree,soundFour;
     float nextX =0;
     float nextY =0;
     float nextZ =0;
@@ -116,7 +116,12 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         // 右側の目盛り
         mChart.getAxisRight().setEnabled(false);
 
+        // Grid縦軸を破線 x軸に関する処理
 
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setEnabled(false);//x軸のラベル消す
 
 
 
@@ -139,7 +144,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     @Override
                     public void run() {
                         mChart.setData(new LineData());
-                        soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+                        soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
                         // 開始
                         frag=1;
@@ -197,6 +202,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         soundOne = soundPool.load(this, R.raw.one, 1);
         soundTwo = soundPool.load(this, R.raw.two, 1);
         soundThree = soundPool.load(this, R.raw.three, 1);
+        soundFour = soundPool.load(this, R.raw.four, 1);
 
         // load が終わったか確認する場合
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
@@ -247,18 +253,18 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     + " X: " + sensorX + "\n"
                     + " Y: " + sensorY + "\n"
                     + " Z: " + sensorZ;
-            textView.setText(strTmp);
+            //textView.setText(strTmp);
 
             //showInfo(event);
             //音センサー追加
             //サウンド追加
             if(frag==1) {
                 if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5) {
-                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
                 } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
-                    soundPool.play(soundTwo, 1.0f, 1.0f, 0, 1, 1);
+                    soundPool.play(soundTwo, 1.0f, 1.0f, 0, 0, 1);
                 } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
-                    soundPool.play(soundThree, 1.0f, 1.0f, 0, 1, 1);
+                    soundPool.play(soundThree, 1.0f, 1.0f, 0, 0, 1);
                 }
             }
             nextX = sensorX;
@@ -300,7 +306,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         gravity[0], gravity[1], gravity[2]);
             }
 
-            textView.setText(accelero);
+           // textView.setText(accelero);
 
 
             LineData data = mChart.getLineData();
@@ -329,6 +335,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
                     data.notifyDataChanged();
                 }
+
 
                 mChart.notifyDataSetChanged(); // 表示の更新のために変更を通知する
                 mChart.setVisibleXRangeMaximum(180); // 表示の幅を決定する
