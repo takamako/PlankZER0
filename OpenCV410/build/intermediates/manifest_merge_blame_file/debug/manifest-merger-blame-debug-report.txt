@@ -5,7 +5,7 @@
 5    android:versionName="4.1.1" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="15"
+8        android:minSdkVersion="21"
 8-->/Users/e175774/AndroidStudioProjects/enpit2019_v.i.p/OpenCV410/java/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
 9-->/Users/e175774/AndroidStudioProjects/enpit2019_v.i.p/OpenCV410/java/AndroidManifest.xml
