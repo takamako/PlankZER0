@@ -40,7 +40,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             new SimpleDateFormat("mm:ss.SSS", Locale.US);//https://akira-watson.com/android/countdowntimer.html
     private TextView textView, textInfo;
     private SoundPool soundPool;
-    private int soundOne, soundTwo, soundThree;
+    private int soundOne, soundTwo, soundThree,soundFour;
     float nextX =0;
     float nextY =0;
     float nextZ =0;
@@ -139,7 +139,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                     @Override
                     public void run() {
                         mChart.setData(new LineData());
-                        soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+                        soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
                         // 開始
                         frag=1;
@@ -197,6 +197,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         soundOne = soundPool.load(this, R.raw.one, 1);
         soundTwo = soundPool.load(this, R.raw.two, 1);
         soundThree = soundPool.load(this, R.raw.three, 1);
+        soundFour = soundPool.load(this, R.raw.four, 1);
 
         // load が終わったか確認する場合
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
@@ -254,11 +255,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //サウンド追加
             if(frag==1) {
                 if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5) {
-                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);
+                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
                 } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
-                    soundPool.play(soundTwo, 1.0f, 1.0f, 0, 1, 1);
+                    soundPool.play(soundTwo, 1.0f, 1.0f, 0, 0, 1);
                 } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
-                    soundPool.play(soundThree, 1.0f, 1.0f, 0, 1, 1);
+                    soundPool.play(soundThree, 1.0f, 1.0f, 0, 0, 1);
                 }
             }
             nextX = sensorX;
