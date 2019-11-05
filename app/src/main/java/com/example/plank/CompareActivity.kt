@@ -5,7 +5,6 @@ package com.example.plank
 //ここまで
 
 import android.Manifest
-import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -321,7 +320,7 @@ class CompareActivity : AppCompatActivity() {
         }
 
 
-        if (requestCode == RESULT_CAMERA && resultCode == Activity.RESULT_OK) {
+        if (requestCode == RESULT_CAMERA) {
 
             if (data!!.data != null) {
 
