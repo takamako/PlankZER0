@@ -44,6 +44,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     float nextX =0;
     float nextY =0;
     float nextZ =0;
+    private int first = 0;
+    private float FirstX,FirstY,FirstZ =0;
     private int frag = 0;
     private int timing = 0;
     final Handler handler = new Handler();
@@ -149,12 +151,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         // 開始
                         frag=1;
                         timing =1;
-                        //if(timing == 0){//いらない
+                        first =1;
+
                             countDown.start();}
 
                    // }
                 };
-                handler.postDelayed(delay, 10100);//遅延実行
+                handler.postDelayed(delay, 10200);//遅延実行
             }
         });
         //ストップボタンの処理
@@ -242,28 +245,33 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent event) {
         float sensorX, sensorY, sensorZ;
-
+        if(first==1){
+            FirstX = event.values[0];
+            FirstY = event.values[1];
+            FirstZ = event.values[2];
+         first=0;
+        }
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             sensorX = event.values[0];
             sensorY = event.values[1];
             sensorZ = event.values[2];
 
-            String strTmp = "加速度センサー\n"
-                    + " X: " + sensorX + "\n"
-                    + " Y: " + sensorY + "\n"
-                    + " Z: " + sensorZ;
+            //String strTmp = "加速度センサー\n"
+            //        + " X: " + sensorX + "\n"
+            //        + " Y: " + sensorY + "\n"
+            //        + " Z: " + sensorZ;
             //textView.setText(strTmp);
 
             //showInfo(event);
             //音センサー追加
             //サウンド追加
             if(frag==1) {
-                if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5) {
+                if (FirstZ - nextZ < -0.5 || FirstZ - nextZ > 0.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
-                } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
+                } else if (FirstX - nextX < -0.5 || FirstX - nextX > 0.5) {
                     soundPool.play(soundTwo, 1.0f, 1.0f, 0, 0, 1);
-                } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
+                } else if (FirstY - nextY < -0.5 || FirstY - nextY > 0.5) {
                     soundPool.play(soundThree, 1.0f, 1.0f, 0, 0, 1);
                 }
             }
@@ -277,7 +285,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         float gravity[] = new float[3];
         float linear_acceleration[] = new float[3];
 
-        final float alpha = 0.6f;
+        final float alpha = 0.1f;
 
         if(frag==1) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER ) {
@@ -286,25 +294,25 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             // with t, the low-pass filter's time-constant
             // and dT, the event delivery rate
 
-            gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
-            gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
-            gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+            gravity[0] = (FirstX - nextX)*alpha;
+            gravity[1] = (FirstY - nextY)*alpha;
+            gravity[2] = (FirstZ - nextZ)*alpha;
 
-            linear_acceleration[0] = event.values[0] - gravity[0];
-            linear_acceleration[1] = event.values[1] - gravity[1];
-            linear_acceleration[2] = event.values[2] - gravity[2];
+            linear_acceleration[0] = gravity[0];
+            linear_acceleration[1] = gravity[1];
+            linear_acceleration[2] = gravity[2];
 
             String accelero;
 
-            if (!lineardata) {
-                accelero = String.format(Locale.US,
-                        "X: %.3f\nY: %.3f\nZ: %.3f",
-                        event.values[0], event.values[1], event.values[2]);
-            } else {
-                accelero = String.format(Locale.US,
-                        "X: %.3f\nY: %.3f\nZ: %.3f",
-                        gravity[0], gravity[1], gravity[2]);
-            }
+            //if (!lineardata) {
+            //    accelero = String.format(Locale.US,
+            //            "X: %.3f\nY: %.3f\nZ: %.3f",
+            //            event.values[0], event.values[1], event.values[2]);
+            //} else {
+            //    accelero = String.format(Locale.US,
+            //            "X: %.3f\nY: %.3f\nZ: %.3f",
+            //            gravity[0], gravity[1], gravity[2]);
+            //}
 
            // textView.setText(accelero);
 
