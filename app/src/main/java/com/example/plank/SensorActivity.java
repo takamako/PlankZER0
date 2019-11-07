@@ -50,7 +50,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private int timing = 0;
     final Handler handler = new Handler();
 
+
     private Runnable delay;
+    private Runnable delayStartCountDown;
     // 3分= 3x60x1000 = 180000 msec
     long countNumber = 30000;
     //スタート前
@@ -138,7 +140,17 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 startButton.setEnabled(false);
                 countDown_before.start();
                 //wait_time();
-                //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
+                //countDown_beforeで終わるときにスタートボタンが押せるの防
+                timing =1;
+                delayStartCountDown =  new Runnable(){//遅延定義 10/31
+                    @Override
+                    public void run() {
+                        if(timing==1) {
+                            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+                        }
+                        }
+                };
+
                 delay =  new Runnable(){//遅延定義 10/31
                     @Override
                     public void run() {
@@ -146,14 +158,16 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
                         // 開始
-                        frag=1;
-                        timing =1;
+                        //timing =1;
                         first =1;
-
+                        frag=1;
                             countDown.start();}
 
                    // }
                 };
+                handler.postDelayed(delayStartCountDown, 7000);//遅延実行
+                handler.postDelayed(delayStartCountDown, 8000);//遅延実行
+                handler.postDelayed(delayStartCountDown, 9000);//遅延実行
                 handler.postDelayed(delay, 10200);//遅延実行
             }
         });
@@ -169,6 +183,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 countDown_before.cancel();}
                 handler.removeCallbacks(delay);
                 frag=0;
+                timing =0;
+                handler.removeCallbacks(delayStartCountDown);
+                handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(0));
             }
         });
@@ -255,11 +272,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
 
             if(frag==1) {
-                if (FirstZ - nextZ < -0.5 || FirstZ - nextZ > 0.5) {
+                if (FirstZ - nextZ < -1 || FirstZ - nextZ > 1) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
-                } else if (FirstX - nextX < -0.5 || FirstX - nextX > 0.5) {
+                } else if (FirstX - nextX < -1 || FirstX - nextX > 1) {
                     soundPool.play(soundTwo, 1.0f, 1.0f, 0, 0, 1);
-                } else if (FirstY - nextY < -0.5 || FirstY - nextY > 0.5) {
+                } else if (FirstY - nextY < -1 || FirstY - nextY > 1) {
                     soundPool.play(soundThree, 1.0f, 1.0f, 0, 0, 1);
                 }
             }
