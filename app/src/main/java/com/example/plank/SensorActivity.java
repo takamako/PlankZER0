@@ -44,11 +44,15 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     float nextX =0;
     float nextY =0;
     float nextZ =0;
+    private int first = 0;
+    private float FirstX,FirstY,FirstZ =0;
     private int frag = 0;
     private int timing = 0;
     final Handler handler = new Handler();
 
+
     private Runnable delay;
+    private Runnable delayStartCountDown;
     // 3分= 3x60x1000 = 180000 msec
     long countNumber = 30000;
     //スタート前
@@ -59,9 +63,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     Button startButton;
     Button stopButton;
     //private Runnable;
-
-
-
 
     private Sensor accel;
     private TextView textGraph;
@@ -108,7 +109,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         mChart = findViewById(R.id.chart);
         // インスタンス生成
-        //mChart.setData(new LineData());
+        mChart.setData(new LineData());
         // no description text
         mChart.getDescription().setEnabled(false);
         // Grid背景色
@@ -139,7 +140,17 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 startButton.setEnabled(false);
                 countDown_before.start();
                 //wait_time();
-                //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
+                //countDown_beforeで終わるときにスタートボタンが押せるの防
+                timing =1;
+                delayStartCountDown =  new Runnable(){//遅延定義 10/31
+                    @Override
+                    public void run() {
+                        if(timing==1) {
+                            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+                        }
+                        }
+                };
+
                 delay =  new Runnable(){//遅延定義 10/31
                     @Override
                     public void run() {
@@ -147,14 +158,17 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                         soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
                         // 開始
+                        //timing =1;
+                        first =1;
                         frag=1;
-                        timing =1;
-                        //if(timing == 0){//いらない
                             countDown.start();}
 
                    // }
                 };
-                handler.postDelayed(delay, 10100);//遅延実行
+                handler.postDelayed(delayStartCountDown, 7000);//遅延実行
+                handler.postDelayed(delayStartCountDown, 8000);//遅延実行
+                handler.postDelayed(delayStartCountDown, 9000);//遅延実行
+                handler.postDelayed(delay, 10200);//遅延実行
             }
         });
         //ストップボタンの処理
@@ -169,6 +183,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 countDown_before.cancel();}
                 handler.removeCallbacks(delay);
                 frag=0;
+                timing =0;
+                handler.removeCallbacks(delayStartCountDown);
+                handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(0));
             }
         });
@@ -178,7 +195,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         returnButton_sensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //soundPool.play(soundOne, 1.0f, 1.0f, 0, 1, 1);//音声ならす
                 finish();
             }
         });
@@ -242,28 +258,25 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent event) {
         float sensorX, sensorY, sensorZ;
-
+        if(first==1){
+            FirstX = event.values[0];
+            FirstY = event.values[1];
+            FirstZ = event.values[2];
+         first=0;
+        }
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             sensorX = event.values[0];
             sensorY = event.values[1];
             sensorZ = event.values[2];
 
-            String strTmp = "加速度センサー\n"
-                    + " X: " + sensorX + "\n"
-                    + " Y: " + sensorY + "\n"
-                    + " Z: " + sensorZ;
-            //textView.setText(strTmp);
 
-            //showInfo(event);
-            //音センサー追加
-            //サウンド追加
             if(frag==1) {
-                if (sensorZ - nextZ < -0.5 || sensorZ - nextZ > 0.5) {
+                if (FirstZ - nextZ < -1 || FirstZ - nextZ > 1) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
-                } else if (sensorX - nextX < -0.5 || sensorX - nextX > 0.5) {
+                } else if (FirstX - nextX < -1 || FirstX - nextX > 1) {
                     soundPool.play(soundTwo, 1.0f, 1.0f, 0, 0, 1);
-                } else if (sensorY - nextY < -0.5 || sensorY - nextY > 0.5) {
+                } else if (FirstY - nextY < -1 || FirstY - nextY > 1) {
                     soundPool.play(soundThree, 1.0f, 1.0f, 0, 0, 1);
                 }
             }
@@ -277,7 +290,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         float gravity[] = new float[3];
         float linear_acceleration[] = new float[3];
 
-        final float alpha = 0.6f;
+        final float alpha = 0.5f;
 
         if(frag==1) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER ) {
@@ -286,27 +299,15 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             // with t, the low-pass filter's time-constant
             // and dT, the event delivery rate
 
-            gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
-            gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
-            gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+            gravity[0] = (FirstX - nextX)*alpha;
+            gravity[1] = (FirstY - nextY)*alpha;
+            gravity[2] = (FirstZ - nextZ)*alpha;
 
-            linear_acceleration[0] = event.values[0] - gravity[0];
-            linear_acceleration[1] = event.values[1] - gravity[1];
-            linear_acceleration[2] = event.values[2] - gravity[2];
+            linear_acceleration[0] = gravity[0];
+            linear_acceleration[1] = gravity[1];
+            linear_acceleration[2] = gravity[2];
 
             String accelero;
-
-            if (!lineardata) {
-                accelero = String.format(Locale.US,
-                        "X: %.3f\nY: %.3f\nZ: %.3f",
-                        event.values[0], event.values[1], event.values[2]);
-            } else {
-                accelero = String.format(Locale.US,
-                        "X: %.3f\nY: %.3f\nZ: %.3f",
-                        gravity[0], gravity[1], gravity[2]);
-            }
-
-           // textView.setText(accelero);
 
 
             LineData data = mChart.getLineData();
@@ -351,69 +352,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     }
 
-    // （お好みで）加速度センサーの各種情報を表示
-    /*
-    private void showInfo(SensorEvent event){
-        // センサー名
-        StringBuffer info = new StringBuffer("Name: ");
-        info.append(event.sensor.getName());
-        info.append("\n");
-
-        // ベンダー名
-        info.append("Vendor: ");
-        info.append(event.sensor.getVendor());
-        info.append("\n");
-
-        // 型番
-        info.append("Type: ");
-        info.append(event.sensor.getType());
-        info.append("\n");
-
-        // 最小遅れ
-        int data = event.sensor.getMinDelay();
-        info.append("Mindelay: ");
-        info.append(String.valueOf(data));
-        info.append(" usec\n");
-
-        // 最大遅れ
-        //data = event.sensor.getMaxDelay();
-        info.append("Maxdelay: ");
-        info.append(String.valueOf(data));
-        info.append(" usec\n");
-
-        // レポートモード
-        //data = event.sensor.getReportingMode();
-        String stinfo = "unknown";
-        if(data == 0){
-            stinfo = "REPORTING_MODE_CONTINUOUS";
-        }else if(data == 1){
-            stinfo = "REPORTING_MODE_ON_CHANGE";
-        }else if(data == 2){
-            stinfo = "REPORTING_MODE_ONE_SHOT";
-        }
-        info.append("ReportingMode: ");
-        info.append(stinfo);
-        info.append("\n");
-
-        // 最大レンジ
-        info.append("MaxRange: ");
-        float fData = event.sensor.getMaximumRange();
-        info.append(String.valueOf(fData));
-        info.append("\n");
-
-        // 分解能
-        info.append("Resolution: ");
-        fData = event.sensor.getResolution();
-        info.append(String.valueOf(fData));
-        info.append(" m/s^2\n");
-
-        // 消費電流
-        info.append("Power: ");
-        fData = event.sensor.getPower();
-        info.append(String.valueOf(fData));
-        info.append(" mA\n");
-        textInfo.setText(info);
-    }*/
 
 
     @Override
@@ -437,7 +375,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             frag =0;
             if(timing ==1){
             startButton.setEnabled(true);}
-            //timerText.setText(dataFormat.format(0));
         }
 
 
