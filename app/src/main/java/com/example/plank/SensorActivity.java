@@ -37,7 +37,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private SensorManager sensorManager;
     private TextView timerText;//タイマーの表示ぶん
     private SimpleDateFormat dataFormat =
-            new SimpleDateFormat("mm:ss.SSS", Locale.US);//https://akira-watson.com/android/countdowntimer.html
+            new SimpleDateFormat("mm:ss", Locale.US);//https://akira-watson.com/android/countdowntimer.html
+    //"mm:ss.SSS", Locale.US
     private TextView textView, textInfo;
     private SoundPool soundPool;
     private int soundOne, soundTwo, soundThree,soundFour;
@@ -129,7 +130,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        textInfo = findViewById(R.id.text_info);
+       // textInfo = findViewById(R.id.text_info);
 
         // Get an instance of the TextView
         textView = findViewById(R.id.text_view);
@@ -386,6 +387,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //long ss = millisUntilFinished / 1000 % 60;
             //long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
             //timerText.setText(String.format("%1$02d:%2$02d.%3$03d", mm, ss, ms));
+                timerText.setText(dataFormat.format(millisUntilFinished));
                 timerText.setText(dataFormat.format(millisUntilFinished));
 
         }
