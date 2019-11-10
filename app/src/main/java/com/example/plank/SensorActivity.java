@@ -36,6 +36,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     private SensorManager sensorManager;
     private TextView timerText;//タイマーの表示ぶん
+    private TextView timerText＿trainig;
     private SimpleDateFormat dataFormat =
             new SimpleDateFormat("mm:ss", Locale.US);//https://akira-watson.com/android/countdowntimer.html
     //"mm:ss.SSS", Locale.US
@@ -91,7 +92,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         timerText = findViewById(R.id.timer);
-        timerText.setText(dataFormat.format(0));
+        timerText＿trainig = findViewById(R.id.timer_training);
+        timerText.setText(dataFormat.format(10000));
+        timerText＿trainig.setText(dataFormat.format(30000));
 
 
         // CountDownTimer(long millisInFuture, long countDownInterval)
@@ -187,7 +190,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 timing =0;
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
-                timerText.setText(dataFormat.format(0));
+                timerText.setText(dataFormat.format(10000));
+                timerText＿trainig.setText(dataFormat.format(30000));
             }
         });
 
@@ -372,7 +376,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         public void onFinish() {
             // 完了
 
-            timerText.setText(dataFormat.format(30000));
+            timerText.setText(dataFormat.format(10000));
+            timerText＿trainig.setText(dataFormat.format(30000));
             frag =0;
             if(timing ==1){
             startButton.setEnabled(true);}
@@ -387,8 +392,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //long ss = millisUntilFinished / 1000 % 60;
             //long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
             //timerText.setText(String.format("%1$02d:%2$02d.%3$03d", mm, ss, ms));
+
+            if(frag==0){
                 timerText.setText(dataFormat.format(millisUntilFinished));
-                timerText.setText(dataFormat.format(millisUntilFinished));
+            }
+            if(frag ==1){
+                timerText＿trainig.setText(dataFormat.format(millisUntilFinished));
+            }
 
         }
     }
