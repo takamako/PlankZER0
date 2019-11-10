@@ -30,14 +30,17 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import java.util.Locale;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private TextView timerText;//タイマーの表示ぶん
+    private TextView timerText＿trainig;
     private SimpleDateFormat dataFormat =
-            new SimpleDateFormat("mm:ss.SSS", Locale.US);//https://akira-watson.com/android/countdowntimer.html
+            new SimpleDateFormat("mm:ss", Locale.US);//https://akira-watson.com/android/countdowntimer.html
+    //"mm:ss.SSS", Locale.US
     private TextView textView, textInfo;
     private SoundPool soundPool;
     private int soundOne, soundTwo, soundThree,soundFour;
@@ -68,9 +71,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private TextView textGraph;
     private LineChart mChart;
     private String[] labels = new String[]{
-            "linear_accelerationX",
-            "linear_accelerationY",
-            "linear_accelerationZ"};
+            "X軸の揺れ",
+            "Y軸の揺れ",
+            "Z軸の揺れ"};
     private int[] colors = new int[]{
             Color.BLUE,
             Color.GRAY,
@@ -90,7 +93,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         timerText = findViewById(R.id.timer);
-        timerText.setText(dataFormat.format(0));
+        timerText＿trainig = findViewById(R.id.timer_training);
+        timerText.setText(dataFormat.format(10000));
+        timerText＿trainig.setText(dataFormat.format(30000));
 
 
         // CountDownTimer(long millisInFuture, long countDownInterval)
@@ -125,11 +130,15 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         xAxis.setEnabled(false);//x軸のラベル消す
 
 
-
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setTextColor(Color.BLACK);
+        leftAxis.setAxisMaxValue(4.0f);
+        leftAxis.setAxisMinValue(-4.0f);
+        leftAxis.setDrawGridLines(true);
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        textInfo = findViewById(R.id.text_info);
+       // textInfo = findViewById(R.id.text_info);
 
         // Get an instance of the TextView
         textView = findViewById(R.id.text_view);
@@ -186,7 +195,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 timing =0;
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
-                timerText.setText(dataFormat.format(0));
+                timerText.setText(dataFormat.format(10000));
+                timerText＿trainig.setText(dataFormat.format(30000));
             }
         });
 
@@ -371,7 +381,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         public void onFinish() {
             // 完了
 
-            timerText.setText(dataFormat.format(30000));
+            timerText.setText(dataFormat.format(10000));
+            timerText＿trainig.setText(dataFormat.format(30000));
             frag =0;
             if(timing ==1){
             startButton.setEnabled(true);}
@@ -386,7 +397,13 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             //long ss = millisUntilFinished / 1000 % 60;
             //long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
             //timerText.setText(String.format("%1$02d:%2$02d.%3$03d", mm, ss, ms));
+
+            if(frag==0){
                 timerText.setText(dataFormat.format(millisUntilFinished));
+            }
+            if(frag ==1){
+                timerText＿trainig.setText(dataFormat.format(millisUntilFinished));
+            }
 
         }
     }
