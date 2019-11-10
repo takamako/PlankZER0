@@ -10,14 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92391c96-7029-4adb-bca7-3e1448eaa422" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_compare.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_compare.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_image.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_image.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_movie.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_opencv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_opencv.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_posenet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_posenet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_sensor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_sensor.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +94,7 @@
           <provider selected="true" editor-type-id="android-designer2" />
           <provider editor-type-id="text-editor">
             <state relative-caret-position="15">
-              <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+              <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -131,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_sensor.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_image2.xml" />
         <option value="$PROJECT_DIR$/src/main/res/xml/provider_path.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/plank/SensorActivity.java" />
@@ -148,6 +140,7 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_opencv.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_movie.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_sensor.xml" />
       </list>
     </option>
   </component>
@@ -445,20 +438,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/plank/CompareActivity.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/plank/CompareActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="139" column="47" selection-start-line="139" selection-start-column="47" selection-end-line="139" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_posenet.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -475,14 +454,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_image.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/plank/CompareActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="139" column="47" selection-start-line="139" selection-start-column="47" selection-end-line="139" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -493,6 +483,9 @@
           <caret line="89" selection-start-line="89" selection-end-line="89" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="android-designer2" />
@@ -514,7 +507,7 @@
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
         </state>
       </provider>
     </entry>
