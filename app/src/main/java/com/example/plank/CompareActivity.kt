@@ -49,7 +49,6 @@ private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
 class CompareActivity : AppCompatActivity() {
     private var imageView: ImageView? = null
-    private var imageView2: ImageView? = null
     private var cameraUri: Uri? = null//10/2追加
     private var cameraFile: File? = null//10/2追加
     private lateinit var viewFinder: TextureView
@@ -96,7 +95,7 @@ class CompareActivity : AppCompatActivity() {
         setContentView(R.layout.activity_compare)
 
         imageView = findViewById(R.id.image_view)
-        imageView2 = findViewById(R.id.image_view2)
+        imageView = findViewById(R.id.image_view)
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求
@@ -177,7 +176,7 @@ class CompareActivity : AppCompatActivity() {
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
             if(capture_done==1){
                 val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
-                imageView2!!.setImageBitmap(bmp)
+                imageView!!.setImageBitmap(bmp)
                 capture_done=0
             }
             file = File(externalMediaDirs.first(),
@@ -198,8 +197,8 @@ class CompareActivity : AppCompatActivity() {
                             Log.d("CameraXApp", msg)
                         }
                     })
+            capture_done=1
         }
-        capture_done=1
         // 平均輝度を計算するimage analysis pipelineのセットアップ
         val analyzerConfig = ImageAnalysisConfig.Builder().apply {
             // 不具合を防ぐためにワーカースレッドを使う
@@ -321,7 +320,7 @@ class CompareActivity : AppCompatActivity() {
         if (requestCode == RESULT_CAMERA) {
 
             if (cameraUri != null) {
-                imageView2!!.setImageURI(cameraUri)
+                imageView!!.setImageURI(cameraUri)
 
                 registerDatabase(cameraFile!!)
             } else {
@@ -343,7 +342,7 @@ class CompareActivity : AppCompatActivity() {
                         val fileDescriptor = pfDescriptor.fileDescriptor
                         val bmp = BitmapFactory.decodeFileDescriptor(fileDescriptor)
                         pfDescriptor.close()
-                        imageView2!!.setImageBitmap(bmp)
+                        imageView!!.setImageBitmap(bmp)
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
