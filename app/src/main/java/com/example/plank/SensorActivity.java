@@ -30,6 +30,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import java.util.Locale;
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
@@ -70,9 +71,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private TextView textGraph;
     private LineChart mChart;
     private String[] labels = new String[]{
-            "linear_accelerationX",
-            "linear_accelerationY",
-            "linear_accelerationZ"};
+            "X軸の揺れ",
+            "Y軸の揺れ",
+            "Z軸の揺れ"};
     private int[] colors = new int[]{
             Color.BLUE,
             Color.GRAY,
@@ -129,7 +130,11 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         xAxis.setEnabled(false);//x軸のラベル消す
 
 
-
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setTextColor(Color.BLACK);
+        leftAxis.setAxisMaxValue(4.0f);
+        leftAxis.setAxisMinValue(-4.0f);
+        leftAxis.setDrawGridLines(true);
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
