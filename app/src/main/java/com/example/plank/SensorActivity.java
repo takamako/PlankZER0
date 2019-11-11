@@ -386,6 +386,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             frag =0;
             if(timing ==1){
             startButton.setEnabled(true);}
+            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
         }
 
 
