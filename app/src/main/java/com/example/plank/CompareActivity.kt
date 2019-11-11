@@ -28,6 +28,7 @@ import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import kotlinx.android.synthetic.main.activity_compare.*
 import java.io.File
 import java.io.IOException
 import java.nio.ByteBuffer
@@ -107,6 +108,27 @@ class CompareActivity : AppCompatActivity() {
         viewFinder.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
             updateTransform()
         }
+
+
+        //11/11ポッキーの日
+        timer_button.setOnClickListener { //画像班タイマー
+
+            object : CountDownTimer(5000,100){
+                override fun onFinish() {
+                    //終了時の処理
+                    count.text = "終了！！！"
+
+                }
+
+                override fun onTick(p0: Long) {
+                    // 区切り（0.1秒毎）
+                    count.text = "後 ${p0 /1000} 秒(デモ用)"
+                }
+
+            }.start()
+
+        }
+
 
         //カメラボタン
         val cameraButton = findViewById<Button>(R.id.camera_button)
