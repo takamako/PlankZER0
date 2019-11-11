@@ -8,6 +8,7 @@ import android.Manifest
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
@@ -28,7 +29,9 @@ import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import kotlinx.android.synthetic.main.activity_compare.*
 import java.io.File
+import java.io.FileInputStream
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
@@ -47,10 +50,11 @@ private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
 class CompareActivity : AppCompatActivity() {
     private var imageView: ImageView? = null
-    private var imageView2: ImageView? = null
     private var cameraUri: Uri? = null//10/2追加
     private var cameraFile: File? = null//10/2追加
     private lateinit var viewFinder: TextureView
+    lateinit var file:File
+    var capture_done=0
 
     private class LuminosityAnalyzer : ImageAnalysis.Analyzer {
         private var lastAnalyzedTimestamp = 0L
@@ -92,7 +96,7 @@ class CompareActivity : AppCompatActivity() {
         setContentView(R.layout.activity_compare)
 
         imageView = findViewById(R.id.image_view)
-        imageView2 = findViewById(R.id.image_view2)
+        imageView = findViewById(R.id.image_view)
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求
@@ -107,6 +111,27 @@ class CompareActivity : AppCompatActivity() {
         viewFinder.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
             updateTransform()
         }
+
+
+        //11/11ポッキーの日
+        timer_button.setOnClickListener { //画像班タイマー
+
+            object : CountDownTimer(5000,100){
+                override fun onFinish() {
+                    //終了時の処理
+                    count.text = "終了！！！"
+
+                }
+
+                override fun onTick(p0: Long) {
+                    // 区切り（0.1秒毎）
+                    count.text = "後 ${p0 /1000} 秒(デモ用)"
+                }
+
+            }.start()
+
+        }
+
 
         //カメラボタン
         val cameraButton = findViewById<Button>(R.id.camera_button)
@@ -169,8 +194,14 @@ class CompareActivity : AppCompatActivity() {
 
         // image capture use caseの生成とボタンのClickリスナーの登録
         val imageCapture = ImageCapture(imageCaptureConfig)
+        //無音キャプチャーの表示
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
-            val file = File(externalMediaDirs.first(),
+            if(capture_done==1){
+                val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
+                imageView!!.setImageBitmap(bmp)
+                capture_done=0
+            }
+            file = File(externalMediaDirs.first(),
                     "${System.currentTimeMillis()}.jpg")
             imageCapture.takePicture(file,
                     object : ImageCapture.OnImageSavedListener {
@@ -184,12 +215,12 @@ class CompareActivity : AppCompatActivity() {
 
                         override fun onImageSaved(file: File) {
                             val msg = "Photo capture succeeded: ${file.absolutePath}"
-                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.d("CameraXApp", msg)
                         }
                     })
+            capture_done=1
         }
-
         // 平均輝度を計算するimage analysis pipelineのセットアップ
         val analyzerConfig = ImageAnalysisConfig.Builder().apply {
             // 不具合を防ぐためにワーカースレッドを使う
@@ -311,7 +342,7 @@ class CompareActivity : AppCompatActivity() {
         if (requestCode == RESULT_CAMERA) {
 
             if (cameraUri != null) {
-                imageView2!!.setImageURI(cameraUri)
+                imageView!!.setImageURI(cameraUri)
 
                 registerDatabase(cameraFile!!)
             } else {
@@ -319,7 +350,7 @@ class CompareActivity : AppCompatActivity() {
             }
         }
 
-
+        //ギャラリー
         if (requestCode == RESULT_CAMERA) {
 
             if (data!!.data != null) {
@@ -333,7 +364,7 @@ class CompareActivity : AppCompatActivity() {
                         val fileDescriptor = pfDescriptor.fileDescriptor
                         val bmp = BitmapFactory.decodeFileDescriptor(fileDescriptor)
                         pfDescriptor.close()
-                        imageView2!!.setImageBitmap(bmp)
+                        imageView!!.setImageBitmap(bmp)
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()

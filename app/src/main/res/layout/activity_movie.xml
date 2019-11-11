@@ -5,9 +5,9 @@
 
     <Button
         android:id="@+id/return_button"
-        android:text="@string/return_sub"
-        android:textSize="30sp"
-        android:layout_margin="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="戻る"
+        android:textSize="30sp" />
 </LinearLayout>
