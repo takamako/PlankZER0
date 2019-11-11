@@ -12,7 +12,7 @@
         android:layout_width="189dp"
         android:layout_height="58dp"
         android:layout_margin="20dp"
-        android:text="RETURN"
+        android:text="戻る"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.072"
@@ -23,18 +23,6 @@
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="407dp"
-        android:layout_height="199dp"
-        android:layout_marginBottom="96dp"
-        android:contentDescription="@string/description"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ImageView
-        android:id="@+id/image_view2"
         android:layout_width="405dp"
         android:layout_height="199dp"
         android:layout_marginBottom="320dp"
@@ -49,7 +37,7 @@
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_margin="20dp"
-        android:text="camera"
+        android:text="カメラ"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,21 +49,33 @@
         android:id="@+id/select_phote"
         android:layout_width="130dp"
         android:layout_height="50dp"
-        android:text="SelectPhoto"
+        android:text="写真選択"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/camera_button" />
 
     <Button
-        android:id="@+id/showMovie"
+        android:id="@+id/timer_button"
         android:layout_width="130dp"
         android:layout_height="50dp"
-        android:text="Movie"
+        android:text="タイマー"
         app:layout_constraintHorizontal_bias="0.992"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/camera_button" />
+
+    <TextView
+        android:id="@+id/count"
+        android:textSize="50sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="count"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextureView
         android:id="@+id/view_finder"
@@ -92,11 +92,12 @@
         android:id="@+id/capture_button"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:layout_margin="24dp"
-        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:layout_margin="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
