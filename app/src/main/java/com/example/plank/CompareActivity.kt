@@ -195,11 +195,23 @@ class CompareActivity : AppCompatActivity() {
         val imageCapture = ImageCapture(imageCaptureConfig)
         //無音キャプチャーの表示
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
-            if(capture_done==1){
                 try {
                     if(capture_done==1){
                         val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
-                        imageView!!.setImageBitmap(bmp)
+                        // 画像の横、縦サイズを取得
+                        val imageWidth = bmp.getWidth();
+                        val imageHeight = bmp.getHeight();
+
+                        // Matrix インスタンス生成
+                        val matrix =Matrix()
+                        // 画像中心を基点に90度回転
+                        matrix.postRotate(90.toFloat()) // 回転値
+
+                        // 90度回転したBitmap画像を生成
+                        val bitmap2 = Bitmap.createBitmap(bmp, 0, 0,
+                        imageWidth, imageHeight, matrix, true);
+
+                        imageView!!.setImageBitmap(bitmap2)
                         capture_done=0
                     }
                 } catch (e: IOException) {
@@ -212,7 +224,7 @@ class CompareActivity : AppCompatActivity() {
 
                 }
 
-            }
+
             file = File(externalMediaDirs.first(),
                     "${System.currentTimeMillis()}.jpg")
             imageCapture.takePicture(file,
@@ -231,6 +243,8 @@ class CompareActivity : AppCompatActivity() {
                             Log.d("CameraXApp", msg)
                         }
                     })
+            //registerDatabase(file!!)
+
             capture_done=1
         }
         // 平均輝度を計算するimage analysis pipelineのセットアップ
