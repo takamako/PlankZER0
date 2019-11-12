@@ -96,7 +96,6 @@ class CompareActivity : AppCompatActivity() {
         setContentView(R.layout.activity_compare)
 
         imageView = findViewById(R.id.image_view)
-        imageView = findViewById(R.id.image_view)
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求
@@ -227,8 +226,8 @@ class CompareActivity : AppCompatActivity() {
                         }
 
                         override fun onImageSaved(file: File) {
-                            val msg = "Photo capture succeeded: ${file.absolutePath}"
-                            //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                            val msg = "画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
+                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.d("CameraXApp", msg)
                         }
                     })
