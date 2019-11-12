@@ -4,29 +4,6 @@ package com.example.plank
 //OpenCVのセットアップは以下のリンク参照
 //https://algorithm.joho.info/programming/kotlin/opencv-install-kt/
 
-/*class OpencvActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_opencv)
-
-        val returnButton = findViewById<Button>(R.id.return_sub_open)
-        returnButton.setOnClickListener { finish() }
-
-        //OpenCVの動作確認用にバージョンを表示する
-        val txtVersion : TextView = findViewById(R.id.version)
-        if (OpenCVLoader.initDebug()) {
-            txtVersion.text = "OpenCV Version: " + OpenCVLoader.OPENCV_VERSION
-        } else {
-            txtVersion.text = "OpenCV Version: Not found."
-        }
-        //onStart()
-
-    }
-
-
-
-
-}*/
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Matrix
@@ -39,7 +16,6 @@ import android.util.Size
 import android.view.Surface
 import android.view.TextureView
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -49,10 +25,6 @@ import androidx.core.content.ContextCompat
 import java.io.File
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
-
-// IDEが自動インポートする場合もありますが
-// それぞれ実装が異なる場合があるので、曖昧さを無くすためにここに列挙します
-
 // パーミッションを要求するときのリクエストコード番号です
 // 複数のContextからパーミッションが要求された時にどこから要求されたかを区別するために使います
 private const val REQUEST_CODE_PERMISSIONS = 10
@@ -100,8 +72,7 @@ class OpencvActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_opencv)
 
-        val returnButton = findViewById<Button>(R.id.return_sub_open)
-        returnButton.setOnClickListener { finish() }
+
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求

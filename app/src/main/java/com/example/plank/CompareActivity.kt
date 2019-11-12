@@ -1,8 +1,5 @@
 package com.example.plank
 
-//追加
-
-//ここまで
 
 import android.Manifest
 import android.content.ContentValues
@@ -11,7 +8,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.net.Uri
 import android.os.*
 import android.provider.MediaStore
 import android.util.Log
@@ -28,18 +24,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import kotlinx.android.synthetic.main.activity_compare.*
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.nio.ByteBuffer
-import java.text.SimpleDateFormat
-import java.util.*
 import java.util.concurrent.TimeUnit
-
-// IDEが自動インポートする場合もありますが
-// それぞれ実装が異なる場合があるので、曖昧さを無くすためにここに列挙します
 
 // パーミッションを要求するときのリクエストコード番号です
 // 複数のContextからパーミッションが要求された時にどこから要求されたかを区別するために使います
@@ -49,12 +39,10 @@ private const val REQUEST_CODE_PERMISSIONS = 10
 private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
 class CompareActivity : AppCompatActivity() {
-    private var imageView: ImageView? = null
-    private var cameraUri: Uri? = null//10/2追加
-    private var cameraFile: File? = null//10/2追加
-    private lateinit var viewFinder: TextureView
-    lateinit var file:File
-    var capture_done=0
+    private var imageView: ImageView? = null    //静止画用
+    private lateinit var viewFinder: TextureView    //動画用
+    lateinit var file:File                  //保存先
+    var capture_done=0                      //キャプチャーボタンを押したかどうか
 
     private class LuminosityAnalyzer : ImageAnalysis.Analyzer {
         private var lastAnalyzedTimestamp = 0L
@@ -113,38 +101,25 @@ class CompareActivity : AppCompatActivity() {
 
 
         //11/11ポッキーの日
-        timer_button.setOnClickListener { //画像班タイマー
+        timer_button.setOnClickListener { /**画像班タイマー*/
 
             object : CountDownTimer(5000,100){
                 override fun onFinish() {
                     //終了時の処理
-                    count.text = "終了！！！"
+                    count.text = "　　　　終了！！！"
 
                 }
 
                 override fun onTick(p0: Long) {
                     // 区切り（0.1秒毎）
-                    count.text = "後 ${p0 /1000} 秒(デモ用)"
+                    count.text = "　　　　後 ${p0 /1000} 秒(デモ用)"
                 }
 
             }.start()
 
         }
 
-
-        //カメラボタン
-        val cameraButton = findViewById<Button>(R.id.camera_button)
-        cameraButton.setOnClickListener {
-            //追加
-            // Android 6, API 23以上でパーミッシンの確認
-            if (Build.VERSION.SDK_INT >= 23) {
-                checkPermission()
-            } else {
-                cameraIntent()
-            }
-        }
-
-        //写真を表示する処理
+        /**ギャラリーから写真を表示する処理*/
         val PhotoButton = findViewById<Button>(R.id.select_phote)
         PhotoButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
@@ -153,10 +128,8 @@ class CompareActivity : AppCompatActivity() {
             startActivityForResult(intent, RESULT_CAMERA)
         }
 
-        val returnButton = findViewById<Button>(R.id.return_sub_com)
-        returnButton.setOnClickListener { finish() }
-
     }
+    /**画面下にカメラを起動*/
     private fun startCamera() {
 
         // viewfinder use caseのコンフィグレーションオブジェクトを生成
@@ -193,11 +166,12 @@ class CompareActivity : AppCompatActivity() {
 
         // image capture use caseの生成とボタンのClickリスナーの登録
         val imageCapture = ImageCapture(imageCaptureConfig)
-        //無音キャプチャーの表示
+        /**キャプチャーボタン*/
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
                 try {
                     if(capture_done==1){
                         val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
+                        /**---回転バグ修正のための処理------------*/
                         // 画像の横、縦サイズを取得
                         val imageWidth = bmp.getWidth();
                         val imageHeight = bmp.getHeight();
@@ -212,7 +186,7 @@ class CompareActivity : AppCompatActivity() {
                         imageWidth, imageHeight, matrix, true);
 
                         imageView!!.setImageBitmap(bitmap2)
-                        capture_done=0
+                        /**-----------------------------------*/
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -224,11 +198,12 @@ class CompareActivity : AppCompatActivity() {
 
                 }
 
-
+            /**キャプチャーボタンを押した時の処理*/
             file = File(externalMediaDirs.first(),
                     "${System.currentTimeMillis()}.jpg")
             imageCapture.takePicture(file,
                     object : ImageCapture.OnImageSavedListener {
+                        //失敗した時
                         override fun onError(error: ImageCapture.UseCaseError,
                                              message: String, exc: Throwable?) {
                             val msg = "Photo capture failed: $message"
@@ -236,17 +211,18 @@ class CompareActivity : AppCompatActivity() {
                             Log.e("CameraXApp", msg)
                             exc?.printStackTrace()
                         }
-
+                        //成功した時
                         override fun onImageSaved(file: File) {
                             val msg = "画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
                             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.d("CameraXApp", msg)
                         }
                     })
-            //registerDatabase(file!!)
 
-            capture_done=1
+            //registerDatabase(file!!)
+            capture_done=1      //キャプチャーボタンが押されたことを意味する
         }
+
         // 平均輝度を計算するimage analysis pipelineのセットアップ
         val analyzerConfig = ImageAnalysisConfig.Builder().apply {
             // 不具合を防ぐためにワーカースレッドを使う
@@ -315,68 +291,9 @@ class CompareActivity : AppCompatActivity() {
                 this, it) == PackageManager.PERMISSION_GRANTED
     }
 
-    //10/2作成　カメラ保存
-    private fun cameraIntent() {
-        // 保存先のフォルダー
-        val cFolder = getExternalFilesDir(Environment.DIRECTORY_DCIM)
-
-        val fileDate = SimpleDateFormat(
-                "ddHHmmss", Locale.US).format(Date())
-        // ファイル名
-        val fileName = String.format("CameraIntent_%s.jpg", fileDate)
-
-        cameraFile = File(cFolder, fileName)
-
-        cameraUri = FileProvider.getUriForFile(
-                this@CompareActivity,
-                applicationContext.packageName + ".fileprovider",
-                cameraFile!!)
-
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri)
-        startActivityForResult(intent, RESULT_CAMERA)
-
-        Log.d("debug", "startActivityForResult()")
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        //画像表示(撮影してすぐ)
-        /**
-         * if (requestCode == RESULT_CAMERA) {
-         * Bitmap bitmap;
-         * // cancelしたケースも含む
-         * if( data.getExtras() == null){
-         * Log.d("debug","cancel ?");
-         * return;
-         * }
-         * else{
-         * bitmap = (Bitmap) data.getExtras().get("data");
-         * if(bitmap != null){
-         * // 画像サイズを計測
-         * int bmpWidth = bitmap.getWidth();
-         * int bmpHeight = bitmap.getHeight();
-         * Log.d("debug",String.format("w= %d",bmpWidth));
-         * Log.d("debug",String.format("h= %d",bmpHeight));
-         * }
-         * }
-         */
-
-
-        //カメラの処理
-
-        if (requestCode == RESULT_CAMERA) {
-
-            if (cameraUri != null) {
-                imageView!!.setImageURI(cameraUri)
-
-                registerDatabase(cameraFile!!)
-            } else {
-                Log.d("debug", "cameraUri == null")
-            }
-        }
-
-        //ギャラリー
+        /**ギャラリー*/
         if (requestCode == RESULT_CAMERA) {
 
             if (data!!.data != null) {
@@ -419,66 +336,10 @@ class CompareActivity : AppCompatActivity() {
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
     }
 
-
-    // Runtime Permission check
-    private fun checkPermission() {
-        // 既に許可している
-        if (ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            cameraIntent()
-        } else {
-            requestPermission()
-        }// 拒否していた場合
-    }
-
-    // 許可を求める
-    private fun requestPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            ActivityCompat.requestPermissions(this@CompareActivity,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    REQUEST_PERMISSION)
-
-        } else {
-            val toast = Toast.makeText(this,
-                    "許可されないとアプリが実行できません",
-                    Toast.LENGTH_SHORT)
-            toast.show()
-
-            ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    REQUEST_PERMISSION)
-        }
-    }
-
     companion object {
 
         private val RESULT_CAMERA = 1001
-        private val REQUEST_PERMISSION = 1002//10/2追加
+        //private val REQUEST_PERMISSION = 1002//10/2追加
     }
-    /*
-
-    // 結果の受け取り
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-
-        Log.d("debug","onRequestPermissionsResult()");
-
-        if (requestCode == REQUEST_PERMISSION) {
-            // 使用が許可された
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                cameraIntent();
-
-            } else {
-                // それでも拒否された時の対応
-                Toast toast = Toast.makeText(this,
-                        "これ以上なにもできません", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-    }
- */
 
 }
