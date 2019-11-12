@@ -197,9 +197,22 @@ class CompareActivity : AppCompatActivity() {
         //無音キャプチャーの表示
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
             if(capture_done==1){
-                val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
-                imageView!!.setImageBitmap(bmp)
-                capture_done=0
+                try {
+                    if(capture_done==1){
+                        val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
+                        imageView!!.setImageBitmap(bmp)
+                        capture_done=0
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } finally {
+                    try {
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
+                }
+
             }
             file = File(externalMediaDirs.first(),
                     "${System.currentTimeMillis()}.jpg")
