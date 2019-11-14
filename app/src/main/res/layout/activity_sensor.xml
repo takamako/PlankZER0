@@ -98,6 +98,7 @@
 
     </LinearLayout>
 
+
     <TextView
         android:id="@+id/text_view"
         android:layout_width="154dp"
@@ -106,6 +107,7 @@
         android:layout_marginTop="20dp"
         android:textColor="#00f"
         android:textSize="20sp" />
+
 
 </LinearLayout>
 

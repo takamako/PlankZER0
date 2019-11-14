@@ -1,5 +1,6 @@
 package com.example.plank;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,10 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import java.util.Locale;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
 
 public class SensorActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -47,6 +51,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     float nextX =0;
     float nextY =0;
     float nextZ =0;
+    private  long timef = 10000;
     private int first = 0;
     private float FirstX,FirstY,FirstZ =0;
     private int frag = 0;
@@ -71,7 +76,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private TextView textGraph;
     private LineChart mChart;
     private String[] labels = new String[]{
-            "X軸の揺れ",
+            "揺れ",
             "Y軸の揺れ",
             "Z軸の揺れ"};
     private int[] colors = new int[]{
@@ -197,6 +202,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(10000));
                 timerText＿trainig.setText(dataFormat.format(30000));
+
+                Intent intent = new Intent(getApplication(), ImageActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -285,9 +293,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
                 if (FirstZ - nextZ < -1 || FirstZ - nextZ > 1) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
                 } else if (FirstX - nextX < -1 || FirstX - nextX > 1) {
-                    soundPool.play(soundTwo, 1.0f, 1.0f, 0, 0, 1);
+                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
                 } else if (FirstY - nextY < -1 || FirstY - nextY > 1) {
-                    soundPool.play(soundThree, 1.0f, 1.0f, 0, 0, 1);
+                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
                 }
             }
             nextX = sensorX;
@@ -298,7 +306,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
 
         float gravity[] = new float[3];
-        float linear_acceleration[] = new float[3];
+        float linear_acceleration[] = new float[1];
 
         final float alpha = 0.5f;
 
@@ -313,9 +321,20 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             gravity[1] = (FirstY - nextY)*alpha;
             gravity[2] = (FirstZ - nextZ)*alpha;
 
-            linear_acceleration[0] = gravity[0];
-            linear_acceleration[1] = gravity[1];
-            linear_acceleration[2] = gravity[2];
+            float x = Math.max(gravity[0], gravity[1]);
+            float y = Math.max(x, gravity[2]);
+
+            float x2 = Math.min(gravity[0], gravity[1]);
+            float y2 = Math.min(gravity[0], gravity[1]);
+            if(Math.abs(y)>Math.abs(y2)){
+                linear_acceleration[0] =y;
+            }else{
+                linear_acceleration[0] =y2;
+            }
+
+
+            //linear_acceleration[1] = gravity[1];
+            //linear_acceleration[2] = gravity[2];
 
             String accelero;
 
@@ -323,7 +342,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             LineData data = mChart.getLineData();
 
             if (data != null) {
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 1; i++) {
                     ILineDataSet set3 = data.getDataSetByIndex(i);
                     if (set3 == null) {
                         LineDataSet set = new LineDataSet(null, labels[i]);
@@ -407,6 +426,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             }
 
         }
+
+
+
+
     }
 
 
