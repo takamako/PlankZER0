@@ -211,6 +211,15 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         returnButton_sensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(frag==1){
+                    countDown.cancel();}
+                if(frag ==0){
+                    countDown_before.cancel();}
+                handler.removeCallbacks(delay);
+                frag=0;
+                timing =0;
+                handler.removeCallbacks(delayStartCountDown);
+                handler.removeCallbacks(delay);
                 finish();
             }
         });
