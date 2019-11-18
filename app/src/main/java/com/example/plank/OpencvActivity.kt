@@ -5,7 +5,6 @@ import android.Manifest
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.os.*
@@ -16,9 +15,7 @@ import android.util.Size
 import android.view.Surface
 import android.view.TextureView
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
@@ -26,7 +23,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_compare.*
 import java.io.File
-import java.io.FileInputStream
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
@@ -39,14 +35,15 @@ private const val REQUEST_CODE_PERMISSIONS = 10
 private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
 class OpencvActivity : AppCompatActivity() {
-    private var imageView: ImageView? = null    //静止画用
+    //private var imageView: ImageView? = null    //静止画用
     private lateinit var viewFinder: TextureView    //動画用
     lateinit var file:File                  //保存先
     var capture_done=0                      //キャプチャーボタンを押したかどうか
+    var luma2 :Double = 0.0
 
-    private class LuminosityAnalyzer : ImageAnalysis.Analyzer {
+    class LuminosityAnalyzer : ImageAnalysis.Analyzer {
         private var lastAnalyzedTimestamp = 0L
-
+        var luma2:Double=0.0
         /*
         * image plane bufferからbyte配列を抽出するHelper
         */
@@ -57,7 +54,7 @@ class OpencvActivity : AppCompatActivity() {
             return data // Byte配列を返却
         }
 
-        override fun analyze(image: ImageProxy, rotationDegrees: Int) {
+        override fun analyze(image: ImageProxy, rotationDegrees: Int){
             val currentTimestamp = System.currentTimeMillis()
             // 毎秒ごとに平均輝度を計算する
             if (currentTimestamp - lastAnalyzedTimestamp >=
@@ -69,11 +66,13 @@ class OpencvActivity : AppCompatActivity() {
                 // pixel値の配列にデータを変換
                 val pixels = data.map { it.toInt() and 0xFF }
                 // imageの平均輝度の計算
-                val luma = pixels.average()
+                var luma = pixels.average()
                 // 輝度のログ表示
                 Log.d("CameraXApp", "Average luminosity: $luma")
                 // 最後に分析したフレームのタイムスタンプに更新
                 lastAnalyzedTimestamp = currentTimestamp
+                //return luma
+
             }
         }
     }
@@ -81,9 +80,9 @@ class OpencvActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_compare)
+        setContentView(R.layout.activity_opencv)
 
-        imageView = findViewById(R.id.image_view)
+        //imageView = findViewById(R.id.image_view)
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求
@@ -119,14 +118,6 @@ class OpencvActivity : AppCompatActivity() {
 
         }
 
-        /**ギャラリーから写真を表示する処理*/
-        val PhotoButton = findViewById<Button>(R.id.select_phote)
-        PhotoButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
-            intent.type = "*/*"
-            startActivityForResult(intent, RESULT_CAMERA)
-        }
 
     }
     /**画面下にカメラを起動*/
@@ -168,35 +159,35 @@ class OpencvActivity : AppCompatActivity() {
         val imageCapture = ImageCapture(imageCaptureConfig)
         /**キャプチャーボタン*/
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
-            try {
-                if(capture_done==1){
-                    val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
-                    /**---回転バグ修正のための処理------------*/
-                    // 画像の横、縦サイズを取得
-                    val imageWidth = bmp.getWidth();
-                    val imageHeight = bmp.getHeight();
-
-                    // Matrix インスタンス生成
-                    val matrix =Matrix()
-                    // 画像中心を基点に90度回転
-                    matrix.postRotate(90.toFloat()) // 回転値
-
-                    // 90度回転したBitmap画像を生成
-                    val bitmap2 = Bitmap.createBitmap(bmp, 0, 0,
-                            imageWidth, imageHeight, matrix, true);
-
-                    imageView!!.setImageBitmap(bitmap2)
-                    /**-----------------------------------*/
-                }
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                try {
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-            }
+//            try {
+//                if(capture_done==1){
+//                    val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
+//                    /**---回転バグ修正のための処理------------*/
+//                    // 画像の横、縦サイズを取得
+//                    val imageWidth = bmp.getWidth();
+//                    val imageHeight = bmp.getHeight();
+//
+//                    // Matrix インスタンス生成
+//                    val matrix =Matrix()
+//                    // 画像中心を基点に90度回転
+//                    matrix.postRotate(90.toFloat()) // 回転値
+//
+//                    // 90度回転したBitmap画像を生成
+//                    val bitmap2 = Bitmap.createBitmap(bmp, 0, 0,
+//                            imageWidth, imageHeight, matrix, true);
+//
+//                    //imageView!!.setImageBitmap(bitmap2)
+//                    /**-----------------------------------*/
+//                }
+//            } catch (e: IOException) {
+//                e.printStackTrace()
+//            } finally {
+//                try {
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//
+//            }
 
             /**キャプチャーボタンを押した時の処理*/
             file = File(externalMediaDirs.first(),
@@ -307,7 +298,7 @@ class OpencvActivity : AppCompatActivity() {
                         val fileDescriptor = pfDescriptor.fileDescriptor
                         val bmp = BitmapFactory.decodeFileDescriptor(fileDescriptor)
                         pfDescriptor.close()
-                        imageView!!.setImageBitmap(bmp)
+                        //imageView!!.setImageBitmap(bmp)
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()

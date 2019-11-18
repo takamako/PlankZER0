@@ -2,11 +2,12 @@ package com.example.plank;
 
 //AndroidX
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ImageActivity extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class ImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image);
 
 
-        //opsecvの処理をする画面に遷移
+        //opencvの処理をする画面に遷移
         Button OpenCvButton = findViewById(R.id.opencv_button);
         OpenCvButton.setOnClickListener(new View.OnClickListener() {
             @Override
