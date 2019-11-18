@@ -30,6 +30,8 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
+import android.media.SoundPool
+import android.media.AudioAttributes
 
 // パーミッションを要求するときのリクエストコード番号です
 // 複数のContextからパーミッションが要求された時にどこから要求されたかを区別するために使います
@@ -43,6 +45,10 @@ class CompareActivity : AppCompatActivity() {
     private lateinit var viewFinder: TextureView    //動画用
     lateinit var file:File                  //保存先
     var capture_done=0                      //キャプチャーボタンを押したかどうか
+
+    //11/17　SoundPool実装
+    private lateinit var soundPool: SoundPool
+    private var soundOne = 0
 
     private class LuminosityAnalyzer : ImageAnalysis.Analyzer {
         private var lastAnalyzedTimestamp = 0L
@@ -99,6 +105,34 @@ class CompareActivity : AppCompatActivity() {
             updateTransform()
         }
 
+        //11/17soundpool実装
+        val audioAttributes = AudioAttributes.Builder()
+                // USAGE_MEDIA
+                // USAGE_GAME
+                .setUsage(AudioAttributes.USAGE_GAME)
+                // CONTENT_TYPE_MUSIC
+                // CONTENT_TYPE_SPEECH, etc.
+                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                .build()
+
+        soundPool = SoundPool.Builder()
+                .setAudioAttributes(audioAttributes)
+                // ストリーム数に応じて
+                .setMaxStreams(2)
+                .build()
+
+// one.wav をロードしておく
+        soundOne = soundPool.load(this, R.raw.alarm, 1)
+
+
+// load が終わったか確認する場合
+        soundPool.setOnLoadCompleteListener{ soundPool, sampleId, status ->
+            Log.d("debug", "sampleId=$sampleId")
+            Log.d("debug", "status=$status")
+        }
+
+
+
 
         //11/11ポッキーの日
         timer_button.setOnClickListener { /**画像班タイマー*/
@@ -106,13 +140,14 @@ class CompareActivity : AppCompatActivity() {
             object : CountDownTimer(5000,100){
                 override fun onFinish() {
                     //終了時の処理
-                    count.text = "　　　　終了！！！"
+                    count.text = "終了！！！"
+                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1.0f)
 
                 }
 
                 override fun onTick(p0: Long) {
                     // 区切り（0.1秒毎）
-                    count.text = "　　　　後 ${p0 /1000} 秒(デモ用)"
+                    count.text = "後 ${p0 /1000} 秒(デモ用)"
                 }
 
             }.start()
