@@ -67,15 +67,14 @@
 
     <TextView
         android:id="@+id/count"
-        android:textSize="50sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="count"
+        android:text="timer"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextureView
         android:id="@+id/view_finder"
