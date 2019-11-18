@@ -170,7 +170,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                         soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
                         // 開始
-                        //timing =1;
+                        timing =1;
                         first =1;
                         frag=1;
                         countDown.start();
@@ -181,7 +181,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 handler.postDelayed(delayStartCountDown, 7000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 8000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 9000);//遅延実行
-                handler.postDelayed(delay, 10200);//遅延実行
+                handler.postDelayed(delay, 10000);//遅延実行
             }
         });
         //ストップボタンの処理

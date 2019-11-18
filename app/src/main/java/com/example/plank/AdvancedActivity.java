@@ -169,7 +169,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                         soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
                         // 開始
-                        //timing =1;
+                        timing =1;
                         first =1;
                         frag=1;
                         countDown.start();
