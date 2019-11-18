@@ -1,15 +1,14 @@
 package com.example.plank
 
 
-//OpenCVのセットアップは以下のリンク参照
-//https://algorithm.joho.info/programming/kotlin/opencv-install-kt/
-
 import android.Manifest
+import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.os.Bundle
-import android.os.Handler
-import android.os.HandlerThread
+import android.os.*
+import android.provider.MediaStore
 import android.util.Log
 import android.util.Rational
 import android.util.Size
@@ -22,9 +21,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.activity_compare.*
 import java.io.File
+import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
+
 // パーミッションを要求するときのリクエストコード番号です
 // 複数のContextからパーミッションが要求された時にどこから要求されたかを区別するために使います
 private const val REQUEST_CODE_PERMISSIONS = 10
@@ -33,10 +35,15 @@ private const val REQUEST_CODE_PERMISSIONS = 10
 private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
 class OpencvActivity : AppCompatActivity() {
+    //private var imageView: ImageView? = null    //静止画用
+    private lateinit var viewFinder: TextureView    //動画用
+    lateinit var file:File                  //保存先
+    var capture_done=0                      //キャプチャーボタンを押したかどうか
+    var luma2 :Double = 0.0
 
-    private class LuminosityAnalyzer : ImageAnalysis.Analyzer {
+    class LuminosityAnalyzer : ImageAnalysis.Analyzer {
         private var lastAnalyzedTimestamp = 0L
-
+        var luma2:Double=0.0
         /*
         * image plane bufferからbyte配列を抽出するHelper
         */
@@ -47,7 +54,7 @@ class OpencvActivity : AppCompatActivity() {
             return data // Byte配列を返却
         }
 
-        override fun analyze(image: ImageProxy, rotationDegrees: Int) {
+        override fun analyze(image: ImageProxy, rotationDegrees: Int){
             val currentTimestamp = System.currentTimeMillis()
             // 毎秒ごとに平均輝度を計算する
             if (currentTimestamp - lastAnalyzedTimestamp >=
@@ -59,20 +66,23 @@ class OpencvActivity : AppCompatActivity() {
                 // pixel値の配列にデータを変換
                 val pixels = data.map { it.toInt() and 0xFF }
                 // imageの平均輝度の計算
-                val luma = pixels.average()
+                var luma = pixels.average()
                 // 輝度のログ表示
                 Log.d("CameraXApp", "Average luminosity: $luma")
                 // 最後に分析したフレームのタイムスタンプに更新
                 lastAnalyzedTimestamp = currentTimestamp
+                //return luma
+
             }
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_opencv)
 
-
+        //imageView = findViewById(R.id.image_view)
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求
@@ -87,10 +97,30 @@ class OpencvActivity : AppCompatActivity() {
         viewFinder.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
             updateTransform()
         }
+
+
+        //11/11ポッキーの日
+        timer_button.setOnClickListener { /**画像班タイマー*/
+
+            object : CountDownTimer(5000,100){
+                override fun onFinish() {
+                    //終了時の処理
+                    count.text = "　　　　終了！！！"
+
+                }
+
+                override fun onTick(p0: Long) {
+                    // 区切り（0.1秒毎）
+                    count.text = "　　　　後 ${p0 /1000} 秒(デモ用)"
+                }
+
+            }.start()
+
+        }
+
+
     }
-
-    private lateinit var viewFinder: TextureView
-
+    /**画面下にカメラを起動*/
     private fun startCamera() {
 
         // viewfinder use caseのコンフィグレーションオブジェクトを生成
@@ -127,11 +157,44 @@ class OpencvActivity : AppCompatActivity() {
 
         // image capture use caseの生成とボタンのClickリスナーの登録
         val imageCapture = ImageCapture(imageCaptureConfig)
+        /**キャプチャーボタン*/
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
-            val file = File(externalMediaDirs.first(),
+//            try {
+//                if(capture_done==1){
+//                    val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
+//                    /**---回転バグ修正のための処理------------*/
+//                    // 画像の横、縦サイズを取得
+//                    val imageWidth = bmp.getWidth();
+//                    val imageHeight = bmp.getHeight();
+//
+//                    // Matrix インスタンス生成
+//                    val matrix =Matrix()
+//                    // 画像中心を基点に90度回転
+//                    matrix.postRotate(90.toFloat()) // 回転値
+//
+//                    // 90度回転したBitmap画像を生成
+//                    val bitmap2 = Bitmap.createBitmap(bmp, 0, 0,
+//                            imageWidth, imageHeight, matrix, true);
+//
+//                    //imageView!!.setImageBitmap(bitmap2)
+//                    /**-----------------------------------*/
+//                }
+//            } catch (e: IOException) {
+//                e.printStackTrace()
+//            } finally {
+//                try {
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//
+//            }
+
+            /**キャプチャーボタンを押した時の処理*/
+            file = File(externalMediaDirs.first(),
                     "${System.currentTimeMillis()}.jpg")
             imageCapture.takePicture(file,
                     object : ImageCapture.OnImageSavedListener {
+                        //失敗した時
                         override fun onError(error: ImageCapture.UseCaseError,
                                              message: String, exc: Throwable?) {
                             val msg = "Photo capture failed: $message"
@@ -139,13 +202,16 @@ class OpencvActivity : AppCompatActivity() {
                             Log.e("CameraXApp", msg)
                             exc?.printStackTrace()
                         }
-
+                        //成功した時
                         override fun onImageSaved(file: File) {
-                            val msg = "Photo capture succeeded: ${file.absolutePath}"
+                            val msg = "画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
                             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.d("CameraXApp", msg)
                         }
                     })
+
+            //registerDatabase(file!!)
+            capture_done=1      //キャプチャーボタンが押されたことを意味する
         }
 
         // 平均輝度を計算するimage analysis pipelineのセットアップ
@@ -215,4 +281,56 @@ class OpencvActivity : AppCompatActivity() {
         ContextCompat.checkSelfPermission(
                 this, it) == PackageManager.PERMISSION_GRANTED
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        /**ギャラリー*/
+        if (requestCode == RESULT_CAMERA) {
+
+            if (data!!.data != null) {
+
+                var pfDescriptor: ParcelFileDescriptor? = null
+                try {
+                    val uri = data.data
+
+                    pfDescriptor = contentResolver.openFileDescriptor(uri!!, "r")
+                    if (pfDescriptor != null) {
+                        val fileDescriptor = pfDescriptor.fileDescriptor
+                        val bmp = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+                        pfDescriptor.close()
+                        //imageView!!.setImageBitmap(bmp)
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } finally {
+                    try {
+                        pfDescriptor?.close()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
+                }
+
+            }
+        }
+    }
+
+
+    //以下の関数10/2追加
+    // アンドロイドのデータベースへ登録する
+    private fun registerDatabase(file: File) {
+        val contentValues = ContentValues()
+        val contentResolver = this@OpencvActivity.contentResolver
+        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+        contentValues.put("_data", file.absolutePath)
+        contentResolver.insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+    }
+
+    companion object {
+
+        private val RESULT_CAMERA = 1001
+        //private val REQUEST_PERMISSION = 1002//10/2追加
+    }
+
 }
