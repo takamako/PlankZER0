@@ -180,7 +180,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 handler.postDelayed(delayStartCountDown, 7000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 8000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 9000);//遅延実行
-                handler.postDelayed(delay, 10200);//遅延実行
+                handler.postDelayed(delay, 10001);//遅延実行
             }
         });
         //ストップボタンの処理
