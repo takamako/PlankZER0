@@ -181,7 +181,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 handler.postDelayed(delayStartCountDown, 7000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 8000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 9000);//遅延実行
-                handler.postDelayed(delay, 10000);//遅延実行
+                handler.postDelayed(delay, 10001);//遅延実行
             }
         });
         //ストップボタンの処理
@@ -297,11 +297,11 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
 
             if(frag==1) {
-                if (FirstZ - nextZ < -1 || FirstZ - nextZ > 1) {
+                if (FirstZ - nextZ < -1.5 || FirstZ - nextZ > 1.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
-                } else if (FirstX - nextX < -1 || FirstX - nextX > 1) {
+                } else if (FirstX - nextX < -1.5 || FirstX - nextX > 1.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
-                } else if (FirstY - nextY < -1 || FirstY - nextY > 1) {
+                } else if (FirstY - nextY < -1.5 || FirstY - nextY > 1.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
                 }
             }
