@@ -61,7 +61,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
     private Runnable delay;
     private Runnable delayStartCountDown;
     // 3分= 3x60x1000 = 180000 msec
-    long countNumber = 30000;
+    long countNumber = 40000;
     //スタート前
     long countbefore = 10000;
     // インターバル msec
@@ -97,7 +97,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         timerText = findViewById(R.id.timer);
         timerText＿trainig = findViewById(R.id.timer_training);
         timerText.setText(dataFormat.format(10000));
-        timerText＿trainig.setText(dataFormat.format(30000));
+        timerText＿trainig.setText(dataFormat.format(40000));
 
 
         // CountDownTimer(long millisInFuture, long countDownInterval)
@@ -199,7 +199,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(10000));
-                timerText＿trainig.setText(dataFormat.format(30000));
+                timerText＿trainig.setText(dataFormat.format(40000));
 
                 //Intent intent = new Intent(getApplication(), ImageActivity.class);
                 //startActivity(intent);
@@ -387,7 +387,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             // 完了
 
             timerText.setText(dataFormat.format(10000));
-            timerText＿trainig.setText(dataFormat.format(30000));
+            timerText＿trainig.setText(dataFormat.format(40000));
             frag =0;
             if(timing ==1){
                 startButton.setEnabled(true);}
