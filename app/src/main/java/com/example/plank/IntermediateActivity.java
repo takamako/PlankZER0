@@ -98,8 +98,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         timerText＿trainig = findViewById(R.id.timer_training);
         timerText.setText(dataFormat.format(10000));
         timerText＿trainig.setText(dataFormat.format(30000));
-
-
+        textView = findViewById(R.id.text_view);
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
         final IntermediateActivity.CountDown countDown_before = new IntermediateActivity.CountDown(countbefore, interval);
@@ -142,8 +141,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         // textInfo = findViewById(R.id.text_info);
 
-        // Get an instance of the TextView
-        textView = findViewById(R.id.text_view);
         //スタートボタンの処理
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override

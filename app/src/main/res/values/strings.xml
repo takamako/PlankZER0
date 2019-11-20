@@ -25,6 +25,7 @@
     <string name="return_sub_pose">戻る</string>
     <string name="before_view">before view</string>
     <string name="after_view">after view</string>
+    <string name="text_view">text view</string>
     <string name="biginnermode_button">biginner</string>
     <string name="intermediatemode_button">intermediate</string>
     <string name="advancedmode_button">advanced</string>

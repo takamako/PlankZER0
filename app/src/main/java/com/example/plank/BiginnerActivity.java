@@ -56,6 +56,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     private float FirstX,FirstY,FirstZ =0;
     private int frag = 0;
     private int timing = 0;
+    private double stop_count = 0;
+    private double all_count = 0;
+    private int move_frag = 0;
     final Handler handler = new Handler();
 
 
@@ -99,8 +102,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         timerText＿trainig = findViewById(R.id.timer_training);
         timerText.setText(dataFormat.format(10000));
         timerText＿trainig.setText(dataFormat.format(20000));
-
-
+        textView = findViewById(R.id.text_view);
+        textView.setText("ここに維持できたの表示");
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
         final BiginnerActivity.CountDown countDown_before = new BiginnerActivity.CountDown(countbefore, interval);
@@ -143,8 +146,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         // textInfo = findViewById(R.id.text_info);
 
-        // Get an instance of the TextView
-        textView = findViewById(R.id.text_view);
+
         //スタートボタンの処理
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,6 +206,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
                 //Intent intent = new Intent(getApplication(), ImageActivity.class);
                 //startActivity(intent);
+                stop_count=0;
+                all_count=0;
             }
         });
 
@@ -299,10 +303,15 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             if(frag==1) {
                 if (FirstZ - nextZ < -1.5 || FirstZ - nextZ > 1.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
+                    move_frag=1;
                 } else if (FirstX - nextX < -1.5 || FirstX - nextX > 1.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
+                    move_frag=1;
                 } else if (FirstY - nextY < -1.5 || FirstY - nextY > 1.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
+                    move_frag=1;
+                }else{
+                    move_frag=0;
                 }
             }
             nextX = sensorX;
@@ -401,6 +410,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             timerText.setText(dataFormat.format(10000));
             timerText＿trainig.setText(dataFormat.format(20000));
             frag =0;
+            stop_count=0;
+            all_count=0;
             if(timing ==1){
                 startButton.setEnabled(true);}
             soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
@@ -420,8 +431,18 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 timerText.setText(dataFormat.format(millisUntilFinished));
             }
             if(frag ==1){
+                //10秒間でおおよそ1150ほど加算されてる
                 timerText＿trainig.setText(dataFormat.format(millisUntilFinished));
+                double x=100*stop_count/all_count;
+                x=Math.floor(x);
+                textView.setText( String.valueOf((int)x) +"%維持できているよ");
+                all_count++;
+                if(move_frag==0){
+                stop_count++;
+                }
+
             }
+
         }
 
     }
