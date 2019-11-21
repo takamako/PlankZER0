@@ -404,6 +404,11 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             timerText.setText(dataFormat.format(10000));
             timerText＿trainig.setText(dataFormat.format(30000));
             frag =0;
+            double x=100*stop_count/all_count;
+            x=Math.floor(x);
+            double mil =all_count/20;
+            double mil_count = stop_count/mil;
+            textView.setText( String.valueOf((int)mil_count) +"秒("+String.valueOf((int)x) +"%)維持できているよ");
             stop_count=0;
             all_count=0;
             if(timing ==1){
