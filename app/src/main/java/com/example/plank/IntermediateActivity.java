@@ -55,6 +55,9 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
     private float FirstX,FirstY,FirstZ =0;
     private int frag = 0;
     private int timing = 0;
+    private double stop_count = 0;
+    private double all_count = 0;
+    private int move_frag = 0;
     final Handler handler = new Handler();
 
 
@@ -197,7 +200,8 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(10000));
                 timerText＿trainig.setText(dataFormat.format(30000));
-
+                stop_count=0;
+                all_count=0;
             }
         });
 
@@ -293,10 +297,15 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             if(frag==1) {
                 if (FirstZ - nextZ < -1 || FirstZ - nextZ > 1) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
+                    move_frag=1;
                 } else if (FirstX - nextX < -1 || FirstX - nextX > 1) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
+                    move_frag=1;
                 } else if (FirstY - nextY < -1 || FirstY - nextY > 1) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
+                    move_frag=1;
+                }else{
+                    move_frag=0;
                 }
             }
             nextX = sensorX;
@@ -395,6 +404,8 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             timerText.setText(dataFormat.format(10000));
             timerText＿trainig.setText(dataFormat.format(30000));
             frag =0;
+            stop_count=0;
+            all_count=0;
             if(timing ==1){
                 startButton.setEnabled(true);}
             soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
@@ -415,6 +426,13 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             }
             if(frag ==1){
                 timerText＿trainig.setText(dataFormat.format(millisUntilFinished));
+                double x=100*stop_count/all_count;
+                x=Math.floor(x);
+                textView.setText( String.valueOf((int)x) +"%維持できているよ");
+                all_count++;
+                if(move_frag==0){
+                    stop_count++;
+                }
             }
         }
 
