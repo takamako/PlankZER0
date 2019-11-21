@@ -22,6 +22,17 @@
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="197dp" />
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="354dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#00f"
+            android:text="sss"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -97,17 +108,6 @@
             android:text="リセット" />
 
     </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="154dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#00f"
-        android:textSize="20sp" />
-
 
 </LinearLayout>
 

@@ -102,6 +102,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         timerText.setText(dataFormat.format(10000));
         timerText＿trainig.setText(dataFormat.format(30000));
         textView = findViewById(R.id.text_view);
+        textView.setText("ここに維持できたの表示");
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
         final IntermediateActivity.CountDown countDown_before = new IntermediateActivity.CountDown(countbefore, interval);
@@ -442,6 +443,5 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         }
 
     }
-
 
 }
