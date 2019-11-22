@@ -65,6 +65,9 @@ class CompareActivity : AppCompatActivity() {
 
         override fun analyze(image: ImageProxy, rotationDegrees: Int) {
             val currentTimestamp = System.currentTimeMillis()
+            //11/23　SoundPool実装
+            lateinit var soundPool: SoundPool
+            var soundOne = 0
             // 毎秒ごとに平均輝度を計算する
             if (currentTimestamp - lastAnalyzedTimestamp >=
                     TimeUnit.SECONDS.toMillis(1)) {
@@ -80,6 +83,11 @@ class CompareActivity : AppCompatActivity() {
                 Log.d("CameraXApp", "Average luminosity: $luma")
                 // 最後に分析したフレームのタイムスタンプに更新
                 lastAnalyzedTimestamp = currentTimestamp
+
+                //11/23追加
+                if (luma <= 100){
+                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1.0f)
+                }
             }
         }
     }
