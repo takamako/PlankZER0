@@ -94,7 +94,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intermediate);
 
-
+        //レイアウト関連
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         timerText = findViewById(R.id.timer);
@@ -103,19 +103,13 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         timerText＿trainig.setText(dataFormat.format(30000));
         textView = findViewById(R.id.text_view);
         textView.setText("ここに維持できたの表示");
-        // CountDownTimer(long millisInFuture, long countDownInterval)
+        textGraph = findViewById(R.id.text_view);
 
         final IntermediateActivity.CountDown countDown_before = new IntermediateActivity.CountDown(countbefore, interval);
-
-
-        // 縦画面
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-        // Get an instance of the TextView
-        textGraph = findViewById(R.id.text_view);
 
         mChart = findViewById(R.id.chart);
         // インスタンス生成
@@ -134,7 +128,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setEnabled(false);//x軸のラベル消す
 
-
+        //Y軸関連
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTextColor(Color.BLACK);
         leftAxis.setAxisMaxValue(4.0f);
@@ -151,8 +145,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             public void onClick(View view) {
                 startButton.setEnabled(false);
                 countDown_before.start();
-                //wait_time();
-                //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
                 timing =1;
                 delayStartCountDown =  new Runnable(){//遅延定義 10/31
                     @Override
@@ -168,7 +160,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                     public void run() {
                         mChart.setData(new LineData());
                         soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
-
                         // 開始
                         timing =1;
                         first =1;
@@ -188,7 +179,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         stopButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                // 中止
                 startButton.setEnabled(true);
                 if(frag==1){
                     countDown.cancel();}
@@ -223,13 +213,9 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 finish();
             }
         });
-        //以下追加
+
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                // USAGE_MEDIA
-                // USAGE_GAME
                 .setUsage(AudioAttributes.USAGE_GAME)
-                // CONTENT_TYPE_MUSIC
-                // CONTENT_TYPE_SPEECH, etc.
                 .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                 .build();
 
@@ -239,7 +225,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 .setMaxStreams(2)
                 .build();
 
-        // one.wav をロードしておく
+
         soundOne = soundPool.load(this, R.raw.one, 1);
         soundTwo = soundPool.load(this, R.raw.two, 1);
         soundThree = soundPool.load(this, R.raw.three, 1);
@@ -264,9 +250,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 Sensor.TYPE_ACCELEROMETER);
 
         sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_NORMAL);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_FASTEST);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_GAME);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_UI);
     }
 
 
@@ -274,7 +257,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
     @Override
     protected void onPause() {
         super.onPause();
-        // Listenerを解除
         sensorManager.unregisterListener(this);
     }
 
@@ -282,6 +264,9 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
     @Override
     public void onSensorChanged(SensorEvent event) {
         float sensorX, sensorY, sensorZ;
+        float gravity[] = new float[3];
+        float linear_acceleration[] = new float[1];
+        final float alpha = 0.5f;
         if(first==1){
             FirstX = event.values[0];
             FirstY = event.values[1];
@@ -308,25 +293,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 }else{
                     move_frag=0;
                 }
-            }
-            nextX = sensorX;
-            nextY = sensorY;
-            nextZ = sensorZ;
-
-        }
-
-
-        float gravity[] = new float[3];
-        float linear_acceleration[] = new float[1];
-
-        final float alpha = 0.5f;
-
-        if(frag==1) {
-            if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER ) {
-
-                // alpha is calculated as t / (t + dT)
-                // with t, the low-pass filter's time-constant
-                // and dT, the event delivery rate
 
                 gravity[0] = (FirstX - nextX)*alpha;
                 gravity[1] = (FirstY - nextY)*alpha;
@@ -343,9 +309,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                     linear_acceleration[0] =y2;
                 }
 
-
-                //linear_acceleration[1] = gravity[1];
-                //linear_acceleration[2] = gravity[2];
 
                 String accelero;
 
@@ -383,6 +346,11 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                     mChart.moveViewToX(data.getEntryCount()); // 最新のデータまで表示を移動させる
                 }
             }
+            nextX = sensorX;
+            nextY = sensorY;
+            nextZ = sensorZ;
+
+
         }
 
     }
