@@ -13,9 +13,6 @@ import android.provider.MediaStore
 import android.util.Log
 import android.util.Rational
 import android.util.Size
-import android.view.Surface
-import android.view.TextureView
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -32,6 +29,7 @@ import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
 import android.media.SoundPool
 import android.media.AudioAttributes
+import android.view.*
 
 // パーミッションを要求するときのリクエストコード番号です
 // 複数のContextからパーミッションが要求された時にどこから要求されたかを区別するために使います
@@ -67,6 +65,7 @@ class CompareActivity : AppCompatActivity() {
             val currentTimestamp = System.currentTimeMillis()
             //11/23　SoundPool実装
             lateinit var soundPool: SoundPool
+
             var soundOne = 0
             // 毎秒ごとに平均輝度を計算する
             if (currentTimestamp - lastAnalyzedTimestamp >=
@@ -84,6 +83,8 @@ class CompareActivity : AppCompatActivity() {
                 // 最後に分析したフレームのタイムスタンプに更新
                 lastAnalyzedTimestamp = currentTimestamp
 
+                //メンバ変数を取れない
+
                 //11/23追加
                 if (luma <= 100){
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1.0f)
@@ -97,7 +98,29 @@ class CompareActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_compare)
 
+        //11/23追加　スペースの関係でアクションバー非表示にしました(´･ω･`)
+        val actionBar = supportActionBar
+        actionBar!!.hide()
+        //11/23image_viewをドラッグして動かせるようにしたやつ
+        var listener = View.OnTouchListener(function = { view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_MOVE) {
+                view.y = motionEvent.rawY - view.height/2
+                view.x = motionEvent.rawX - view.width/2
+            }
+            true
+        })
+        image_view.setOnTouchListener(listener)
+        //11/23ここまで
+
+        //11/23　image_viewを半透明にする処理
+        image_button.setOnClickListener {
+            val image = image_view
+            image.setImageAlpha(128)
+
+        }
+
         imageView = findViewById(R.id.image_view)
+
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求
@@ -129,11 +152,11 @@ class CompareActivity : AppCompatActivity() {
                 .setMaxStreams(2)
                 .build()
 
-// one.wav をロードしておく
+        // one.wav をロードしておく
         soundOne = soundPool.load(this, R.raw.alarm, 1)
 
 
-// load が終わったか確認する場合
+        // load が終わったか確認する場合
         soundPool.setOnLoadCompleteListener{ soundPool, sampleId, status ->
             Log.d("debug", "sampleId=$sampleId")
             Log.d("debug", "status=$status")
@@ -155,7 +178,7 @@ class CompareActivity : AppCompatActivity() {
 
                 override fun onTick(p0: Long) {
                     // 区切り（0.1秒毎）
-                    count.text = "後 ${p0 /1000} 秒(デモ用)"
+                    count.text = "後 ${p0 /1000} 秒"
                 }
 
             }.start()
@@ -170,6 +193,8 @@ class CompareActivity : AppCompatActivity() {
             intent.type = "*/*"
             startActivityForResult(intent, RESULT_CAMERA)
         }
+
+
 
     }
     /**画面下にカメラを起動*/
