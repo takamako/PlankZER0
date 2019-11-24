@@ -15,13 +15,14 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.core.Mat;
-import org.opencv.core.Core;
+import org.opencv.imgproc.Imgproc;
 
 
 
 public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener {
 
     private CameraBridgeViewBase m_cameraView;
+    private Mat mOutputFrame;
 
     static {
         System.loadLibrary("opencv_java4");
@@ -40,29 +41,70 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
         // カメラビューのインスタンスを変数にバインド
         m_cameraView = findViewById(R.id.camera_view);
 
+        m_cameraView.setCameraPermissionGranted();
+
         // リスナーの設定 (後述)
         m_cameraView.setCvCameraViewListener(this);
 
 
-        m_cameraView.enableView();
+        //m_cameraView.enableView();
     }
 
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+
+        @Override
+        public void onManagerConnected(int status) {
+            Log.d("tag","onManagerConnected・status="+status);
+            switch (status) {
+                // 読み込みが成功したらカメラプレビューを開始
+                case LoaderCallbackInterface.SUCCESS:
+                    Log.d("tag","読み込みが成功したらカメラプレビューを開始");
+                    m_cameraView.enableView();
+                    break;
+                default:
+                    super.onManagerConnected(status);
+                    break;
+            }
+        }
+    };
+
     public static boolean getPermissionCamera(Activity activity) {
-        if (ContextCompat.checkSelfPermission(
-                activity,
-                android.Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             String[] permissions = new String[]{Manifest.permission.CAMERA};
-            ActivityCompat.requestPermissions(
-                    activity,
-                    permissions,
-                    0);
+            ActivityCompat.requestPermissions(activity, permissions, 0);
             return false;
         } else {
             return true;
         }
     }
 
+    //必須
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 非同期でライブラリの読み込み/初期化を行う
+        if (!OpenCVLoader.initDebug()) {
+            Log.d("onResume", "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+        } else {
+            Log.d("onResume", "OpenCV library found inside package. Using it!");
+            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        m_cameraView.disableView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (m_cameraView != null) {
+            m_cameraView.disableView();
+        }
+    }
 
     @Override
     public void onCameraViewStarted(int width, int height) {
@@ -76,10 +118,9 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
 
     @Override
     public Mat onCameraFrame(Mat inputFrame) {
-        // ここで何らかの画像処理を行う
-        // 試しに、ネガポジ反転してみる
-        Core.bitwise_not(inputFrame, inputFrame);
-        return inputFrame;
+        Mat dest = new Mat();
+        Imgproc.cvtColor(inputFrame, dest, Imgproc.COLOR_BGR2GRAY);
+        return dest;
     }
 
 
