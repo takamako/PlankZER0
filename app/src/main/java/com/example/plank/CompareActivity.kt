@@ -100,7 +100,7 @@ class CompareActivity : AppCompatActivity() {
 
         //11/23追加　スペースの関係でアクションバー非表示にしました(´･ω･`)
         val actionBar = supportActionBar
-        actionBar!!.hide()
+//        actionBar!!.hide()
         //11/23image_viewをドラッグして動かせるようにしたやつ
         var listener = View.OnTouchListener(function = { view, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_MOVE) {
