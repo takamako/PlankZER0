@@ -107,20 +107,19 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
     }
 
     @Override
-    public void onCameraViewStarted(int width, int height) {
-
-    }
+    public void onCameraViewStarted(int width, int height) {}
 
     @Override
-    public void onCameraViewStopped() {
-
-    }
+    public void onCameraViewStopped() {}
 
     @Override
     public Mat onCameraFrame(Mat inputFrame) {
-        Mat dest = new Mat();
-        Imgproc.cvtColor(inputFrame, dest, Imgproc.COLOR_BGR2GRAY);
-        return dest;
+        Mat dest1 = new Mat();
+        Mat dest2 = new Mat();
+        Imgproc.cvtColor(inputFrame, dest1, Imgproc.COLOR_BGR2GRAY);
+        Imgproc.cvtColor(inputFrame, dest2, Imgproc.COLOR_BGR2GRAY);
+
+        return dest1;
     }
 
 
