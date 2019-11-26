@@ -124,6 +124,3 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
 
 
 }
-
-
-
