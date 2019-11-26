@@ -86,9 +86,9 @@ class CompareActivity : AppCompatActivity() {
                 //メンバ変数を取れない
 
                 //11/23追加
-                if (luma <= 100){
-                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1.0f)
-                }
+//                if (luma <= 100){
+//                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1.0f)
+//                }
             }
         }
     }
