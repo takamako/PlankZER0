@@ -103,7 +103,7 @@ public class SensorActivity extends AppCompatActivity {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource( R.drawable.sample );
+            imageView.setImageResource( R.drawable.rejigigasu );
             // タイトル
             alert.setTitle("使い方！");
             alert.setView(  imageView );
