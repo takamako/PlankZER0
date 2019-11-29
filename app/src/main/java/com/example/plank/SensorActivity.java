@@ -17,7 +17,8 @@ import android.content.DialogInterface;
 import androidx.annotation.NonNull;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
-
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class SensorActivity extends AppCompatActivity {
 
@@ -26,6 +27,15 @@ public class SensorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
 
+        if (isFirstTime()) {
+            // show dialog
+            FragmentManager fragmentManager = getFragmentManager();
+
+            // DialogFragment を継承したAlertDialogFragmentのインスタンス
+            AlertDialogFragment dialogFragment = new AlertDialogFragment();
+            // DialogFragmentの表示
+            dialogFragment.show(fragmentManager, "test alert dialog");
+        }
 
         //初心者モード画面に遷移
         Button BiginnerModeButton = findViewById(R.id.biginnermode_button);
@@ -90,6 +100,18 @@ public class SensorActivity extends AppCompatActivity {
 
     }
 
+    private boolean isFirstTime()
+    {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        boolean ranBefore = preferences.getBoolean("RanBefore", false);
+        if (!ranBefore) {
+            // first time
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("RanBefore", true);
+            editor.commit();
+        }
+        return !ranBefore;
+    }
     // DialogFragment を継承したクラス
     public static class AlertDialogFragment extends DialogFragment {
         // 選択肢のリスト
