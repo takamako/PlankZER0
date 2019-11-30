@@ -22,10 +22,13 @@ import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_compare.*
+import org.opencv.video.BackgroundSubtractorMOG2
+import org.opencv.android.OpenCVLoader
 import java.io.File
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
+
 
 // パーミッションを要求するときのリクエストコード番号です
 // 複数のContextからパーミッションが要求された時にどこから要求されたかを区別するために使います
@@ -81,6 +84,10 @@ class OpencvActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_opencv)
+
+        if(!OpenCVLoader.initDebug()) {
+            Log.d("OpenCV", "error_openCV")
+        }
 
         //imageView = findViewById(R.id.image_view)
         viewFinder = findViewById(R.id.view_finder)
@@ -280,6 +287,11 @@ class OpencvActivity : AppCompatActivity() {
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
                 this, it) == PackageManager.PERMISSION_GRANTED
+    }
+    fun motion(image: ImageProxy, rotationDegrees: Int){
+        val moG2: BackgroundSubtractorMOG2
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

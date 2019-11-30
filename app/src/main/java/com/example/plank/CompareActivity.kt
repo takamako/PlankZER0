@@ -8,11 +8,14 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.*
 import android.provider.MediaStore
 import android.util.Log
 import android.util.Rational
 import android.util.Size
+import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -27,9 +30,6 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
-import android.media.SoundPool
-import android.media.AudioAttributes
-import android.view.*
 
 // パーミッションを要求するときのリクエストコード番号です
 // 複数のContextからパーミッションが要求された時にどこから要求されたかを区別するために使います
