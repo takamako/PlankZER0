@@ -101,9 +101,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         timerText = findViewById(R.id.timer);
         timerText＿trainig = findViewById(R.id.timer_training);
         timerText.setText(dataFormat.format(10000));
-        timerText＿trainig.setText(dataFormat.format(20000));
+        timerText＿trainig.setText(dataFormat.format(countNumber));
         textView = findViewById(R.id.text_view);
-        textView.setText("ここに維持できたの表示");
+        textView.setText("ここに訓練結果が表示されます！");
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
         final BiginnerActivity.CountDown countDown_before = new BiginnerActivity.CountDown(countbefore, interval);
@@ -202,7 +202,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(10000));
-                timerText＿trainig.setText(dataFormat.format(20000));
+                timerText＿trainig.setText(dataFormat.format(countNumber));
 
                 //Intent intent = new Intent(getApplication(), ImageActivity.class);
                 //startActivity(intent);
@@ -408,13 +408,13 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             // 完了
 
             timerText.setText(dataFormat.format(10000));
-            timerText＿trainig.setText(dataFormat.format(20000));
+            timerText＿trainig.setText(dataFormat.format(countNumber));
             frag =0;
             double x=100*stop_count/all_count;
             x=Math.floor(x);
-            double mil =all_count/20;
+            double mil =all_count*1000/countNumber;
             double mil_count = stop_count/mil;
-            textView.setText( String.valueOf((int)mil_count) +"秒("+String.valueOf((int)x) +"%)維持できているよ");
+            textView.setText( String.valueOf((int)mil_count) +"秒("+String.valueOf((int)x) +"%)維持できています！");
             stop_count=0;
             all_count=0;
             if(timing ==1){
