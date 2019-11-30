@@ -113,13 +113,12 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
     public void onCameraViewStopped() {}
 
     @Override
-    public Mat onCameraFrame(Mat inputFrame) {
-        Mat dest1 = new Mat();
-        Mat dest2 = new Mat();
-        Imgproc.cvtColor(inputFrame, dest1, Imgproc.COLOR_BGR2GRAY);
-        Imgproc.cvtColor(inputFrame, dest2, Imgproc.COLOR_BGR2GRAY);
+    public Mat onCameraFrame(Mat inputFrame) { //inputFrameは毎秒何枚かフレーム取得しているはず
+        //Mat dest1 = new Mat();
+        //Imgproc.cvtColor(inputFrame, dest1, Imgproc.COLOR_BGR2GRAY);
 
-        return dest1;
+
+        return inputFrame;
     }
 
 
