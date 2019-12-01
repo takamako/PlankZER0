@@ -94,7 +94,7 @@
             android:layout_width="193dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
-            android:text="セットを組む"
+            android:text="セット"
             android:textColor="#111111"
             android:textSize="30sp" />
 
@@ -107,7 +107,7 @@
             android:enabled="true"
             android:fontFamily="sans-serif-black"
             android:text="セット"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
