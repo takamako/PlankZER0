@@ -13,7 +13,7 @@
 
         <Button
             android:id="@+id/return_button_sensor"
-            android:layout_width="162dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/button_state"
