@@ -60,7 +60,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     private double all_count = 0;
     private int move_frag = 0;
     final Handler handler = new Handler();
-
+    private int set_frag = 1;
+    private TextView setCount;
 
     private Runnable delay;
     private Runnable delayStartCountDown;
@@ -73,6 +74,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     final BiginnerActivity.CountDown countDown = new BiginnerActivity.CountDown(countNumber, interval);
     Button startButton;
     Button stopButton;
+    Button setCountButton;
     //private Runnable;
 
     private Sensor accel;
@@ -98,12 +100,16 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
+        setCountButton = findViewById(R.id.set_button);
         timerText = findViewById(R.id.timer);
         timerText＿trainig = findViewById(R.id.timer_training);
         timerText.setText(dataFormat.format(10000));
         timerText＿trainig.setText(dataFormat.format(countNumber));
         textView = findViewById(R.id.text_view);
         textView.setText("ここに訓練結果が表示されます！");
+        setCount = findViewById(R.id.settime);
+        setCount.setText(set_frag +"セット");
+
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
         final BiginnerActivity.CountDown countDown_before = new BiginnerActivity.CountDown(countbefore, interval);
@@ -152,38 +158,45 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             @Override
             public void onClick(View view) {
                 startButton.setEnabled(false);
-                countDown_before.start();
-                //wait_time();
-                //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
-                timing =1;
-                delayStartCountDown =  new Runnable(){//遅延定義 10/31
-                    @Override
-                    public void run() {
-                        if(timing==1) {
-                            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+                    countDown_before.start();
+                    //wait_time();
+                    //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
+                    timing = 1;
+                    delayStartCountDown = new Runnable() {//遅延定義 10/31
+                        @Override
+                        public void run() {
+                            if (timing == 1) {
+                                soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+                            }
                         }
-                    }
-                };
+                    };
 
-                delay =  new Runnable(){//遅延定義 10/31
-                    @Override
-                    public void run() {
-                        mChart.setData(new LineData());
-                        soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+                    delay = new Runnable() {//遅延定義 10/31
+                        @Override
+                        public void run() {
+                            mChart.setData(new LineData());
+                            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
-                        // 開始
-                        timing =1;
-                        first =1;
-                        frag=1;
-                        countDown.start();
-                        startButton.setEnabled(false);
-                    }
-                    // }
-                };
-                handler.postDelayed(delayStartCountDown, 7000);//遅延実行
-                handler.postDelayed(delayStartCountDown, 8000);//遅延実行
-                handler.postDelayed(delayStartCountDown, 9000);//遅延実行
-                handler.postDelayed(delay, 10001);//遅延実行
+                            // 開始
+                            timing = 1;
+                            first = 1;
+                            frag = 1;
+                            countDown.start();
+                            startButton.setEnabled(false);
+                        }
+                        // }
+                    };
+                    handler.postDelayed(delayStartCountDown, 7000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, 8000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, 9000);//遅延実行
+                    handler.postDelayed(delay, 10001);//遅延実行
+                int set_frag_c=set_frag;
+                for(int xx=0;set_frag>1;set_frag--) {
+                    handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
+                }
+                set_frag=set_frag_c;
+                setCount.setText(set_frag +"セット");
+
             }
         });
         //ストップボタンの処理
@@ -208,6 +221,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 //startActivity(intent);
                 stop_count=0;
                 all_count=0;
+                setCountButton.setEnabled(true);
+                set_frag=1;
+                setCount.setText(set_frag +"セット");
             }
         });
 
@@ -228,6 +244,21 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 finish();
             }
         });
+
+
+        setCountButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                set_frag+=1;
+                setCount.setText(set_frag +"セット");
+                if(set_frag==9){
+                    setCountButton.setEnabled(false);
+                }
+            }
+
+        });
+
+
         //以下追加
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 // USAGE_MEDIA
@@ -418,8 +449,11 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             stop_count=0;
             all_count=0;
             if(timing ==1){
-                startButton.setEnabled(true);}
+                startButton.setEnabled(true);
+            }
             soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+
+
         }
 
 

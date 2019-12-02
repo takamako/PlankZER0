@@ -125,7 +125,7 @@ public class SensorActivity extends AppCompatActivity {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource( R.drawable.help);
+            imageView.setImageResource( R.drawable.help1);
             // タイトル
             alert.setTitle("使い方！");
             alert.setView(  imageView );
