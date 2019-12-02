@@ -2,13 +2,12 @@ package com.example.plank
 
 
 import android.Manifest
-import android.content.ContentValues
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.os.*
-import android.provider.MediaStore
+import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Handler
+import android.os.HandlerThread
 import android.util.Log
 import android.util.Rational
 import android.util.Size
@@ -25,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_compare.*
 import org.opencv.android.OpenCVLoader
 import org.opencv.video.BackgroundSubtractorMOG2
 import java.io.File
-import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -46,46 +44,6 @@ class OpencvActivity : AppCompatActivity() {
     var luma  :Double = 0.0
     var luma2 : Double =0.0
 
-    class LuminosityAnalyzer : ImageAnalysis.Analyzer {
-        private var lastAnalyzedTimestamp = 0L
-        /*
-        * image plane bufferからbyte配列を抽出するHelper
-        */
-        private fun ByteBuffer.toByteArray(): ByteArray {
-            rewind()    // バッファを０にする
-            val data = ByteArray(remaining())
-            get(data)   // Byte配列にバッファをコピー
-            return data // Byte配列を返却
-        }
-
-        override fun analyze(image: ImageProxy , rotationDegrees: Int) {
-        }
-
-        fun lumaAnalyze(image: ImageProxy , rotationDegrees: Int) :Double{
-            val currentTimestamp = System.currentTimeMillis()
-            // 毎秒ごとに平均輝度を計算する
-            if (currentTimestamp - lastAnalyzedTimestamp >=
-                    TimeUnit.SECONDS.toMillis(1)) {
-                // ImageAnalysisはYUV形式なのでimage.planes[0]にはY (輝度) planeが格納されている
-                val buffer = image.planes[0].buffer
-                // callback objectからimage dataの抽出
-                val data = buffer.toByteArray()
-                // pixel値の配列にデータを変換
-                val pixels = data.map { it.toInt() and 0xFF }
-                // imageの平均輝度の計算
-                var luma = pixels.average()
-                // 輝度のログ表示
-                //Log.d("CameraXApp", "Average luminosity: $luma")
-                // 最後に分析したフレームのタイムスタンプに更新
-                lastAnalyzedTimestamp = currentTimestamp
-                return luma
-
-            }
-            return 0.0
-        }
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_opencv)
@@ -93,8 +51,6 @@ class OpencvActivity : AppCompatActivity() {
         if(!OpenCVLoader.initDebug()) {
             Log.d("OpenCV", "error_openCV")
         }
-
-        //imageView = findViewById(R.id.image_view)
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求
@@ -110,7 +66,6 @@ class OpencvActivity : AppCompatActivity() {
             updateTransform()
         }
 
-
         //11/11ポッキーの日
         timer_button.setOnClickListener { /**画像班タイマー*/
 
@@ -120,21 +75,15 @@ class OpencvActivity : AppCompatActivity() {
                     count.text = "　　　　終了！！！"
 
                 }
-
                 override fun onTick(p0: Long) {
                     // 区切り（0.1秒毎）
                     count.text = "　　　　後 ${p0 /1000} 秒(デモ用)"
                 }
-
             }.start()
-
         }
-
-
     }
-    /**画面下にカメラを起動*/
+    /**カメラを起動*/
     private fun startCamera() {
-
         // viewfinder use caseのコンフィグレーションオブジェクトを生成
         val previewConfig = PreviewConfig.Builder().apply {
             setTargetAspectRatio(Rational(1, 1))
@@ -167,167 +116,74 @@ class OpencvActivity : AppCompatActivity() {
                     setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
                 }.build()
 
+
         // image capture use caseの生成とボタンのClickリスナーの登録
         val imageCapture = ImageCapture(imageCaptureConfig)
         /**キャプチャーボタン*/
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
-            capture_done=1      //キャプチャーボタンが押されたことを意味する
-
-            //            try {
-//                if(capture_done==1){
-//                    val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
-//                    /**---回転バグ修正のための処理------------*/
-//                    // 画像の横、縦サイズを取得
-//                    val imageWidth = bmp.getWidth();
-//                    val imageHeight = bmp.getHeight();
-//
-//                    // Matrix インスタンス生成
-//                    val matrix =Matrix()
-//                    // 画像中心を基点に90度回転
-//                    matrix.postRotate(90.toFloat()) // 回転値
-//
-//                    // 90度回転したBitmap画像を生成
-//                    val bitmap2 = Bitmap.createBitmap(bmp, 0, 0,
-//                            imageWidth, imageHeight, matrix, true);
-//
-//                    //imageView!!.setImageBitmap(bitmap2)
-//                    /**-----------------------------------*/
-//                }
-//            } catch (e: IOException) {
-//                e.printStackTrace()
-//            } finally {
-//                try {
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//
-//            }
-            luma2=luma
-
-            /**キャプチャーボタンを押した時の処理*/
-            file = File(externalMediaDirs.first(),
-                    "${System.currentTimeMillis()}.jpg")
-            imageCapture.takePicture(file,
-                    object : ImageCapture.OnImageSavedListener {
-                        //失敗した時
-                        override fun onError(error: ImageCapture.UseCaseError,
-                                             message: String, exc: Throwable?) {
-                            val msg = "Photo capture failed: $message"
-                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                            Log.e("CameraXApp", msg)
-                            exc?.printStackTrace()
-                        }
-                        //成功した時
-                        override fun onImageSaved(file: File) {
-                            val msg = "${luma2}画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
-                            //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                            Log.d("CameraXApp", msg)
-                        }
-                    })
-
-            //registerDatabase(file!!)
+        /**キャプチャーボタンを押した時の処理*/
+        capture_done=1      //キャプチャーボタンが押されたことを意味する
+        luma2=luma
+//        val msg = "${luma2}画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
+//        Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         }
 
-        // 平均輝度を計算するimage analysis pipelineのセットアップ
-        val analyzerConfig = ImageAnalysisConfig.Builder().apply {
-            // 不具合を防ぐためにワーカースレッドを使う
-            val analyzerThread = HandlerThread(
-                    "LuminosityAnalysis").apply { start() }
-            setCallbackHandler(Handler(analyzerThread.looper))
-            // ここではすべての画像を分析するよりも、最新の画像を重視する
-            setImageReaderMode(
-                    ImageAnalysis.ImageReaderMode.ACQUIRE_LATEST_IMAGE)
-        }.build()
-
-        // image analysis use caseの生成とanalyzerのインスタンス生成
-//        val analyzerUseCase = ImageAnalysis(analyzerConfig).apply {
-//            //var lumaAnalyzer=LuminosityAnalyzer()
-//            analyzer = LuminosityAnalyzer()
-//        }
-
-//        fun buildPreviewUseCase(): Preview {
-//            val previewConfig = PreviewConfig.Builder()
-//                    .setTargetAspectRatio(aspectRatio)
-//                    .setTargetRotation(rotation)
-//                    .setTargetResolution(resolution)
-//                    .setLensFacing(lensFacing)
-//                    .build()
-//
-//            val preview = Preview(previewConfig)
-//            preview.setOnPreviewOutputUpdateListener { previewOutput ->
-//                cameraTextureView.surfaceTexture = previewOutput.surfaceTexture
-//            }
-//
-//            return preview
-//        }
         var lastAnalyzedTimestamp = 0L
+        //https://proandroiddev.com/android-camerax-preview-analyze-capture-1b3f403a9395
+        /**フレームごとに画像処理する関数*/
         fun buildImageAnalysisUseCase(): UseCase? {
-        val analysisConfig = ImageAnalysisConfig.Builder().apply {
-            // 不具合を防ぐためにワーカースレッドを使う
-            val analyzerThread = HandlerThread(
-                    "LuminosityAnalysis").apply { start() }
-            setCallbackHandler(Handler(analyzerThread.looper))
-            // ここではすべての画像を分析するよりも、最新の画像を重視する
-            setImageReaderMode(
-                    ImageAnalysis.ImageReaderMode.ACQUIRE_LATEST_IMAGE)
-        }.build()
+            /**画像処理するための前準備*/
+            val analysisConfig = ImageAnalysisConfig.Builder().apply {
+                // 不具合を防ぐためにワーカースレッドを使う
+                val analyzerThread = HandlerThread(
+                        "LuminosityAnalysis").apply { start() }
+                setCallbackHandler(Handler(analyzerThread.looper))
+                // ここではすべての画像を分析するよりも、最新の画像を重視する
+                setImageReaderMode(
+                        ImageAnalysis.ImageReaderMode.ACQUIRE_LATEST_IMAGE)
+            }.build()
 
-        val analysis = ImageAnalysis(analysisConfig)
-        analysis.setAnalyzer { image , rotationDegrees ->
-            val rect = image.cropRect
-            val format = image.format
-            val width = image.width
-            val height = image.height
-            val planes = image.planes
+            val analysis = ImageAnalysis(analysisConfig)
+            analysis.setAnalyzer { image , rotationDegrees ->
 
-
-            /*
-                * image plane bufferからbyte配列を抽出するHelper
-                */
-            fun ByteBuffer.toByteArray(): ByteArray {
-                rewind()    // バッファを０にする
-                val data = ByteArray(remaining())
-                get(data)   // Byte配列にバッファをコピー
-                return data // Byte配列を返却
-            }
-
-            val currentTimestamp = System.currentTimeMillis()
-            // 毎秒ごとに平均輝度を計算する
-            if (currentTimestamp - lastAnalyzedTimestamp >=
-                    TimeUnit.SECONDS.toMillis(1)) {
-                // ImageAnalysisはYUV形式なのでimage.planes[0]にはY (輝度) planeが格納されている
-                val buffer = image.planes[0].buffer
-                // callback objectからimage dataの抽出
-                val data = buffer.toByteArray()
-                // pixel値の配列にデータを変換
-                val pixels = data.map { it.toInt() and 0xFF }
-                // imageの平均輝度の計算
-                luma = pixels.average()
-                if(abs(luma-luma2)>2&&capture_done==1) {
-                    val msg = "画像内の異常を検知しました.\nhogehoge\nhugahuga"
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d("CameraXApp" , "Average luminosity: $luma")
-
-                    capture_done=0
+                //image plane bufferからbyte配列を抽出するHelper
+                fun ByteBuffer.toByteArray(): ByteArray {
+                    rewind()    // バッファを０にする
+                    val data = ByteArray(remaining())
+                    get(data)   // Byte配列にバッファをコピー
+                    return data // Byte配列を返却
                 }
-                lastAnalyzedTimestamp = currentTimestamp
 
-                // 輝度のログ表示
-               // Log.d("CameraXApp" , "Average luminosity: $luma")
-            }
-        }
+                val currentTimestamp = System.currentTimeMillis()
+                if (currentTimestamp - lastAnalyzedTimestamp >=
+                        TimeUnit.SECONDS.toMillis(1)) {
+                    /**ここから画像処理が始まる．毎秒ごとに平均輝度を計算する------------------------------*/
+                    var Threshold=2  //しきい値
+                    // ImageAnalysisはYUV形式なのでimage.planes[0]にはY (輝度) planeが格納されている
+                    val buffer = image.planes[0].buffer
+                    // callback objectからimage dataの抽出
+                    val data = buffer.toByteArray()
+                    // pixel値の配列にデータを変換
+                    val pixels = data.map { it.toInt() and 0xFF }
+                    // imageの平均輝度の計算
+                    luma = pixels.average()
+                    if(abs(luma-luma2)>Threshold &&capture_done==1) {
 
+                        val msg = "画像内の異常を検知しました.\nhogehoge\nhugahuga"
+                        Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                        Log.d("CameraXApp" , "Average luminosity: $luma")
+                        capture_done=0
 
-           // Log.d("CameraXApp" , "Average luminosity: $luma")
-
+                    }
+                    /**ここまでーーーーーーーーーーーーーーーーーーーー----------------------------------*/
+                    lastAnalyzedTimestamp = currentTimestamp
+                }
+             }
             return analysis
+         }
+        // use caseをlifecycleにバインドする
+        CameraX.bindToLifecycle(this , preview , imageCapture , buildImageAnalysisUseCase())
     }
-
-
-
-    // use caseをlifecycleにバインドする
-    CameraX.bindToLifecycle(this , preview , imageCapture , buildImageAnalysisUseCase())
-}
 
     private fun updateTransform() {
         val matrix = Matrix()
@@ -376,61 +232,10 @@ class OpencvActivity : AppCompatActivity() {
         ContextCompat.checkSelfPermission(
                 this, it) == PackageManager.PERMISSION_GRANTED
     }
+
+    /**この関数で動体検知をしたい*/
     fun motion(image: ImageProxy, rotationDegrees: Int){
         val moG2: BackgroundSubtractorMOG2
-
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        /**ギャラリー*/
-        if (requestCode == RESULT_CAMERA) {
-
-            if (data!!.data != null) {
-
-                var pfDescriptor: ParcelFileDescriptor? = null
-                try {
-                    val uri = data.data
-
-                    pfDescriptor = contentResolver.openFileDescriptor(uri!!, "r")
-                    if (pfDescriptor != null) {
-                        val fileDescriptor = pfDescriptor.fileDescriptor
-                        val bmp = BitmapFactory.decodeFileDescriptor(fileDescriptor)
-                        pfDescriptor.close()
-                        //imageView!!.setImageBitmap(bmp)
-                    }
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    try {
-                        pfDescriptor?.close()
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-
-                }
-
-            }
-        }
-    }
-
-
-    //以下の関数10/2追加
-    // アンドロイドのデータベースへ登録する
-    private fun registerDatabase(file: File) {
-        val contentValues = ContentValues()
-        val contentResolver = this@OpencvActivity.contentResolver
-        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-        contentValues.put("_data", file.absolutePath)
-        contentResolver.insert(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-    }
-
-    companion object {
-
-        private val RESULT_CAMERA = 1001
-        //private val REQUEST_PERMISSION = 1002//10/2追加
     }
 
 }
