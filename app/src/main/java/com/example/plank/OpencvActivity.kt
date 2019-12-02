@@ -28,6 +28,7 @@ import java.io.File
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
+import kotlin.math.abs
 
 
 // パーミッションを要求するときのリクエストコード番号です
@@ -42,11 +43,11 @@ class OpencvActivity : AppCompatActivity() {
     private lateinit var viewFinder: TextureView    //動画用
     lateinit var file:File                  //保存先
     var capture_done=0                      //キャプチャーボタンを押したかどうか
-    var luma2 :Double = 0.0
+    var luma  :Double = 0.0
+    var luma2 : Double =0.0
 
     class LuminosityAnalyzer : ImageAnalysis.Analyzer {
         private var lastAnalyzedTimestamp = 0L
-        var luma2:Double=0.0
         /*
         * image plane bufferからbyte配列を抽出するHelper
         */
@@ -57,7 +58,10 @@ class OpencvActivity : AppCompatActivity() {
             return data // Byte配列を返却
         }
 
-        override fun analyze(image: ImageProxy, rotationDegrees: Int){
+        override fun analyze(image: ImageProxy , rotationDegrees: Int) {
+        }
+
+        fun lumaAnalyze(image: ImageProxy , rotationDegrees: Int) :Double{
             val currentTimestamp = System.currentTimeMillis()
             // 毎秒ごとに平均輝度を計算する
             if (currentTimestamp - lastAnalyzedTimestamp >=
@@ -71,12 +75,13 @@ class OpencvActivity : AppCompatActivity() {
                 // imageの平均輝度の計算
                 var luma = pixels.average()
                 // 輝度のログ表示
-                Log.d("CameraXApp", "Average luminosity: $luma")
+                //Log.d("CameraXApp", "Average luminosity: $luma")
                 // 最後に分析したフレームのタイムスタンプに更新
                 lastAnalyzedTimestamp = currentTimestamp
-                //return luma
+                return luma
 
             }
+            return 0.0
         }
     }
 
@@ -195,6 +200,7 @@ class OpencvActivity : AppCompatActivity() {
 //                }
 //
 //            }
+            luma2=luma
 
             /**キャプチャーボタンを押した時の処理*/
             file = File(externalMediaDirs.first(),
@@ -211,7 +217,7 @@ class OpencvActivity : AppCompatActivity() {
                         }
                         //成功した時
                         override fun onImageSaved(file: File) {
-                            val msg = "画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
+                            val msg = "${luma2}画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
                             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.d("CameraXApp", msg)
                         }
@@ -233,13 +239,90 @@ class OpencvActivity : AppCompatActivity() {
         }.build()
 
         // image analysis use caseの生成とanalyzerのインスタンス生成
-        val analyzerUseCase = ImageAnalysis(analyzerConfig).apply {
-            analyzer = LuminosityAnalyzer()
+//        val analyzerUseCase = ImageAnalysis(analyzerConfig).apply {
+//            //var lumaAnalyzer=LuminosityAnalyzer()
+//            analyzer = LuminosityAnalyzer()
+//        }
+
+//        fun buildPreviewUseCase(): Preview {
+//            val previewConfig = PreviewConfig.Builder()
+//                    .setTargetAspectRatio(aspectRatio)
+//                    .setTargetRotation(rotation)
+//                    .setTargetResolution(resolution)
+//                    .setLensFacing(lensFacing)
+//                    .build()
+//
+//            val preview = Preview(previewConfig)
+//            preview.setOnPreviewOutputUpdateListener { previewOutput ->
+//                cameraTextureView.surfaceTexture = previewOutput.surfaceTexture
+//            }
+//
+//            return preview
+//        }
+        fun buildImageAnalysisUseCase(): UseCase? {
+        val analysisConfig = ImageAnalysisConfig.Builder().apply {
+            // 不具合を防ぐためにワーカースレッドを使う
+            val analyzerThread = HandlerThread(
+                    "LuminosityAnalysis").apply { start() }
+            setCallbackHandler(Handler(analyzerThread.looper))
+            // ここではすべての画像を分析するよりも、最新の画像を重視する
+            setImageReaderMode(
+                    ImageAnalysis.ImageReaderMode.ACQUIRE_LATEST_IMAGE)
+        }.build()
+
+        val analysis = ImageAnalysis(analysisConfig)
+        analysis.setAnalyzer { image , rotationDegrees ->
+            val rect = image.cropRect
+            val format = image.format
+            val width = image.width
+            val height = image.height
+            val planes = image.planes
+
+            var lastAnalyzedTimestamp = 0L
+
+            /*
+                * image plane bufferからbyte配列を抽出するHelper
+                */
+            fun ByteBuffer.toByteArray(): ByteArray {
+                rewind()    // バッファを０にする
+                val data = ByteArray(remaining())
+                get(data)   // Byte配列にバッファをコピー
+                return data // Byte配列を返却
+            }
+
+            val currentTimestamp = System.currentTimeMillis()
+            // 毎秒ごとに平均輝度を計算する
+            if (currentTimestamp - lastAnalyzedTimestamp >=
+                    TimeUnit.SECONDS.toMillis(1)) {
+                // ImageAnalysisはYUV形式なのでimage.planes[0]にはY (輝度) planeが格納されている
+                val buffer = image.planes[0].buffer
+                // callback objectからimage dataの抽出
+                val data = buffer.toByteArray()
+                // pixel値の配列にデータを変換
+                val pixels = data.map { it.toInt() and 0xFF }
+                // imageの平均輝度の計算
+                luma = pixels.average()
+                if(abs(luma-luma2)>2&&capture_done==1) {
+                    val msg = "画像内の異常を検知しました.\nhogehoge\nhugahuga"
+                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                    capture_done=0
+                }
+                // 輝度のログ表示
+                Log.d("CameraXApp" , "Average luminosity: $luma")
+            }
         }
 
-        // use caseをlifecycleにバインドする
-        CameraX.bindToLifecycle(this, preview, imageCapture, analyzerUseCase)
+
+           // Log.d("CameraXApp" , "Average luminosity: $luma")
+
+            return analysis
     }
+
+
+
+    // use caseをlifecycleにバインドする
+    CameraX.bindToLifecycle(this , preview , imageCapture , buildImageAnalysisUseCase())
+}
 
     private fun updateTransform() {
         val matrix = Matrix()
