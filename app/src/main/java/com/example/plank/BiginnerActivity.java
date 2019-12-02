@@ -192,7 +192,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                     handler.postDelayed(delay, 10001);//遅延実行
                 int set_frag_c=set_frag;
                 for(int xx=0;set_frag>1;set_frag--) {
-                    handler.postDelayed(delay, (set_frag-1)*20000+10001);//遅延実行
+                    handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
                 }
                 set_frag=set_frag_c;
                 setCount.setText(set_frag +"セット");
