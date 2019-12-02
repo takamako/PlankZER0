@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,16 +13,29 @@
 
         <Button
             android:id="@+id/return_button_sensor"
-            android:layout_width="162dp"
-            android:layout_height="36dp"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:background="@drawable/button_state"
+            android:fontFamily="sans-serif-black"
             android:text="戻る"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="197dp" />
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="354dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="sss"
+            android:textColor="#111111"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -36,7 +50,7 @@
             android:layout_height="51dp"
             android:layout_margin="20dp"
             android:text="スタートまで"
-            android:textColor="#00f"
+            android:textColor="#111111"
             android:textSize="30sp" />
 
         <TextView
@@ -62,7 +76,7 @@
             android:layout_height="51dp"
             android:layout_margin="20dp"
             android:text="トレーニング"
-            android:textColor="#00f"
+            android:textColor="#111111"
             android:textSize="30sp" />
 
         <TextView
@@ -86,28 +100,23 @@
             android:layout_width="152dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:background="@drawable/button_state"
             android:enabled="true"
-            android:text="スタート" />
+            android:fontFamily="sans-serif-black"
+            android:text="スタート"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/stop_button"
             android:layout_width="152dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="リセット" />
+            android:background="@drawable/button_state"
+            android:fontFamily="sans-serif-black"
+            android:text="リセット"
+            android:textSize="18sp" />
 
     </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="154dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#00f"
-        android:textSize="20sp" />
-
 
 </LinearLayout>
 

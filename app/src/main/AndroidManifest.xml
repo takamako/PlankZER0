@@ -5,13 +5,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:icon="@drawable/ic_launcher"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -31,6 +33,7 @@
             android:name=".CompareActivity"
             android:label="Plank"></activity>
         <activity
+            android:allowBackup="true"
             android:name=".OpencvActivity"
             android:label="Plank"></activity>
         <activity
@@ -47,7 +50,10 @@
             android:label="Plank"></activity>
         <meta-data
             android:name="com.google.android.actions"
-            android:resource="@xml/activity_image2" /> <!-- センサーボタン -->
+            android:resource="@xml/activity_image2" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" /> <!-- センサーボタン -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
