@@ -171,6 +171,8 @@ class OpencvActivity : AppCompatActivity() {
         val imageCapture = ImageCapture(imageCaptureConfig)
         /**キャプチャーボタン*/
         findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
+            capture_done=1      //キャプチャーボタンが押されたことを意味する
+
             //            try {
 //                if(capture_done==1){
 //                    val bmp: Bitmap = BitmapFactory.decodeStream(FileInputStream(file))
@@ -218,13 +220,12 @@ class OpencvActivity : AppCompatActivity() {
                         //成功した時
                         override fun onImageSaved(file: File) {
                             val msg = "${luma2}画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
-                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.d("CameraXApp", msg)
                         }
                     })
 
             //registerDatabase(file!!)
-            capture_done=1      //キャプチャーボタンが押されたことを意味する
         }
 
         // 平均輝度を計算するimage analysis pipelineのセットアップ
@@ -259,6 +260,7 @@ class OpencvActivity : AppCompatActivity() {
 //
 //            return preview
 //        }
+        var lastAnalyzedTimestamp = 0L
         fun buildImageAnalysisUseCase(): UseCase? {
         val analysisConfig = ImageAnalysisConfig.Builder().apply {
             // 不具合を防ぐためにワーカースレッドを使う
@@ -278,7 +280,6 @@ class OpencvActivity : AppCompatActivity() {
             val height = image.height
             val planes = image.planes
 
-            var lastAnalyzedTimestamp = 0L
 
             /*
                 * image plane bufferからbyte配列を抽出するHelper
@@ -305,10 +306,14 @@ class OpencvActivity : AppCompatActivity() {
                 if(abs(luma-luma2)>2&&capture_done==1) {
                     val msg = "画像内の異常を検知しました.\nhogehoge\nhugahuga"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                    Log.d("CameraXApp" , "Average luminosity: $luma")
+
                     capture_done=0
                 }
+                lastAnalyzedTimestamp = currentTimestamp
+
                 // 輝度のログ表示
-                Log.d("CameraXApp" , "Average luminosity: $luma")
+               // Log.d("CameraXApp" , "Average luminosity: $luma")
             }
         }
 
