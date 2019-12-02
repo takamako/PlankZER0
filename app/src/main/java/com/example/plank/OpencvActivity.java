@@ -16,6 +16,9 @@ import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import org.opencv.core.Core;
+import org.opencv.core.Point;
+import org.opencv.video.Video;
 
 
 
@@ -46,8 +49,6 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
         // リスナーの設定 (後述)
         m_cameraView.setCvCameraViewListener(this);
 
-
-        //m_cameraView.enableView();
     }
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -107,18 +108,25 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
     }
 
     @Override
-    public void onCameraViewStarted(int width, int height) {}
+    public void onCameraViewStarted(int width, int height) {
+        Log.d("camera","viewstart");
+    }
 
     @Override
     public void onCameraViewStopped() {}
 
     @Override
     public Mat onCameraFrame(Mat inputFrame) { //inputFrameは毎秒何枚かフレーム取得しているはず
-        //Mat dest1 = new Mat();
-        //Imgproc.cvtColor(inputFrame, dest1, Imgproc.COLOR_BGR2GRAY);
+
+        //前フレーム
+        Mat dest1 = new Mat();
+        Imgproc.cvtColor(inputFrame, dest1, Imgproc.COLOR_BGR2GRAY);
+        Log.d("onCameraFrame", "前フレーム作成");
+
+        //Video.createBackgroundSubtractorMOG2();
 
 
-        return inputFrame;
+        return dest1;
     }
 
 
