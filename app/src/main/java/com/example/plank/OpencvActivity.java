@@ -23,6 +23,7 @@ import org.opencv.video.Video;
 
 
 
+
 public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener {
 
     private CameraBridgeViewBase m_cameraView;
@@ -43,7 +44,7 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
         Log.d("camera","get permission");
 
         // カメラビューのインスタンスを変数にバインド
-        m_cameraView = findViewById(R.id.camera_view);
+        //m_cameraView = findViewById(R.id.camera_view);
 
         m_cameraView.setCameraPermissionGranted();
 
@@ -122,6 +123,7 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
         //前フレーム
         Mat dest1 = new Mat();
 
+
         //output
         Mat output = new Mat();
 
@@ -132,11 +134,24 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
 
         mog2.apply(dest1,output,-1);
 
+        /*
+        int angle = -90;
+        double radians = Math.toRadians(angle);
+        //sin-90 = -1
+        double sin = Math.abs(Math.sin(radians));
+        //cos -90
+        double cos = Math.abs(Math.cos(radians));
+        int newWidth = (int) (inputFrame.width() * cos + inputFrame.height() * sin);
+        int newHeight = (int) (inputFrame.width() * sin + inputFrame.height() * cos);
+        // rotating image
+        Point center = new Point(newWidth / 2, newHeight / 2);
+        Mat rotMatrix = Imgproc.getRotationMatrix2D(center, angle, m_cameraView.getWidth() * 1.0/ newWidth); //1.0 means 100 % scale
+        Imgproc.warpAffine(inputFrame, dest1, rotMatrix, inputFrame.size());
+
+         */
+
         return output;
     }
 
 
 }
-
-
-
