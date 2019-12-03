@@ -132,9 +132,6 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
 
         mog2.apply(dest1,output,-1);
 
-
-
-
         return output;
     }
 
