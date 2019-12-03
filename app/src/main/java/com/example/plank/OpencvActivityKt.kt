@@ -123,8 +123,8 @@ class OpencvActivityKt : AppCompatActivity() {
         /**キャプチャーボタンを押した時の処理*/
         capture_done=1      //キャプチャーボタンが押されたことを意味する
         luma2=luma
-//        val msg = "${luma2}画像が保存されました.\nもう一度押すと\n保存された画像を表示できます"
-//        Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+        val msg = "計測を開始します\n　\n"
+        Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         }
 
         var lastAnalyzedTimestamp = 0L
@@ -157,7 +157,7 @@ class OpencvActivityKt : AppCompatActivity() {
                 if (currentTimestamp - lastAnalyzedTimestamp >=
                         TimeUnit.SECONDS.toMillis(1)) {
                     /**ここから画像処理が始まる．毎秒ごとに平均輝度を計算する------------------------------*/
-                    val Threshold=2  //しきい値
+                    val Threshold=10  //しきい値
                     // ImageAnalysisはYUV形式なのでimage.planes[0]にはY (輝度) planeが格納されている
                     val buffer = image.planes[0].buffer
                     // callback objectからimage dataの抽出
@@ -168,7 +168,7 @@ class OpencvActivityKt : AppCompatActivity() {
                     luma = pixels.average()
                     if(abs(luma-luma2)>Threshold &&capture_done==1) {
 
-                        val msg = "画像内の異常を検知しました.\nhogehoge\nhugahuga"
+                        val msg = "画像内の異常を検知しました.\nt秒維持することができました\n"
                         Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                         Log.d("CameraXApp" , "Average luminosity: $luma")
                         capture_done=0
