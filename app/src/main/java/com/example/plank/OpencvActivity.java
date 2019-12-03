@@ -18,6 +18,7 @@ import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.Core;
 import org.opencv.core.Point;
+import org.opencv.video.BackgroundSubtractorMOG2;
 import org.opencv.video.Video;
 
 
@@ -120,13 +121,21 @@ public class OpencvActivity extends Activity implements CameraBridgeViewBase.CvC
 
         //前フレーム
         Mat dest1 = new Mat();
+
+        //output
+        Mat output = new Mat();
+
         Imgproc.cvtColor(inputFrame, dest1, Imgproc.COLOR_BGR2GRAY);
         Log.d("onCameraFrame", "前フレーム作成");
 
-        //Video.createBackgroundSubtractorMOG2();
+        BackgroundSubtractorMOG2 mog2 = Video.createBackgroundSubtractorMOG2();
+
+        mog2.apply(dest1,output,-1);
 
 
-        return dest1;
+
+
+        return output;
     }
 
 
