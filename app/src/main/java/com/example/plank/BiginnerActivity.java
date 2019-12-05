@@ -445,7 +445,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             x=Math.floor(x);
             double mil =all_count*1000/countNumber;
             double mil_count = stop_count/mil;
-            textView.setText( String.valueOf((int)mil_count) +"秒("+String.valueOf((int)x) +"%)維持できています！");
+            textView.setText( String.valueOf((int)mil_count) +"秒("+"Score:" +stop_count*10);
             stop_count=0;
             all_count=0;
             if(timing ==1){
@@ -474,7 +474,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 timerText＿trainig.setText(dataFormat.format(millisUntilFinished));
                 double x=100*stop_count/all_count;
                 x=Math.floor(x);
-                textView.setText( String.valueOf((int)x) +"%維持できているよ");
+                textView.setText( "Score:" +stop_count*10 );
                 all_count++;
                 if(move_frag==0){
                 stop_count++;
