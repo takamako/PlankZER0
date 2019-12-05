@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import android.media.AudioAttributes;
@@ -36,6 +37,14 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import androidx.annotation.NonNull;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class BiginnerActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -445,7 +454,16 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             x=Math.floor(x);
             double mil =all_count*1000/countNumber;
             double mil_count = stop_count/mil;
-            textView.setText( String.valueOf((int)mil_count) +"秒("+"Score:" +stop_count*10);
+            textView.setText( String.valueOf((int)mil_count) +"秒 "+"Score:" +stop_count*10);
+
+
+
+            if(mil_count>15){
+                FragmentManager fragmentManager = getFragmentManager();
+                AlertDialogFragment dialogFragment = new AlertDialogFragment();
+                // DialogFragmentの表示
+                dialogFragment.show(fragmentManager, "test alert dialog");
+            }
             stop_count=0;
             all_count=0;
             if(timing ==1){
@@ -486,5 +504,38 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
     }
 
+    public static class AlertDialogFragment extends DialogFragment {
+        // 選択肢のリスト
+        private String[] menulist = {"選択(1)","選択(2)","選択(3)"};
 
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        @NonNull
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageResource( R.drawable.help1);
+            // タイトル
+            alert.setTitle("上の難易度を目指しましょう！");
+            alert.setView(  imageView );
+            alert.setPositiveButton( "OK", null );
+            //alert.show();
+            //alert.setItems(menulist, new DialogInterface.OnClickListener() {
+            // @Override
+            //public void onClick(DialogInterface dialog, int idx) {
+
+            //    }
+            //}
+            // });
+
+            return alert.create();
+        }
+
+        private void setMassage(String message) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            // mainActivity.setTextView(message);
+        }
+    }
 }
