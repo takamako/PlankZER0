@@ -117,7 +117,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         textView = findViewById(R.id.text_view);
         textView.setText("ここに訓練結果が表示されます！");
         setCount = findViewById(R.id.settime);
-        setCount.setText(set_frag +"セット");
+        setCount.setText("×" + set_frag +"セット");
 
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
@@ -204,7 +204,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                     handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
                 }
                 set_frag=set_frag_c;
-                setCount.setText(set_frag +"セット");
+                setCount.setText("×" + set_frag +"セット");
 
             }
         });
@@ -232,7 +232,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 all_count=0;
                 setCountButton.setEnabled(true);
                 set_frag=1;
-                setCount.setText(set_frag +"セット");
+                setCount.setText("×" + set_frag +"セット");
             }
         });
 
@@ -259,7 +259,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             @Override
             public void onClick(View v) {
                 set_frag+=1;
-                setCount.setText(set_frag +"セット");
+                setCount.setText("×" + set_frag +"セット");
                 if(set_frag==9){
                     setCountButton.setEnabled(false);
                 }
