@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import android.media.AudioAttributes;
@@ -35,6 +36,15 @@ import com.github.mikephil.charting.components.YAxis;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import androidx.annotation.NonNull;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class IntermediateActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -59,7 +69,8 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
     private double all_count = 0;
     private int move_frag = 0;
     final Handler handler = new Handler();
-
+    private int set_frag = 1;
+    private TextView setCount;
 
     private Runnable delay;
     private Runnable delayStartCountDown;
@@ -72,6 +83,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
     final IntermediateActivity.CountDown countDown = new IntermediateActivity.CountDown(countNumber, interval);
     Button startButton;
     Button stopButton;
+    Button setCountButton;
     //private Runnable;
 
     private Sensor accel;
@@ -98,12 +110,15 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         timerText = findViewById(R.id.timer);
+        setCountButton = findViewById(R.id.set_button);
         timerText＿trainig = findViewById(R.id.timer_training);
         timerText.setText(dataFormat.format(10000));
-        timerText＿trainig.setText(dataFormat.format(30000));
+        timerText＿trainig.setText(dataFormat.format(countNumber));
         textView = findViewById(R.id.text_view);
-        textView.setText("ここに維持できたの表示");
+        textView.setText("ここに訓練結果が表示されます！");
         textGraph = findViewById(R.id.text_view);
+        setCount = findViewById(R.id.settime);
+        setCount.setText("×" + set_frag +"セット");
 
         final IntermediateActivity.CountDown countDown_before = new IntermediateActivity.CountDown(countbefore, interval);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -173,6 +188,12 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 handler.postDelayed(delayStartCountDown, 8000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 9000);//遅延実行
                 handler.postDelayed(delay, 10001);//遅延実行
+                int set_frag_c=set_frag;
+                for(int xx=0;set_frag>1;set_frag--) {
+                    handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
+                }
+                set_frag=set_frag_c;
+                setCount.setText("×" + set_frag +"セット");
             }
         });
         //ストップボタンの処理
@@ -190,9 +211,13 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(10000));
-                timerText＿trainig.setText(dataFormat.format(30000));
+                timerText＿trainig.setText(dataFormat.format(countNumber));
+
                 stop_count=0;
                 all_count=0;
+                setCountButton.setEnabled(true);
+                set_frag=1;
+                setCount.setText("×" + set_frag +"セット");
             }
         });
 
@@ -212,6 +237,19 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 handler.removeCallbacks(delay);
                 finish();
             }
+        });
+
+
+        setCountButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                set_frag+=1;
+                setCount.setText("×" + set_frag +"セット");
+                if(set_frag==9){
+                    setCountButton.setEnabled(false);
+                }
+            }
+
         });
 
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
@@ -371,13 +409,22 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             // 完了
 
             timerText.setText(dataFormat.format(10000));
-            timerText＿trainig.setText(dataFormat.format(30000));
+            timerText＿trainig.setText(dataFormat.format(countNumber));
             frag =0;
             double x=100*stop_count/all_count;
             x=Math.floor(x);
-            double mil =all_count/30;
+            double mil =all_count*1000/countNumber;
             double mil_count = stop_count/mil;
-            textView.setText( String.valueOf((int)mil_count) +"秒("+String.valueOf((int)x) +"%)維持できているよ");
+            textView.setText( String.valueOf((int)mil_count) +"秒 "+"Score:" +stop_count*10);
+            stop_count=0;
+            all_count=0;
+
+            if(mil_count>25){
+                FragmentManager fragmentManager = getFragmentManager();
+                AlertDialogFragment dialogFragment = new AlertDialogFragment();
+                // DialogFragmentの表示
+                dialogFragment.show(fragmentManager, "test alert dialog");
+            }
             stop_count=0;
             all_count=0;
             if(timing ==1){
@@ -402,7 +449,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 timerText＿trainig.setText(dataFormat.format(millisUntilFinished));
                 double x=100*stop_count/all_count;
                 x=Math.floor(x);
-                textView.setText( String.valueOf((int)x) +"%維持できているよ");
+                textView.setText( "Score:" +stop_count*10);
                 all_count++;
                 if(move_frag==0){
                     stop_count++;
@@ -412,4 +459,38 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
 
     }
 
+    public static class AlertDialogFragment extends DialogFragment {
+        // 選択肢のリスト
+        private String[] menulist = {"選択(1)","選択(2)","選択(3)"};
+
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        @NonNull
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageResource( R.drawable.help1);
+            // タイトル
+            alert.setTitle("上の難易度を目指しましょう！");
+            alert.setView(  imageView );
+            alert.setPositiveButton( "OK", null );
+            //alert.show();
+            //alert.setItems(menulist, new DialogInterface.OnClickListener() {
+            // @Override
+            //public void onClick(DialogInterface dialog, int idx) {
+
+            //    }
+            //}
+            // });
+
+            return alert.create();
+        }
+
+        private void setMassage(String message) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            // mainActivity.setTextView(message);
+        }
+    }
 }

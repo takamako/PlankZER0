@@ -226,8 +226,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 timerText.setText(dataFormat.format(10000));
                 timerText＿trainig.setText(dataFormat.format(countNumber));
 
-                //Intent intent = new Intent(getApplication(), ImageActivity.class);
-                //startActivity(intent);
                 stop_count=0;
                 all_count=0;
                 setCountButton.setEnabled(true);
@@ -270,11 +268,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
         //以下追加
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                // USAGE_MEDIA
-                // USAGE_GAME
                 .setUsage(AudioAttributes.USAGE_GAME)
-                // CONTENT_TYPE_MUSIC
-                // CONTENT_TYPE_SPEECH, etc.
                 .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                 .build();
 

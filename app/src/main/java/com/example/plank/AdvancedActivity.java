@@ -36,6 +36,15 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import androidx.annotation.NonNull;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 public class AdvancedActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
@@ -59,7 +68,8 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
     private double all_count = 0;
     private int move_frag = 0;
     final Handler handler = new Handler();
-
+    private int set_frag = 1;
+    private TextView setCount;
 
     private Runnable delay;
     private Runnable delayStartCountDown;
@@ -72,6 +82,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
     final AdvancedActivity.CountDown countDown = new AdvancedActivity.CountDown(countNumber, interval);
     Button startButton;
     Button stopButton;
+    Button setCountButton;
     //private Runnable;
 
     private Sensor accel;
@@ -97,12 +108,17 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
 
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
+        setCountButton = findViewById(R.id.set_button);
         timerText = findViewById(R.id.timer);
         timerText＿trainig = findViewById(R.id.timer_training);
         timerText.setText(dataFormat.format(10000));
-        timerText＿trainig.setText(dataFormat.format(40000));
+        timerText＿trainig.setText(dataFormat.format(countNumber));
         textView = findViewById(R.id.text_view);
-        textView.setText("ここに維持できたの表示");
+        textView.setText("ここに訓練結果が表示されます！");
+        textGraph = findViewById(R.id.text_view);
+        setCount = findViewById(R.id.settime);
+        setCount.setText("×" + set_frag +"セット");
+
 
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
@@ -116,7 +132,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         // Get an instance of the TextView
-        textGraph = findViewById(R.id.text_view);
+        //textGraph = findViewById(R.id.text_view);
 
         mChart = findViewById(R.id.chart);
         // インスタンス生成
@@ -184,6 +200,12 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 handler.postDelayed(delayStartCountDown, 8000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 9000);//遅延実行
                 handler.postDelayed(delay, 10001);//遅延実行
+                int set_frag_c=set_frag;
+                for(int xx=0;set_frag>1;set_frag--) {
+                    handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
+                }
+                set_frag=set_frag_c;
+                setCount.setText("×" + set_frag +"セット");
             }
         });
         //ストップボタンの処理
@@ -202,12 +224,15 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(10000));
-                timerText＿trainig.setText(dataFormat.format(40000));
+                timerText＿trainig.setText(dataFormat.format(countNumber));
 
                 //Intent intent = new Intent(getApplication(), ImageActivity.class);
                 //startActivity(intent);
                 stop_count=0;
                 all_count=0;
+                setCountButton.setEnabled(true);
+                set_frag=1;
+                setCount.setText("×" + set_frag +"セット");
             }
         });
 
@@ -228,6 +253,20 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 finish();
             }
         });
+
+        setCountButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                set_frag+=1;
+                setCount.setText("×" + set_frag +"セット");
+                if(set_frag==9){
+                    setCountButton.setEnabled(false);
+                }
+            }
+
+        });
+
+
         //以下追加
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 // USAGE_MEDIA
@@ -406,13 +445,13 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             // 完了
 
             timerText.setText(dataFormat.format(10000));
-            timerText＿trainig.setText(dataFormat.format(40000));
+            timerText＿trainig.setText(dataFormat.format(countNumber));
             frag =0;
             double x=100*stop_count/all_count;
             x=Math.floor(x);
-            double mil =all_count/40;
+            double mil =all_count*1000/countNumber;
             double mil_count = stop_count/mil;
-            textView.setText( String.valueOf((int)mil_count) +"秒("+String.valueOf((int)x) +"%)維持できているよ");
+            textView.setText( String.valueOf((int)mil_count) +"秒 "+"Score:" +stop_count*10);
             stop_count=0;
             all_count=0;
             if(timing ==1){
@@ -437,7 +476,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 timerText＿trainig.setText(dataFormat.format(millisUntilFinished));
                 double x = 100 * stop_count / all_count;
                 x = Math.floor(x);
-                textView.setText(String.valueOf((int) x) + "%維持できているよ");
+                textView.setText( "Score:" +stop_count*10);
                 all_count++;
                 if (move_frag == 0) {
                     stop_count++;
