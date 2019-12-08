@@ -547,6 +547,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource( R.drawable.poket);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setAdjustViewBounds(true);
             // タイトル
             alert.setTitle("ポケットか背中にスマホを入れましょう！");
             alert.setView(  imageView );
