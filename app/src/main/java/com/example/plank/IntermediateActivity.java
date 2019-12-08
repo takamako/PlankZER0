@@ -65,7 +65,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
     private float FirstX,FirstY,FirstZ =0;
     private int frag = 0;
     private int timing = 0;
-    private double stop_count = 0;
+    private int stop_count = 0;
     private double all_count = 0;
     private int move_frag = 0;
     final Handler handler = new Handler();
@@ -115,7 +115,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         timerText.setText(dataFormat.format(10000));
         timerText＿trainig.setText(dataFormat.format(countNumber));
         textView = findViewById(R.id.text_view);
-        textView.setText("ここに訓練結果が表示されます！");
+        textView.setText("トレーニングスコア：" + 0);
         textGraph = findViewById(R.id.text_view);
         setCount = findViewById(R.id.settime);
         setCount.setText("×" + set_frag +"セット");
@@ -415,7 +415,8 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             x=Math.floor(x);
             double mil =all_count*1000/countNumber;
             double mil_count = stop_count/mil;
-            textView.setText( String.valueOf((int)mil_count) +"秒 "+"Score:" +stop_count*10);
+            textView.setTextColor(Color.RED);
+            textView.setText("トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
             stop_count=0;
             all_count=0;
 
@@ -449,7 +450,9 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 timerText＿trainig.setText(dataFormat.format(millisUntilFinished));
                 double x=100*stop_count/all_count;
                 x=Math.floor(x);
-                textView.setText( "Score:" +stop_count*10);
+                textView.setTextColor(Color.BLUE);
+                textView.setText( "トレーニングスコア：" +stop_count*2 );
+
                 all_count++;
                 if(move_frag==0){
                     stop_count++;
@@ -471,7 +474,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource( R.drawable.help1);
+            imageView.setImageResource( R.drawable.level_up2);
             // タイトル
             alert.setTitle("上の難易度を目指しましょう！");
             alert.setView(  imageView );

@@ -33,7 +33,7 @@
             android:layout_marginTop="20dp"
             android:text="sss"
             android:textColor="#111111"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +47,7 @@
             android:layout_width="193dp"
             android:layout_height="51dp"
             android:layout_margin="20dp"
-            android:text="スタートまで"
+            android:text="スタートまで:"
             android:textColor="#111111"
             android:textSize="30sp" />
 
@@ -71,7 +71,7 @@
             android:layout_width="193dp"
             android:layout_height="51dp"
             android:layout_margin="20dp"
-            android:text="トレーニング"
+            android:text="トレーニング:"
             android:textColor="#111111"
             android:textSize="30sp" />
 

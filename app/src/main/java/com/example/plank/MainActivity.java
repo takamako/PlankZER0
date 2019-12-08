@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.util.Log;
+import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("debug","onCreate()");//10/2追加
         setContentView(R.layout.activity_main);
+
+        ImageView imageView = findViewById(R.id.image_view);
+        imageView.setImageResource(R.drawable.plank01);
 
         //カメラモードに移動
         Button PhotoButton = findViewById(R.id.ViewImg);
