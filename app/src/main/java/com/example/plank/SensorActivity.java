@@ -129,6 +129,7 @@ public class SensorActivity extends AppCompatActivity {
             // タイトル
             alert.setTitle("使い方！");
             alert.setView(  imageView );
+            alert.setView(R.layout.activity_help1);
             alert.setPositiveButton( "OK", null );
             //alert.show();
             //alert.setItems(menulist, new DialogInterface.OnClickListener() {
