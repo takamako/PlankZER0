@@ -158,6 +158,10 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fragmentManager2 = getFragmentManager();
+                BiginnerActivity.AlertDialogFragment_setpoketto dialogFragment_setpoketto = new BiginnerActivity.AlertDialogFragment_setpoketto();
+                // DialogFragmentの表示
+                dialogFragment_setpoketto.show(fragmentManager2, "setpoketto alert dialog");
                 startButton.setEnabled(false);
                 countDown_before.start();
                 timing =1;
@@ -496,4 +500,34 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             // mainActivity.setTextView(message);
         }
     }
+
+
+
+    public static class AlertDialogFragment_setpoketto extends DialogFragment {
+
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        @NonNull
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageResource( R.drawable.poket);
+            // タイトル
+            alert.setTitle("ポケットか背中にスマホを入れましょう！");
+            alert.setView(  imageView );
+            alert.setPositiveButton( "OK", null );
+
+
+            return alert.create();
+        }
+
+        private void setMassage(String message) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            // mainActivity.setTextView(message);
+        }
+    }
+
+
 }

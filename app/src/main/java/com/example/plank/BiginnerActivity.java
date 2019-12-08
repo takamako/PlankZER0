@@ -167,6 +167,14 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             @Override
             public void onClick(View view) {
                 startButton.setEnabled(false);
+
+
+                FragmentManager fragmentManager2 = getFragmentManager();
+                AlertDialogFragment_setpoketto dialogFragment_setpoketto = new AlertDialogFragment_setpoketto();
+                // DialogFragmentの表示
+                dialogFragment_setpoketto.show(fragmentManager2, "setpoketto alert dialog");
+
+
                     countDown_before.start();
                     //wait_time();
                     //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
@@ -514,15 +522,43 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             alert.setTitle("上の難易度を目指しましょう！");
             alert.setView(  imageView );
             alert.setPositiveButton( "OK", null );
-            //alert.show();
-            //alert.setItems(menulist, new DialogInterface.OnClickListener() {
-            // @Override
-            //public void onClick(DialogInterface dialog, int idx) {
 
-            //    }
-            //}
-            // });
+            return alert.create();
+        }
 
+        private void setMassage(String message) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            // mainActivity.setTextView(message);
+        }
+    }
+
+
+
+    public static class AlertDialogFragment_setpoketto extends DialogFragment {
+        final Handler handler = new Handler();
+        private Runnable delayClose;
+
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        @NonNull
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageResource( R.drawable.poket);
+            // タイトル
+            alert.setTitle("ポケットか背中にスマホを入れましょう！");
+            alert.setView(  imageView );
+           // alert.setPositiveButton( "OK", null );
+            delayClose = new Runnable() {//遅延定義 10/31
+                @Override
+                public void run() {
+                    dismiss();
+
+                }
+            };
+            handler.postDelayed(delayClose, 3000);
             return alert.create();
         }
 

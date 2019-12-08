@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import android.media.AudioAttributes;
@@ -167,6 +168,10 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fragmentManager2 = getFragmentManager();
+                BiginnerActivity.AlertDialogFragment_setpoketto dialogFragment_setpoketto = new BiginnerActivity.AlertDialogFragment_setpoketto();
+                // DialogFragmentの表示
+                dialogFragment_setpoketto.show(fragmentManager2, "setpoketto alert dialog");
                 startButton.setEnabled(false);
                 countDown_before.start();
                 //wait_time();
@@ -487,6 +492,30 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         }
     }
 
+    public static class AlertDialogFragment_setpoketto extends DialogFragment {
 
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        @NonNull
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageResource( R.drawable.poket);
+            // タイトル
+            alert.setTitle("ポケットか背中にスマホを入れましょう！");
+            alert.setView(  imageView );
+            alert.setPositiveButton( "OK", null );
+
+
+            return alert.create();
+        }
+
+        private void setMassage(String message) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            // mainActivity.setTextView(message);
+        }
+    }
 
 }
