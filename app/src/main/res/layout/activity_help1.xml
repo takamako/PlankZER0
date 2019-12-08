@@ -12,20 +12,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="初心者モードの画面です。"
+            android:text="初心者モードの画面説明です。"
             android:textColor="#111111"
             android:textSize="18sp" />
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="430dp"
             android:src="@drawable/help1" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="ポケットに入れてスタート"
+            android:text="ポケットに入れてスタート!"
             android:textColor="#111111"
             android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/poket" />
     </LinearLayout>
 </ScrollView>
