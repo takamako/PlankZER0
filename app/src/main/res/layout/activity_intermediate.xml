@@ -49,7 +49,7 @@
             android:layout_width="193dp"
             android:layout_height="51dp"
             android:layout_margin="20dp"
-            android:text="スタートまで"
+            android:text="インターバル"
             android:textColor="#111111"
             android:textSize="30sp" />
 
@@ -96,7 +96,7 @@
 
         <TextView
             android:id="@+id/settime"
-            android:layout_width="193dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:baselineAligned="false"

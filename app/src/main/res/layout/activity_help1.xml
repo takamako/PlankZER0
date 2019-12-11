@@ -12,6 +12,33 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:text="1人でプランクトレーニングをする時のモードです。このモードはポケットに入れたスマートフォンのセンサーによって、プランク中に姿勢が崩れたかどうかを感知して判定します。姿勢が崩れたと判定されると警告音が鳴ります。また、自分がプランク中にどれだけ姿勢をどれだけキープできたのかをグラフとスコアで確認することができます。"
+            android:textColor="#111111"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textColor="#111111"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="この画面の説明です。"
+            android:textColor="#111111"
+            android:textSize="18sp" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="238dp"
+            android:src="@drawable/help2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="初心者モードの画面説明です。"
             android:textColor="#111111"
             android:textSize="18sp" />
