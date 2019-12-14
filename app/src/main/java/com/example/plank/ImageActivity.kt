@@ -2,10 +2,12 @@ package com.example.plank
 
 //AndroidX
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+
 
 
 class ImageActivity : AppCompatActivity() {
@@ -13,6 +15,7 @@ class ImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
+
 
 
         //opencvの処理をする画面に遷移
@@ -42,5 +45,7 @@ class ImageActivity : AppCompatActivity() {
         val returnButton = findViewById<Button>(R.id.return_sub)
         returnButton.setOnClickListener { finish() }
 
+
     }
+
 }
