@@ -167,8 +167,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             @Override
             public void onClick(View view) {
                 startButton.setEnabled(false);
-
-
+                handler.removeCallbacks(delayStartCountDown);
+                handler.removeCallbacks(delay);
                 FragmentManager fragmentManager2 = getFragmentManager();
                 AlertDialogFragment_setpoketto dialogFragment_setpoketto = new AlertDialogFragment_setpoketto();
                 // DialogFragmentの表示
@@ -209,6 +209,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                     handler.postDelayed(delay, 10001);//遅延実行
                 int set_frag_c=set_frag;
                 for(int xx=0;set_frag>1;set_frag--) {
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+7000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+8000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+9000);//遅延実行
                     handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
                 }
                 set_frag=set_frag_c;
