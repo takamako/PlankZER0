@@ -49,6 +49,7 @@ class ImageActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                     .setTitle("ダイアログのタイトルです")
                     .setView(R.layout.activity_help1)
+                    .setPositiveButton( "OK", null )
                     .show()
         }
 
