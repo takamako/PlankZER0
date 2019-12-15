@@ -74,6 +74,8 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
 
     private Runnable delay;
     private Runnable delayStartCountDown;
+    private Runnable enablestart;
+
     // 3分= 3x60x1000 = 180000 msec
     long countNumber = 40000;
     //スタート前
@@ -168,6 +170,8 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                handler.removeCallbacks(delayStartCountDown);
+                handler.removeCallbacks(delay);
                 FragmentManager fragmentManager2 = getFragmentManager();
                 BiginnerActivity.AlertDialogFragment_setpoketto dialogFragment_setpoketto = new BiginnerActivity.AlertDialogFragment_setpoketto();
                 // DialogFragmentの表示
@@ -176,13 +180,21 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 countDown_before.start();
                 //wait_time();
                 //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
-                timing =1;
+              //  timing =1;
                 delayStartCountDown =  new Runnable(){//遅延定義 10/31
                     @Override
                     public void run() {
+                        timing =1;
                         if(timing==1) {
                             soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
                         }
+                    }
+                };
+
+                enablestart = new Runnable() {//遅延定義 10/31
+                    @Override
+                    public void run() {
+                        startButton.setEnabled(false);
                     }
                 };
 
@@ -193,11 +205,13 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                         soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
                         // 開始
-                        timing =1;
+                       // timing =0;
                         first =1;
                         frag=1;
                         countDown.start();
+                        timing = 0;
                         startButton.setEnabled(false);
+
                     }
                     // }
                 };
@@ -207,6 +221,10 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 handler.postDelayed(delay, 10001);//遅延実行
                 int set_frag_c=set_frag;
                 for(int xx=0;set_frag>1;set_frag--) {
+                    handler.postDelayed(enablestart, (set_frag-1)*30000+100);
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+7000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+8000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+9000);//遅延実行
                     handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
                 }
                 set_frag=set_frag_c;
@@ -456,12 +474,17 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             x=Math.floor(x);
             double mil =all_count*1000/countNumber;
             double mil_count = stop_count/mil;
-            textView.setTextColor(Color.RED);
-            textView.setText("トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
+
+            if(timing ==1) {
+                startButton.setEnabled(true);
+            }else{
+                textView.setTextColor(Color.RED);
+                textView.setText("トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
+            }
+
+
             stop_count=0;
             all_count=0;
-            if(timing ==1){
-                startButton.setEnabled(true);}
             soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
         }
 

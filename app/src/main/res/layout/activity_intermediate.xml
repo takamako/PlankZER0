@@ -96,11 +96,11 @@
 
         <TextView
             android:id="@+id/settime"
-            android:layout_width="150dp"
+            android:layout_width="142dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:baselineAligned="false"
-            android:text="セット"
+            android:text="XXセット"
             android:textColor="#111111"
             android:textSize="30sp" />
 
