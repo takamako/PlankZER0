@@ -47,22 +47,15 @@ class ImageActivity : AppCompatActivity() {
         val returnButton = findViewById<Button>(R.id.return_sub)
         returnButton.setOnClickListener { finish() }
 
-        val helpButton = findViewById<Button>(R.id.helpButton)
+        val helpButton = findViewById<Button>(R.id.helpButton2)
         helpButton.setOnClickListener {
             AlertDialog.Builder(this)
                     .setTitle("ダイアログのタイトルです")
-                    .setView(R.layout.activity_help1)
+                    .setView(R.layout.activity_help2)
                     .setPositiveButton( "OK", null )
                     .show()
         }
 
     }
 
-
-    fun onShowAlertDialog(view: View) {
-        AlertDialog.Builder(this)
-                .setTitle("ダイアログのタイトルです")
-                .setView(R.layout.activity_help1)
-                .show()
-    }
 }

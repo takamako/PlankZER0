@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getFragmentManager();
 
             // DialogFragment を継承したAlertDialogFragmentのインスタンス
-            SensorActivity.AlertDialogFragment dialogFragment = new SensorActivity.AlertDialogFragment();
+           AlertDialogFragment dialogFragment = new MainActivity.AlertDialogFragment();
             // DialogFragmentの表示
             dialogFragment.show(fragmentManager, "test alert dialog");
         }
