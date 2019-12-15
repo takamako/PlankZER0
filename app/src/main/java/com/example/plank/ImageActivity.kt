@@ -2,6 +2,7 @@ package com.example.plank
 
 //AndroidX
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -10,11 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 
+
 class ImageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
+
 
 
         //opencvの処理をする画面に遷移
@@ -44,23 +47,15 @@ class ImageActivity : AppCompatActivity() {
         val returnButton = findViewById<Button>(R.id.return_sub)
         returnButton.setOnClickListener { finish() }
 
-        val helpButton = findViewById<Button>(R.id.helpButton)
+        val helpButton = findViewById<Button>(R.id.helpButton2)
         helpButton.setOnClickListener {
             AlertDialog.Builder(this)
                     .setTitle("ダイアログのタイトルです")
-                    .setView(R.layout.activity_help1)
+                    .setView(R.layout.activity_help2)
                     .setPositiveButton( "OK", null )
                     .show()
         }
 
-    }
-
-
-    fun onShowAlertDialog(view: View) {
-        AlertDialog.Builder(this)
-                .setTitle("ダイアログのタイトルです")
-                .setView(R.layout.activity_help1)
-                .show()
     }
 
 }
