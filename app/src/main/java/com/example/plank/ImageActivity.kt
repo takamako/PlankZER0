@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 
 class ImageActivity : AppCompatActivity() {
 
@@ -42,5 +44,22 @@ class ImageActivity : AppCompatActivity() {
         val returnButton = findViewById<Button>(R.id.return_sub)
         returnButton.setOnClickListener { finish() }
 
+        val helpButton = findViewById<Button>(R.id.helpButton)
+        helpButton.setOnClickListener {
+            AlertDialog.Builder(this)
+                    .setTitle("ダイアログのタイトルです")
+                    .setView(R.layout.activity_help1)
+                    .show()
+        }
+
     }
+
+
+    fun onShowAlertDialog(view: View) {
+        AlertDialog.Builder(this)
+                .setTitle("ダイアログのタイトルです")
+                .setView(R.layout.activity_help1)
+                .show()
+    }
+
 }
