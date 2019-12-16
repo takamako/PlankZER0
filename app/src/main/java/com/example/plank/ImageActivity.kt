@@ -35,14 +35,14 @@ class ImageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+/*
         //posenetの処理をする画面に遷移
         val PoseNetButton = findViewById<Button>(R.id.posene_button)
         PoseNetButton.setOnClickListener {
             val intent = Intent(application , PosenetActivity::class.java)
             startActivity(intent)
         }
-
+*/
         //ホーム画面に戻る処理
         val returnButton = findViewById<Button>(R.id.return_sub)
         returnButton.setOnClickListener { finish() }
