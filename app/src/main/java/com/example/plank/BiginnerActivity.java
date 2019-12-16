@@ -72,8 +72,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     private int set_frag = 1;
     private TextView setCount;
 
-    private Runnable delay;
-    private Runnable delayStartCountDown;
+     Runnable delay;
+     Runnable delayStartCountDown;
     private Runnable enablestart;
     // 3分= 3x60x1000 = 180000 msec
     long countNumber = 20000;
@@ -200,12 +200,13 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                         @Override
                         public void run() {
                             mChart.setData(new LineData());
-                            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+                                soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
 
                             // 開始
 
                             first = 1;
                             frag = 1;
+
                             countDown.start();
                             timing = 0;
                             startButton.setEnabled(false);
@@ -328,6 +329,15 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_UI);
     }
 
+    @Override
+    public void onBackPressed(){
+        // 行いたい処理
+        frag=0;
+        timing =2;
+        handler.removeCallbacks(delayStartCountDown);
+        handler.removeCallbacks(delay);
+        finish();
+    }
 
     // 解除するコードも入れる!
     @Override
@@ -485,7 +495,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             stop_count=0;
             all_count=0;
 
-            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+             if(timing ==2){}else{   soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);}
 
         }
 

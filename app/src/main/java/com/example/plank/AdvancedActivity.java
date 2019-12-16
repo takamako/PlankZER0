@@ -221,11 +221,11 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 handler.postDelayed(delay, 10001);//遅延実行
                 int set_frag_c=set_frag;
                 for(int xx=0;set_frag>1;set_frag--) {
-                    handler.postDelayed(enablestart, (set_frag-1)*30000+100);
-                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+7000);//遅延実行
-                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+8000);//遅延実行
-                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+9000);//遅延実行
-                    handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
+                    handler.postDelayed(enablestart, (set_frag-1)*50000+100);
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*50000+7000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*50000+8000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*50000+9000);//遅延実行
+                    handler.postDelayed(delay, (set_frag-1)*50000+10001);//遅延実行
                 }
                 set_frag=set_frag_c;
                 setCount.setText("×" + set_frag +"セット");
@@ -343,6 +343,16 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         super.onPause();
         // Listenerを解除
         sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onBackPressed(){
+        // 行いたい処理
+        frag=0;
+        timing =2;
+        handler.removeCallbacks(delayStartCountDown);
+        handler.removeCallbacks(delay);
+        finish();
     }
 
     @Override
@@ -485,7 +495,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
 
             stop_count=0;
             all_count=0;
-            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+            if(timing ==2){}else{   soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);}
         }
 
 

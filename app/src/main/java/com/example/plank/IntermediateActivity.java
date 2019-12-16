@@ -207,11 +207,11 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 handler.postDelayed(delay, 10001);//遅延実行
                 int set_frag_c=set_frag;
                 for(int xx=0;set_frag>1;set_frag--) {
-                    handler.postDelayed(enablestart, (set_frag-1)*30000+100);
-                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+7000);//遅延実行
-                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+8000);//遅延実行
-                    handler.postDelayed(delayStartCountDown, (set_frag-1)*30000+9000);//遅延実行
-                    handler.postDelayed(delay, (set_frag-1)*30000+10001);//遅延実行
+                    handler.postDelayed(enablestart, (set_frag-1)*40000+100);
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*40000+7000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*40000+8000);//遅延実行
+                    handler.postDelayed(delayStartCountDown, (set_frag-1)*40000+9000);//遅延実行
+                    handler.postDelayed(delay, (set_frag-1)*40000+10001);//遅延実行
                 }
                 set_frag=set_frag_c;
                 setCount.setText("×" + set_frag +"セット");
@@ -311,6 +311,15 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    @Override
+    public void onBackPressed(){
+        // 行いたい処理
+        frag=0;
+        timing =2;
+        handler.removeCallbacks(delayStartCountDown);
+        handler.removeCallbacks(delay);
+        finish();
+    }
 
     // 解除するコードも入れる!
     @Override
@@ -440,6 +449,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             if(timing ==1) {
                 startButton.setEnabled(true);
             }else{
+               // startButton.setEnabled(true);
                 textView.setTextColor(Color.RED);
                 textView.setText("トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
             }
@@ -455,7 +465,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             stop_count=0;
             all_count=0;
 
-            soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
+            if(timing ==2){}else{   soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);}
         }
 
 
