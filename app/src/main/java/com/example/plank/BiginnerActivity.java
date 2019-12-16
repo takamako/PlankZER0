@@ -91,7 +91,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     private TextView textGraph;
     private LineChart mChart;
     private String[] labels = new String[]{
-            "揺れ",
+            "姿勢の揺れ度",
             "Y軸の揺れ",
             "Z軸の揺れ"};
     private int[] colors = new int[]{
