@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             // タイトル
-            alert.setTitle("使い方！");
+            alert.setTitle("このアプリの使い方");
             alert.setView(R.layout.activity_help_main);
             alert.setPositiveButton( "OK", null );
 
