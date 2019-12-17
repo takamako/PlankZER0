@@ -8,19 +8,6 @@
     tools:context=".CompareActivity">
 
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="405dp"
-        android:layout_height="270dp"
-        android:contentDescription="@string/description"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
-
     <!--    <Button-->
 <!--        android:id="@+id/timer_button"-->
 <!--        android:layout_width="130dp"-->
@@ -43,11 +30,25 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.278" />-->
 
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="405dp"
+        android:layout_height="270dp"
+        android:contentDescription="@string/description"
+        android:scaleType="fitXY"
+        android:src="@drawable/plank02"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017" />
+
     <Button
         android:id="@+id/select_phote"
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:background="@drawable/button_state2"
+        android:fontFamily="sans-serif-black"
         android:text="写真選択"
         app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -81,8 +82,9 @@
         android:id="@+id/image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="比較"
         android:background="@drawable/button_state2"
+        android:fontFamily="sans-serif-black"
+        android:text="比較"
         app:layout_constraintBottom_toTopOf="@+id/view_finder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.979"
@@ -94,8 +96,9 @@
         android:id="@+id/image_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="解除"
         android:background="@drawable/button_state2"
+        android:fontFamily="sans-serif-black"
+        android:text="解除"
         app:layout_constraintBottom_toTopOf="@+id/view_finder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
