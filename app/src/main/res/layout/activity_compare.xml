@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".CompareActivity">
 
 
@@ -20,17 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.012" />
 
-    <Button
-        android:id="@+id/select_phote"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
-        android:text="写真選択"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/capture_button"
-        app:layout_constraintTop_toTopOf="@id/capture_button" />
-
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/timer_button"-->
 <!--        android:layout_width="130dp"-->
 <!--        android:layout_height="50dp"-->
@@ -52,6 +43,17 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.278" />-->
 
+    <Button
+        android:id="@+id/select_phote"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_state2"
+        android:text="写真選択"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/capture_button"
+        app:layout_constraintTop_toTopOf="@id/capture_button" />
+
     <TextureView
         android:id="@+id/view_finder"
         android:layout_width="0dp"
@@ -68,9 +70,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
+        android:background="@drawable/button_state2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
@@ -79,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="比較"
+        android:background="@drawable/button_state2"
         app:layout_constraintBottom_toTopOf="@+id/view_finder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.979"
@@ -91,6 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="解除"
+        android:background="@drawable/button_state2"
         app:layout_constraintBottom_toTopOf="@+id/view_finder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
