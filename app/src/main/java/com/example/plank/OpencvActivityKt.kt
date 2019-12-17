@@ -65,21 +65,21 @@ class OpencvActivityKt : AppCompatActivity() {
             updateTransform()
         }
 
-        //11/11ポッキーの日
-        timer_button.setOnClickListener { /**画像班タイマー*/
-
-            object : CountDownTimer(5000,100){
-                override fun onFinish() {
-                    //終了時の処理
-                    count.text = "　　　　終了！！！"
-
-                }
-                override fun onTick(p0: Long) {
-                    // 区切り（0.1秒毎）
-                    count.text = "　　　　後 ${p0 /1000} 秒(デモ用)"
-                }
-            }.start()
-        }
+//        //11/11ポッキーの日
+//        timer_button.setOnClickListener { /**画像班タイマー*/
+//
+//            object : CountDownTimer(5000,100){
+//                override fun onFinish() {
+//                    //終了時の処理
+//                    count.text = "　　　　終了！！！"
+//
+//                }
+//                override fun onTick(p0: Long) {
+//                    // 区切り（0.1秒毎）
+//                    count.text = "　　　　後 ${p0 /1000} 秒(デモ用)"
+//                }
+//            }.start()
+//        }
     }
     /**カメラを起動*/
     private fun startCamera() {
