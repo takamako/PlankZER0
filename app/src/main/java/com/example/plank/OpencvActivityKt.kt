@@ -171,7 +171,6 @@ class OpencvActivityKt : AppCompatActivity() {
 
                         val msg = "姿勢が崩れました.\n計測を終了しました\nカメラボタンを押すと再開できます"
                         val message= Toast.makeText(baseContext, msg, Toast.LENGTH_LONG)
-                        message.setDuration(Toast.LENGTH_LONG)
                         message.setGravity(Gravity.CENTER, 0, 0)
                         message.show()
                         Log.d("CameraXApp" , "Average luminosity: $luma")
