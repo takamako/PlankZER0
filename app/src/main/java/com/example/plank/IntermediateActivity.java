@@ -334,7 +334,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         float sensorX, sensorY, sensorZ;
         float gravity[] = new float[3];
         float linear_acceleration[] = new float[1];
-        final float alpha = 0.5f;
+        //final float alpha = 0.5f;
         if(first==1){
             FirstX = event.values[0];
             FirstY = event.values[1];
@@ -362,9 +362,9 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                     move_frag=0;
                 }
 
-                gravity[0] = (FirstX - nextX)*alpha;
-                gravity[1] = (FirstY - nextY)*alpha;
-                gravity[2] = (FirstZ - nextZ)*alpha;
+                gravity[0] = (FirstX - nextX);
+                gravity[1] = (FirstY - nextY);
+                gravity[2] = (FirstZ - nextZ);
 
                 float x = Math.max(gravity[0], gravity[1]);
                 float y = Math.max(x, gravity[2]);
