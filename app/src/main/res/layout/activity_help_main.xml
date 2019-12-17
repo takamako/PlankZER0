@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="" />
+            android:text="___________________________________" />
 
         <TextView
             android:layout_width="match_parent"
@@ -33,6 +33,13 @@
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:src="@drawable/help4" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="このアプリでは基本のフロントブリッジだけでなく、動かずに姿勢を一定時間キープするような体幹トレーニングになら何にでも応用できます。『Plank ZER0』で正しいフォームを身につけて効果的なプランクトレーニングを始めましょう！"
+            android:textColor="#111111"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </ScrollView>

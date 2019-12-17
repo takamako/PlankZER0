@@ -157,7 +157,7 @@ class OpencvActivityKt : AppCompatActivity() {
                 if (currentTimestamp - lastAnalyzedTimestamp >=
                         TimeUnit.SECONDS.toMillis(1)) {
                     /**ここから画像処理が始まる．毎秒ごとに平均輝度を計算する------------------------------*/
-                    val Threshold=10  //しきい値
+                    val Threshold=5  //しきい値
                     // ImageAnalysisはYUV形式なのでimage.planes[0]にはY (輝度) planeが格納されている
                     val buffer = image.planes[0].buffer
                     // callback objectからimage dataの抽出
