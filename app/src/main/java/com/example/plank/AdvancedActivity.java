@@ -72,6 +72,9 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
     private int set_frag = 1;
     private TextView setCount;
 
+    private int totalscore=0;
+    private double totalmil=0;
+
     private Runnable delay;
     private Runnable delayStartCountDown;
     private Runnable enablestart;
@@ -172,6 +175,10 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             public void onClick(View view) {
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
+
+                totalscore=0;
+                totalmil=0;
+
                 FragmentManager fragmentManager2 = getFragmentManager();
                 BiginnerActivity.AlertDialogFragment_setpoketto dialogFragment_setpoketto = new BiginnerActivity.AlertDialogFragment_setpoketto();
                 // DialogFragmentの表示
@@ -490,6 +497,11 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             }else{
                 textView.setTextColor(Color.RED);
                 textView.setText("トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
+                if(set_frag >1){
+                    totalmil+=mil_count;
+                    totalscore+=stop_count*2;
+                    textView.setText("合計スコア：" + totalscore + "\n合計" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
+                }
             }
 
 

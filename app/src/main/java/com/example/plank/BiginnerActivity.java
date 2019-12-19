@@ -46,6 +46,9 @@ import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
 public class BiginnerActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
@@ -71,6 +74,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     final Handler handler = new Handler();
     private int set_frag = 1;
     private TextView setCount;
+
+    private int totalscore=0;
+    private double totalmil=0;
 
      Runnable delay;
      Runnable delayStartCountDown;
@@ -110,6 +116,15 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_biginner);
 
+        SharedPreferences sp = getSharedPreferences("aStore", MODE_PRIVATE);
+        Editor editor = sp.edit();
+        int No1 = sp.getInt("int_No1", 0);
+        int No2 = sp.getInt("int_No2", 0);
+        int No3 = sp.getInt("int_No3", 0);
+
+
+
+
 
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
@@ -125,7 +140,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
-        final BiginnerActivity.CountDown countDown_before = new BiginnerActivity.CountDown(countbefore, interval);
+        final CountDown countDown_before = new CountDown(countbefore, interval);
 
 
         // 縦画面
@@ -167,12 +182,16 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
 
         //スタートボタンの処理
-        startButton.setOnClickListener(new View.OnClickListener() {
+        startButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 startButton.setEnabled(false);
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
+
+                totalscore=0;
+                totalmil=0;
+
                 FragmentManager fragmentManager2 = getFragmentManager();
                 AlertDialogFragment_setpoketto dialogFragment_setpoketto = new AlertDialogFragment_setpoketto();
                 // DialogFragmentの表示
@@ -233,7 +252,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             }
         });
         //ストップボタンの処理
-        stopButton.setOnClickListener(new View.OnClickListener(){
+        stopButton.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 // 中止
@@ -260,7 +279,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
 
         Button returnButton_sensor = findViewById(R.id.return_button_sensor);
-        returnButton_sensor.setOnClickListener(new View.OnClickListener() {
+        returnButton_sensor.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(frag==1){
@@ -277,7 +296,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         });
 
 
-        setCountButton.setOnClickListener(new View.OnClickListener(){
+        setCountButton.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 set_frag+=1;
@@ -488,8 +507,13 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             }else{
                 textView.setTextColor(Color.RED);
                 textView.setText("トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
+                if(set_frag >1){
+                    totalmil+=mil_count;
+                    totalscore+=stop_count*2;
+                    textView.setText("合計スコア：" + totalscore + "\n合計" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
+                }
             }
-            if(mil_count>15){
+            if(mil_count>18){
                 FragmentManager fragmentManager = getFragmentManager();
                 AlertDialogFragment dialogFragment = new AlertDialogFragment();
                 // DialogFragmentの表示

@@ -39,7 +39,7 @@ public class SensorActivity extends AppCompatActivity {
 
 
         if (isFirstTime()) {
-            SharedPreferences sp = getSharedPreferences("hoge", MODE_PRIVATE);
+            SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
 
             int No1 = 0;
