@@ -101,6 +101,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     private boolean lineardata = true;
 
 
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(Bundle savedInstanceState) {
