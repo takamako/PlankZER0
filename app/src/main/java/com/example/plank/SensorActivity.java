@@ -150,7 +150,7 @@ public class SensorActivity extends AppCompatActivity {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource( R.drawable.help1);
             // タイトル
-            alert.setTitle("使い方！");
+            alert.setTitle("1人用の使い方！");
             alert.setView(  imageView );
             alert.setView(R.layout.activity_help1);
             alert.setPositiveButton( "OK", null );

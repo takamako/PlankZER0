@@ -11,6 +11,7 @@ import android.os.HandlerThread
 import android.util.Log
 import android.util.Rational
 import android.util.Size
+import android.view.Gravity
 import android.view.Surface
 import android.view.TextureView
 import android.view.ViewGroup
@@ -168,8 +169,10 @@ class OpencvActivityKt : AppCompatActivity() {
                     luma = pixels.average()
                     if(abs(luma-luma2)>Threshold &&capture_done==1) {
 
-                        val msg = "画像内の異常を検知しました.\nt秒維持することができました\n"
-                        Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                        val msg = "姿勢が崩れました.\n計測を終了しました\nカメラボタンを押すと再開できます"
+                        val message= Toast.makeText(baseContext, msg, Toast.LENGTH_LONG)
+                        message.setGravity(Gravity.CENTER, 0, 0)
+                        message.show()
                         Log.d("CameraXApp" , "Average luminosity: $luma")
                         capture_done=0
 
