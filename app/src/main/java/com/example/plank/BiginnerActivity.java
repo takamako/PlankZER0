@@ -107,8 +107,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     private boolean lineardata = true;
 
 
-
-
+    private int No1;
+    private int No2;
+    private int No3;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -116,11 +117,11 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_biginner);
 
-        SharedPreferences sp = getSharedPreferences("aStore", MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
         Editor editor = sp.edit();
-        int No1 = sp.getInt("int_No1", 0);
-        int No2 = sp.getInt("int_No2", 0);
-        int No3 = sp.getInt("int_No3", 0);
+        No1 = sp.getInt("int_No1", 0);
+        No2 = sp.getInt("int_No2", 0);
+        No3 = sp.getInt("int_No3", 0);
 
 
 
@@ -506,11 +507,45 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
             }else{
                 textView.setTextColor(Color.RED);
-                textView.setText("トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
+                //textView.setText("ランキング！\n NO.1:"+No1+"\n NO.2:"+No2+"\n NO.3:"+No3+"\n トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
                 if(set_frag >1){
                     totalmil+=mil_count;
                     totalscore+=stop_count*2;
                     textView.setText("合計スコア：" + totalscore + "\n合計" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
+                }else{
+                    if(No1< stop_count*2){
+                        SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
+                        Editor editor = sp.edit();
+                        No3 = No2;
+                        No2 = No1;
+                        No1 = stop_count*2;
+
+                        editor.putInt("int_No1", No1); // int_1というキーに i の中身(2)を設定
+                        editor.putInt("int_No2", No2); // int_1というキーに i の中身(2)を設定
+                        editor.putInt("int_No3", No3); // int_1というキーに i の中身(2)を設定
+                        editor.commit(); // ここで実際にファイルに保存
+                    }else if(No2 < stop_count*2){
+                        SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
+                        Editor editor = sp.edit();
+                        No3 = No2;
+                        No2 = stop_count*2;
+
+                        // editor.putInt("int_No1", No1); // int_1というキーに i の中身(2)を設定
+                        editor.putInt("int_No2", No2); // int_1というキーに i の中身(2)を設定
+                        editor.putInt("int_No3", No3); // int_1というキーに i の中身(2)を設定
+                        editor.commit();
+                    }else if(No3 < stop_count*2){
+                        SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
+                        Editor editor = sp.edit();
+                        No3 = stop_count*2;
+
+                        // editor.putInt("int_No1", No1); // int_1というキーに i の中身(2)を設定
+                        //editor.putInt("int_No2", No2); // int_1というキーに i の中身(2)を設定
+                        editor.putInt("int_No3", No3); // int_1というキーに i の中身(2)を設定
+                        editor.commit();
+                    }
+
+                    textView.setText("ランキング！\n NO.1:"+No1+"\n NO.2:"+No2+"\n NO.3:"+No3+"\n トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
                 }
             }
             if(mil_count>18){
