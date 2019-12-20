@@ -141,7 +141,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
         // CountDownTimer(long millisInFuture, long countDownInterval)
 
-        final CountDown countDown_before = new CountDown(countbefore, interval);
+        final CountDown countDown_before = new CountDown(10000, interval);
 
 
         // 縦画面
@@ -224,12 +224,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                         public void run() {
                             mChart.setData(new LineData());
                                 soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
-
-                            // 開始
-
                             first = 1;
                             frag = 1;
-
                             countDown.start();
                             timing = 0;
                             startButton.setEnabled(false);
@@ -258,13 +254,15 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             public void onClick(View v) {
                 // 中止
                 startButton.setEnabled(true);
-                if(frag==1){
-                    countDown.cancel();}
-                if(frag ==0){
-                    countDown_before.cancel();}
+                //if(frag==1){
+                    countDown.cancel();
+            //}
+                //if(frag ==0){
+                    countDown_before.cancel();
+            //}
                 handler.removeCallbacks(delay);
                 frag=0;
-                timing =0;
+              //  timing =0;
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(10000));
@@ -355,6 +353,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     @Override
     public void onBackPressed(){
         // 行いたい処理
+        if(frag==1){
+            countDown.cancel();}
         frag=0;
         timing =2;
         handler.removeCallbacks(delayStartCountDown);
@@ -545,7 +545,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                         editor.commit();
                     }
 
-                    textView.setText("ランキング！\n NO.1:"+No1+"\n NO.2:"+No2+"\n NO.3:"+No3+"\n トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
+                    textView.setText("ランキング！\n 1位:"+No1+"\n 2位:"+No2+"\n 3位:"+No3+"\n\nトレーニングスコア：" + stop_count*2 + "\n今回は" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
                 }
             }
             if(mil_count>18){

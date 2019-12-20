@@ -225,9 +225,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                     public void run() {
                         mChart.setData(new LineData());
                         soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
-
-                        // 開始
-                       // timing =0;
                         first =1;
                         frag=1;
                         countDown.start();
@@ -547,7 +544,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                         editor.commit();
                     }
 
-                    textView.setText("ランキング！\n NO.1:"+No1+"\n NO.2:"+No2+"\n NO.3:"+No3+"\n トレーニングスコア：" + stop_count*2 + "\n" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
+                    textView.setText("ランキング！\n 1位:"+No1+"\n 2位:"+No2+"\n 3位:"+No3+"\n\nトレーニングスコア：" + stop_count*2 + "\n今回は" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
                 }
             }
 
