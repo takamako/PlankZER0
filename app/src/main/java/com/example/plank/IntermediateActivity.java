@@ -218,6 +218,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                         soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);
                         first =1;
                         frag=1;
+                        timing = 1;
                         countDown.start();
                         timing = 0;
                         startButton.setEnabled(false);
@@ -538,6 +539,9 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             //long ss = millisUntilFinished / 1000 % 60;
             //long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
             //timerText.setText(String.format("%1$02d:%2$02d.%3$03d", mm, ss, ms));
+            if(millisUntilFinished>10000){
+                frag=1;
+            }
 
             if(frag==0){
                 timerText.setText(dataFormat.format(millisUntilFinished));
