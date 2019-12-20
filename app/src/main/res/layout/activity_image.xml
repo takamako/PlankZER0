@@ -47,7 +47,7 @@
         android:layout_margin="20dp"
         android:background="@drawable/button_state2"
         android:fontFamily="sans-serif-black"
-        android:text="フォームを確認する"
+        android:text="フォームを比較する"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
