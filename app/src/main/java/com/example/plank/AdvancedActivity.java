@@ -567,7 +567,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             if(millisUntilFinished>10000){
                 frag=1;
             }
-            
+
             if (frag == 0) {
                 timerText.setText(dataFormat.format(millisUntilFinished));
             }
