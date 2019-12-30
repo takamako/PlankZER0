@@ -7,17 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b981ed02-1816-4cca-9106-7fdbd038f8d3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/posenet/build/.transforms/5a3d398c384cc9d9f2f9d65b704f2f86.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/posenet/build/.transforms/5a3d398c384cc9d9f2f9d65b704f2f86/full/classes.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/posenet/build/.transforms/835fac760c1e48dbafeba528ca421254.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/posenet/build/.transforms/835fac760c1e48dbafeba528ca421254/full/classes.dex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/posenet/build/.transforms/bb7c7bde3b10efa34a9b109f99362b1f.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/posenet/build/.transforms/bb7c7bde3b10efa34a9b109f99362b1f/full/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_0_0_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/cmake/debug/obj/arm64-v8a/libopencv_jni_shared.a" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/cmake/debug/obj/arm64-v8a/libopencv_jni_shared.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/cmake/debug/obj/armeabi-v7a/libopencv_jni_shared.a" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/cmake/debug/obj/armeabi-v7a/libopencv_jni_shared.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/cmake/debug/obj/x86/libopencv_jni_shared.a" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/cmake/debug/obj/x86/libopencv_jni_shared.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/cmake/debug/obj/x86_64/libopencv_jni_shared.a" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/cmake/debug/obj/x86_64/libopencv_jni_shared.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posenet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/library_manifest/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/library_manifest/debug/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/symbols/debug/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/symbols/debug/R.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +116,14 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1095">
+              <caret line="73" column="73" lean-forward="true" selection-start-line="73" selection-start-column="73" selection-end-line="73" selection-end-column="73" />
+              <folding>
+                <element signature="e#926#944#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
           <provider editor-type-id="android-manifest" />
         </entry>
       </file>
@@ -165,6 +188,7 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/posenet/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -250,6 +274,11 @@
     <option name="MODULE_TAB" value="プロパティー" />
     <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -393,6 +422,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.33404863" />
@@ -656,7 +686,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1095">
+          <caret line="73" column="73" lean-forward="true" selection-start-line="73" selection-start-column="73" selection-end-line="73" selection-end-column="73" />
+          <folding>
+            <element signature="e#926#944#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
       <provider editor-type-id="android-manifest" />
     </entry>
   </component>
