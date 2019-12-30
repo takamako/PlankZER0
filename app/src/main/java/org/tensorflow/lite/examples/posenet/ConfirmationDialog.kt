@@ -20,7 +20,9 @@ import android.Manifest
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+//import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
+import com.example.plank.R
 
 /**
  * Shows OK/Cancel confirmation dialog about camera permission.

@@ -14,7 +14,7 @@
  limitations under the License.
 -->
 <resources>
-  <string name="app_name" translation_description="Posenet demo app built with Posenet library [CHAR_LIMIT=40]">TFL Posenet</string>
+<!--  <string name="app_name" translation_description="Posenet demo app built with Posenet library [CHAR_LIMIT=40]">TFL Posenet</string>-->
   <string name="picture" translation_description="Picture [CHAR_LIMIT=40]">Picture</string>
   <string name="description_info" translation_description="Description information [CHAR_LIMIT=40]">Info</string>
   <string name="request_permission" translation_description="Request camera permission [CHAR_LIMIT=40]">This app needs camera permission.</string>
@@ -24,4 +24,39 @@
        Currently, posenet demo app detects the body parts of a single person on-device in real-time.
     ]]>
   </string>
+<!--=======-->
+<!--<resources>-->
+    <string name="button">Button</string>
+    <string name="description">camera picture</string>
+    <string name="app_name">Plank ZER0</string>
+    <string name="movie_button">movie</string>
+    <string name="return_button">return home</string>
+    <string name="return_sub">RETURN</string>
+    <string name="return_butten_sensor">RETURN</string>
+    <string name="sensor_button">sensor</string>
+    <string name="SelectPhoto">Image</string>
+    <string name="shoMovie">Movie</string>
+    <string name="one">One</string>
+    <string name="two">Two</string>
+    <string name="three">Three</string>
+    <string name="four">Four</string>
+    <string name="todo">TODO</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="opencv">opencv</string>
+    <string name="posenet">posenet</string>
+    <string name="img_cmp">image compare</string>
+    <string name="home">Home</string>
+    <string name="return_sub_com">戻る</string>
+    <string name="return_sub_open">戻る</string>
+    <string name="return_sub_pose">戻る</string>
+    <string name="before_view">before view</string>
+    <string name="after_view">after view</string>
+    <string name="text_view">text view</string>
+    <string name="biginnermode_button">biginner</string>
+    <string name="intermediatemode_button">intermediate</string>
+    <string name="advancedmode_button">advanced</string>
+    <string name="helpButton">helpButton</string>
+    <string name="helpImg">helpImg</string>
+<!--&gt;>>>>>> upstream/develop-->
 </resources>

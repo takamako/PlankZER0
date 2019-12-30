@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TensorFlow Lite PoseNet Android Demo
 ### Overview
 This is an app that continuously detects the body parts in the frames seen by
@@ -53,3 +54,65 @@ _Please do not delete the assets folder content_. If you explicitly deleted the
  files, then please choose `Build` > `Rebuild` from menu to re-download the
  deleted model files into assets folder.
 
+=======
+# enpit2019_v.i.p
+aaaa
+enPiT2019のgitリポジトリです。
+
+チーム名:vip(仮)
+
+サービス名:プランクトレーニング君
+
+## エレベータービッチ
+
+
+
+``部活中で正しいフォームでプランクトレーニングしたい``
+
+``部活生向け``の
+
+``ストロングZER0``は
+
+``プランクトレーニング用アプリ``です
+
+既存のアプリなどは、タイマー、日程管理、アニメーションなどが付いているが、
+
+このアプリは``姿勢判定機能``がついていて、``正しいフォームではないと警告音がなる``
+
+これによって、``正しい姿勢での体幹トレーニング``ができる
+
++ プランクトレーニングとは、
+両手両足を肩幅に開く
+肘とつま先の４点に重点を置き、肘から下で補助的に体を支える
+背中のラインが真っすぐなるように
+の姿勢を何秒かキープする
+
+## 実行環境のURL
+
++ プロダクトバックログのURL
+
+https://docs.google.com/spreadsheets/d/1eZbUSZB0zCzLx7_7K2IpM9xiXFGm2x754NFPzddrOB0/edit#gid=891834841
+
++ 話し合い
+
+https://hackmd.io/0kVWkFYpR1GFhtapA0Bsjw
+
++ 具体的なドキュメントのURL
+
+https://hackmd.io/UG0VPO1yQjeqhTAwLyNLYg
+
+Wikiページを作る
+
+## ワーニングアグリーメント
+
+遅刻の場合->連絡なく遅れた場合は他のメンバーに何か奢る
+          何分遅れるかなどを申告する
+
+連絡手段->slack (見たらリアクションつける)
+
+決定の方法->多数決
+
+Gitのルール->masterの直pushはみんな集まってる時のみで、それ以外はbranch
+
+リモート時:説明責任を果たす(readに書く、コードに解説書くなど)
+>>>>>>> upstream/develop

@@ -17,7 +17,9 @@
 package org.tensorflow.lite.examples.posenet
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+//import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.example.plank.R
 
 class CameraActivity : AppCompatActivity() {
 
