@@ -17,7 +17,7 @@
 package org.tensorflow.lite.examples.posenet
 
 import android.Manifest
-import android.R
+//import android.androidR
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
@@ -62,6 +62,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import com.example.plank.R
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -675,7 +676,7 @@ class PosenetActivity :
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
       AlertDialog.Builder(activity)
         .setMessage(arguments!!.getString(ARG_MESSAGE))
-        .setPositiveButton(R.string.ok) { _, _ -> activity!!.finish() }
+        .setPositiveButton(android.R.string.ok) { _, _ -> activity!!.finish() }
         .create()
 
     companion object {
