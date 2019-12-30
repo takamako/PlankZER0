@@ -7,36 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b981ed02-1816-4cca-9106-7fdbd038f8d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/incremental/packageDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/incremental/packageDebugResources/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCV410/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/ConfirmationDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/ConfirmationDialog.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/TestActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/TestActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_help2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_help2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/generated/source/buildConfig/debug/org/tensorflow/lite/examples/posenet/lib/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/generated/source/buildConfig/debug/org/tensorflow/lite/examples/posenet/lib/BuildConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/compile_library_classes/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/compile_library_classes/debug/classes.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/caches-jvm/lookups/lookups.tab" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/caches-jvm/lookups/lookups.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/caches-jvm/lookups/lookups.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/caches-jvm/lookups/lookups.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/caches-jvm/lookups/lookups.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/caches-jvm/lookups/lookups.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/tmp/kotlin-classes/debug/org/tensorflow/lite/examples/posenet/lib/Posenet.class" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/tmp/kotlin-classes/debug/org/tensorflow/lite/examples/posenet/lib/Posenet.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,33 +37,19 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-108">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
-              <folding>
-                <element signature="e#926#944#0" expanded="true" />
-                <element signature="e#2327#2345#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
+            <state relative-caret-position="237">
               <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+            <state relative-caret-position="180">
+              <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -134,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10065">
-              <caret line="685" column="8" selection-start-line="685" selection-start-column="8" selection-end-line="685" selection-end-column="8" />
+            <state relative-caret-position="68">
+              <caret line="217" column="31" lean-forward="true" selection-start-line="217" selection-start-column="31" selection-end-line="217" selection-end-column="31" />
               <folding>
                 <element signature="e#677#2418#0" expanded="true" />
               </folding>
@@ -147,10 +106,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/plank/PosenetActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-467" />
+            <state relative-caret-position="280">
+              <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -181,14 +151,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_help2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/ConfirmationDialog.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/TestActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -244,6 +214,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="plank" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Plank" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examples" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="posenet" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -253,15 +232,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Plank" type="b2602c69:ProjectViewProjectNode" />
-              <item name="examples" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="drawable" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Plank" type="b2602c69:ProjectViewProjectNode" />
@@ -377,7 +347,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" visible="true" weight="0.3297568" />
       <window_info id="Structure" side_tool="true" />
@@ -538,20 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -580,19 +535,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/plank/PosenetActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-467" />
+        <state relative-caret-position="280">
+          <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10065">
-          <caret line="685" column="8" selection-start-line="685" selection-start-column="8" selection-end-line="685" selection-end-column="8" />
+        <state relative-caret-position="68">
+          <caret line="217" column="31" lean-forward="true" selection-start-line="217" selection-start-column="31" selection-end-line="217" selection-end-column="31" />
           <folding>
             <element signature="e#677#2418#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
         </state>
       </provider>
     </entry>
