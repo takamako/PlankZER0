@@ -22,9 +22,12 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.app.AppCompatActivity
+//import android.support.v4.content.res.ResourcesCompat
+//import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import com.example.plank.R
 import org.tensorflow.lite.examples.posenet.lib.Posenet as Posenet
 
 class TestActivity : AppCompatActivity() {
