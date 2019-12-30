@@ -51,9 +51,6 @@
           android:name=".OpencvActivityKt"
           android:label="Plank"></activity>
       <activity
-          android:name=".PosenetActivity"
-          android:label="Plank"></activity>
-      <activity
           android:name=".BiginnerActivity"
           android:label="Plank"></activity>
       <activity
