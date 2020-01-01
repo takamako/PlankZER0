@@ -26,6 +26,7 @@ import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import kotlin.math.exp
 import org.tensorflow.lite.Interpreter
+//import org.tensorflow.lite.experimental.GpuDelegate
 import org.tensorflow.lite.gpu.GpuDelegate
 
 enum class BodyPart {
@@ -73,7 +74,11 @@ enum class Device {
 class Posenet(
   val context: Context,
   val filename: String = "posenet_model.tflite",
-  val device: Device = Device.CPU
+//  val device: Device = Device.CPU
+  val device: Device = Device.GPU
+//  val device: Device = Device.NNAPI
+
+
 ) : AutoCloseable {
   var lastInferenceTimeNanos: Long = -1
     private set
