@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import org.tensorflow.lite.examples.posenet.CameraActivity
+import org.tensorflow.lite.examples.posenet.PosenetActivity
 
 
 class ImageActivity : AppCompatActivity() {
@@ -35,14 +37,14 @@ class ImageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-/*
+
         //posenetの処理をする画面に遷移
-        val PoseNetButton = findViewById<Button>(R.id.posene_button)
+        val PoseNetButton = findViewById<Button>(R.id.pose_button)
         PoseNetButton.setOnClickListener {
-            val intent = Intent(application , PosenetActivity::class.java)
+            val intent = Intent(application ,CameraActivity::class.java)
             startActivity(intent)
         }
-*/
+
         //ホーム画面に戻る処理
         val returnButton = findViewById<Button>(R.id.return_sub)
         returnButton.setOnClickListener { finish() }
