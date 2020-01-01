@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/OpenCV410/AndroidStudioProjects-examples-OpenCV410.iml" filepath="$PROJECT_DIR$/OpenCV410/AndroidStudioProjects-examples-OpenCV410.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-examples-Plank.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-examples-Plank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/AndroidStudioProjects-examples-app.iml" filepath="$PROJECT_DIR$/app/AndroidStudioProjects-examples-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/posenet/AndroidStudioProjects-examples-posenet.iml" filepath="$PROJECT_DIR$/posenet/AndroidStudioProjects-examples-posenet.iml" />
       <module fileurl="file://$PROJECT_DIR$/OpenCV410/OpenCV410.iml" filepath="$PROJECT_DIR$/OpenCV410/OpenCV410.iml" />
       <module fileurl="file://$PROJECT_DIR$/Plank.iml" filepath="$PROJECT_DIR$/Plank.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
