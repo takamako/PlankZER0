@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.content.Intent;
@@ -73,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.AlertDialogFragment dialogFragment = new MainActivity.AlertDialogFragment();
                 // DialogFragmentの表示
                 dialogFragment.show(fragmentManager, "test alert dialog");
+            }
+        });
+
+        //アンケートに移動
+        Button QuestionnaireButton = findViewById(R.id.QuestionnaireButton);
+        QuestionnaireButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/uV1SXw24LUtovSRP8"));
+                startActivity(intent);
             }
         });
 
