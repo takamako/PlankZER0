@@ -13,7 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b981ed02-1816-4cca-9106-7fdbd038f8d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +24,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CVH7N15A19003465" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_API_29" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
+            <state relative-caret-position="-1916">
+              <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
               <folding>
                 <element signature="e#0#629#0" expanded="true" />
                 <element signature="e#680#1108#0" expanded="true" />
@@ -73,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="452" column="12" selection-start-line="452" selection-start-column="12" selection-end-line="452" selection-end-column="24" />
+            <state relative-caret-position="276">
+              <caret line="456" column="3" lean-forward="true" selection-start-line="456" selection-start-column="3" selection-end-line="456" selection-end-column="3" />
               <folding>
                 <element signature="e#677#2644#0" expanded="true" />
               </folding>
@@ -132,8 +132,8 @@
       <find>cpu</find>
       <find>gpu</find>
       <find>frame</find>
-      <find>processImage</find>
       <find>LEFT_WRIST</find>
+      <find>processImage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,8 +168,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/plank/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" />
+        <option value="$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt" />
       </list>
     </option>
   </component>
@@ -296,8 +296,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="CVH7N15A19003465" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-01-01T23:26:33.856Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-01-02T18:52:05.055Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet" />
@@ -512,7 +512,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1440" height="824" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.3383405" />
@@ -523,12 +522,12 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
-      <window_info active="true" anchor="bottom" id="Run" order="0" sideWeight="0.4892704" visible="true" weight="0.329235" />
+      <window_info active="true" anchor="bottom" id="Run" order="0" sideWeight="0.48783976" visible="true" weight="0.329235" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49928468" weight="0.329235" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5107296" side_tool="true" visible="true" weight="0.329235" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.51216024" side_tool="true" visible="true" weight="0.329235" />
       <window_info anchor="bottom" id="Version Control" order="6" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4914163" weight="0.329235" />
       <window_info anchor="bottom" id="Find" order="8" sideWeight="0.49928468" weight="0.329235" />
@@ -844,23 +843,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
+        <state relative-caret-position="276">
+          <caret line="456" column="3" lean-forward="true" selection-start-line="456" selection-start-column="3" selection-end-line="456" selection-end-column="3" />
           <folding>
-            <element signature="e#0#629#0" expanded="true" />
-            <element signature="e#680#1108#0" expanded="true" />
+            <element signature="e#677#2644#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
+    <entry file="file://$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="452" column="12" selection-start-line="452" selection-start-column="12" selection-end-line="452" selection-end-column="24" />
+        <state relative-caret-position="-1916">
+          <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
           <folding>
-            <element signature="e#677#2644#0" expanded="true" />
+            <element signature="e#0#629#0" expanded="true" />
+            <element signature="e#680#1108#0" expanded="true" />
           </folding>
         </state>
       </provider>
