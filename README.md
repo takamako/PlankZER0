@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # TensorFlow Lite PoseNet Android Demo
 ### Overview
 This is an app that continuously detects the body parts in the frames seen by
@@ -54,9 +53,9 @@ _Please do not delete the assets folder content_. If you explicitly deleted the
  files, then please choose `Build` > `Rebuild` from menu to re-download the
  deleted model files into assets folder.
 
-=======
+
 # enpit2019_v.i.p
-aaaa
+
 enPiT2019のgitリポジトリです。
 
 チーム名:vip(仮)
@@ -115,4 +114,3 @@ Wikiページを作る
 Gitのルール->masterの直pushはみんな集まってる時のみで、それ以外はbranch
 
 リモート時:説明責任を果たす(readに書く、コードに解説書くなど)
->>>>>>> upstream/develop

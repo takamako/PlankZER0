@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         Button QuestionnaireButton = findViewById(R.id.QuestionnaireButton);
         QuestionnaireButton.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/uV1SXw24LUtovSRP8"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/Zaq9huVe8jLWLCKG7"));
                 startActivity(intent);
             }
         });

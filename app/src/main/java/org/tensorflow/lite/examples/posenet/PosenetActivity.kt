@@ -542,6 +542,8 @@ class PosenetActivity :
         val adjustedX: Float = position.x.toFloat() * widthRatio + left
         val adjustedY: Float = position.y.toFloat() * heightRatio + top
         canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
+        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
+
       }
     }
 
@@ -579,6 +581,7 @@ class PosenetActivity :
       paint
     )
 
+
     // Draw!
     surfaceHolder!!.unlockCanvasAndPost(canvas)
   }
@@ -595,6 +598,7 @@ class PosenetActivity :
     val person = posenet.estimateSinglePose(scaledBitmap)
     val canvas: Canvas = surfaceHolder!!.lockCanvas()
     draw(canvas, person, scaledBitmap)
+
   }
 
   /**

@@ -131,6 +131,7 @@ class Posenet(
 
     val pixels = IntArray(bitmap.height * bitmap.width)
     bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
     val mean = 128.0f
     val std = 128.0f
 //    for (row in 0 until bitmap.height) {
@@ -239,6 +240,9 @@ class Posenet(
       var maxVal = heatmaps[0][0][0][keypoint]
       var maxRow = 0
       var maxCol = 0
+
+//      val pixels = IntArray(height * width)
+
       for (row in 0 until height) {
         for (col in 0 until width) {
           heatmaps[0][row][col][keypoint] = heatmaps[0][row][col][keypoint]
@@ -249,6 +253,16 @@ class Posenet(
           }
         }
       }
+
+//      for ( in pixels) {
+//          heatmaps[0][row][col][keypoint] = heatmaps[0][row][col][keypoint]
+//          if (heatmaps[0][row][col][keypoint] > maxVal) {
+//            maxVal = heatmaps[0][row][col][keypoint]
+//            maxRow = row
+//            maxCol = col
+//          }
+//      }
+
       keypointPositions[keypoint] = Pair(maxRow, maxCol)
     }
 
