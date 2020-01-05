@@ -74,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="544" column="59" selection-start-line="544" selection-start-column="59" selection-end-line="544" selection-end-column="59" />
+            <state relative-caret-position="247">
+              <caret line="544" column="87" selection-start-line="544" selection-start-column="87" selection-end-line="544" selection-end-column="87" />
               <folding>
                 <element signature="e#677#2644#0" expanded="true" />
               </folding>
@@ -884,8 +884,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="544" column="59" selection-start-line="544" selection-start-column="59" selection-end-line="544" selection-end-column="59" />
+        <state relative-caret-position="247">
+          <caret line="544" column="87" selection-start-line="544" selection-start-column="87" selection-end-line="544" selection-end-column="87" />
           <folding>
             <element signature="e#677#2644#0" expanded="true" />
           </folding>
