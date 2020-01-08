@@ -544,6 +544,8 @@ class PosenetActivity :
         canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
         Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
+        /**
+        judgment()*/
       }
     }
 
@@ -713,5 +715,10 @@ class PosenetActivity :
      * Tag for the [Log].
      */
     private const val TAG = "PosenetActivity"
+  }
+
+  /**肩腰膝の角度から姿勢したい*/
+  fun judgment(){
+
   }
 }

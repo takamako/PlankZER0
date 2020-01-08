@@ -52,6 +52,9 @@
       <activity
           android:name=".AdvancedActivity"
           android:label="Plank"></activity>
+      <activity
+          android:name=".ScoreCheckActivity"
+          android:label="Plank"></activity>
 
       <activity
           android:name="org.tensorflow.lite.examples.posenet.TestActivity"
@@ -84,6 +87,53 @@
 
       </provider>
 
+<!--<<<<<<< HEAD-->
   </application>
+<!--=======-->
+<!--        <activity-->
+<!--            android:name=".SensorActivity"-->
+<!--            android:label="Plank"></activity>-->
+<!--        <activity-->
+<!--            android:name=".ImageActivity"-->
+<!--            android:label="Plank"></activity> &lt;!&ndash; センサーボタン &ndash;&gt;-->
+<!--        <activity-->
+<!--            android:name=".CompareActivity"-->
+<!--            android:label="Plank"></activity>-->
+<!--        <activity-->
+<!--            android:allowBackup="true"-->
+<!--            android:name=".OpencvActivityKt"-->
+<!--            android:label="Plank"></activity>-->
+<!--        <activity-->
+<!--            android:name=".PosenetActivity"-->
+<!--            android:label="Plank"></activity>-->
+<!--        <activity-->
+<!--            android:name=".BiginnerActivity"-->
+<!--            android:label="Plank"></activity>-->
+<!--        <activity-->
+<!--            android:name=".IntermediateActivity"-->
+<!--            android:label="Plank"></activity>-->
+<!--        <activity-->
+<!--            android:name=".AdvancedActivity"-->
+<!--            android:label="Plank"></activity>-->
+<!--        <activity-->
+<!--            android:name=".ScoreCheckActivity"-->
+<!--            android:label="Plank"></activity>-->
+<!--        <meta-data-->
+<!--            android:name="com.google.android.actions"-->
+<!--            android:resource="@xml/activity_image2" />-->
+<!--        <meta-data-->
+<!--            android:name="preloaded_fonts"-->
+<!--            android:resource="@array/preloaded_fonts" /> &lt;!&ndash; センサーボタン &ndash;&gt;-->
+<!--        <provider-->
+<!--            android:name="androidx.core.content.FileProvider"-->
+<!--            android:authorities="${applicationId}.fileprovider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/provider_path" />-->
+<!--        </provider>-->
+<!--    </application>-->
+<!--&gt;>>>>>> 6131fad77d8f681dee77b09c72108414d3efa670-->
 
 </manifest>
