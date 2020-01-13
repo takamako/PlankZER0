@@ -63,6 +63,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.example.plank.R
+import com.example.plank.judgment
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -544,6 +545,7 @@ class PosenetActivity :
         canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
         Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
+        judgment()
         /**
         judgment()*/
       }
@@ -718,7 +720,7 @@ class PosenetActivity :
   }
 
   /**肩腰膝の角度から姿勢したい*/
-  fun judgment(){
-
-  }
+//  fun judgment(){
+//
+//  }
 }
