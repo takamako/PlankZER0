@@ -1,10 +1,12 @@
 package com.example.plank;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 //import android.support.v7.app.AppCompatActivity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.CountDownTimer;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -53,6 +55,8 @@ import android.content.SharedPreferences.Editor;
 
 public class AdvancedActivity extends AppCompatActivity implements SensorEventListener {
 
+    private TestOpenHelper helper;
+    private SQLiteDatabase db;
     private SensorManager sensorManager;
     private TextView timerText;//タイマーの表示文
     private TextView timerText＿trainig;
@@ -546,6 +550,20 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                     }
 
                     textView.setText("ランキング！\n 1位:"+No1+"\n 2位:"+No2+"\n 3位:"+No3+"\n\nトレーニングスコア：" + stop_count*2 + "\n今回は" + String.valueOf((int)mil_count)+ "秒キープできたよ！");
+
+                    if(helper == null){
+                        helper = new TestOpenHelper(getApplicationContext());
+                    }
+
+                    if(db == null){
+                        db = helper.getWritableDatabase();
+                    }
+
+                    //String key = editTextKey.getText().toString();
+                    //String value = editTextValue.getText().toString();
+
+                    //insertData(db, key, Integer.valueOf(value));
+                    insertData(db, "1/14",stop_count*2);
                 }
             }
 
@@ -554,6 +572,19 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             all_count=0;
             if(timing ==2){}else{   soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);}
         }
+
+
+
+        //追加 dbにかきこみ
+        private void insertData(SQLiteDatabase db, String date, int score){
+
+            ContentValues values = new ContentValues();
+            values.put("date", date);
+            values.put("score", score);
+
+            db.insert("testdb", null, values);
+        }
+
 
 
         // インターバルで呼ばれる
