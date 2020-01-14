@@ -74,8 +74,8 @@ enum class Device {
 class Posenet(
   val context: Context,
   val filename: String = "posenet_model.tflite",
-  val device: Device = Device.CPU
-//  val device: Device = Device.GPU
+//  val device: Device = Device.CPU
+  val device: Device = Device.GPU
 //  val device: Device = Device.NNAPI
 
 

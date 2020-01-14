@@ -513,9 +513,10 @@ class PosenetActivity :
     val bottom: Int
     if (canvas.height > canvas.width) {
       screenWidth = canvas.width
-      screenHeight = canvas.width
+      screenHeight = canvas.height-canvas.width/3
       left = 0
-      top = (canvas.height - canvas.width) / 2
+      top=0
+//      top = (canvas.height - canvas.width) / 2
     } else {
       screenWidth = canvas.height
       screenHeight = canvas.height
@@ -569,19 +570,19 @@ class PosenetActivity :
     canvas.drawText(
       "Score: %.2f".format(person.score),
       (15.0f * widthRatio),
-      (30.0f * heightRatio + bottom),
+      (20.0f * heightRatio + bottom),
       paint
     )
     canvas.drawText(
       "Device: %s".format(posenet.device),
       (15.0f * widthRatio),
-      (50.0f * heightRatio + bottom),
+      (35.0f * heightRatio + bottom),
       paint
     )
     canvas.drawText(
       "Time: %.2f ms".format(posenet.lastInferenceTimeNanos * 1.0f / 1_000_000),
       (15.0f * widthRatio),
-      (70.0f * heightRatio + bottom),
+      (50.0f * heightRatio + bottom),
       paint
     )
 
