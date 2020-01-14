@@ -29,7 +29,7 @@
         android:layout_margin="20dp"
         android:background="@drawable/button_state"
         android:fontFamily="sans-serif-black"
-        android:text="ホーム"
+        android:text="test追加"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
