@@ -13,26 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b981ed02-1816-4cca-9106-7fdbd038f8d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/intermediate-jars/debug/jni/arm64-v8a/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/intermediate-jars/debug/jni/armeabi-v7a/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/intermediate-jars/debug/jni/x86/libc++_shared.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/intermediate-jars/debug/jni/x86/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/intermediate-jars/debug/jni/x86_64/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/merged_native_libs/debug/out/lib/arm64-v8a/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/merged_native_libs/debug/out/lib/armeabi-v7a/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/merged_native_libs/debug/out/lib/x86/libc++_shared.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/merged_native_libs/debug/out/lib/x86/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/merged_native_libs/debug/out/lib/x86_64/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/stripped_native_libs/debug/out/lib/arm64-v8a/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/stripped_native_libs/debug/out/lib/armeabi-v7a/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/stripped_native_libs/debug/out/lib/x86/libc++_shared.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/stripped_native_libs/debug/out/lib/x86/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCV410/build/intermediates/stripped_native_libs/debug/out/lib/x86_64/libopencv_java4.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +39,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="129">
@@ -87,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
+            <state relative-caret-position="337">
               <caret line="584" column="9" selection-start-line="584" selection-start-column="9" selection-end-line="584" selection-end-column="9" />
             </state>
           </provider>
@@ -262,15 +243,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Plank" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PlankZer0" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -551,7 +523,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3483548" />
@@ -873,7 +844,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
+        <state relative-caret-position="337">
           <caret line="584" column="9" selection-start-line="584" selection-start-column="9" selection-end-line="584" selection-end-column="9" />
         </state>
       </provider>
