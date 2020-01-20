@@ -24,6 +24,7 @@ import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.util.Log;
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Locale;
 import android.view.animation.RotateAnimation;
 import android.os.Handler;
@@ -55,8 +56,10 @@ import android.content.SharedPreferences.Editor;
 
 public class AdvancedActivity extends AppCompatActivity implements SensorEventListener {
 
+
     private TestOpenHelper helper;
     private SQLiteDatabase db;
+    private DateFormat df = new SimpleDateFormat("yyyy/MM/dd ");
     private SensorManager sensorManager;
     private TextView timerText;//タイマーの表示文
     private TextView timerText＿trainig;
@@ -563,7 +566,10 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                     //String value = editTextValue.getText().toString();
 
                     //insertData(db, key, Integer.valueOf(value));
-                    insertData(db, "1/14",stop_count*2);
+                    //現在の時刻
+                    String date = getNowDate();
+                    //return df.format(date);
+                    insertData(db, date,stop_count*2);
                 }
             }
 
@@ -574,6 +580,10 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         }
 
 
+        public  String getNowDate(){
+            final Date date = new Date(System.currentTimeMillis());
+            return df.format(date);
+        }
 
         //追加 dbにかきこみ
         private void insertData(SQLiteDatabase db, String date, int score){
