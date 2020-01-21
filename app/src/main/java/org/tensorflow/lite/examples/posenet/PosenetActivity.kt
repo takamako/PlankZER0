@@ -537,20 +537,25 @@ class PosenetActivity :
     val widthRatio = screenWidth.toFloat() / MODEL_WIDTH
     val heightRatio = screenHeight.toFloat() / MODEL_HEIGHT
 
-    // Draw key points over the image.
-    for (keyPoint in person.keyPoints) {
-      if (keyPoint.score > minConfidence) {
-        val position = keyPoint.position
-        val adjustedX: Float = position.x.toFloat() * widthRatio + left
-        val adjustedY: Float = position.y.toFloat() * heightRatio + top
-        canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
-        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
+//    if(person.keyPoints.containsAll(listOf(
+//        BodyPart.RIGHT_KNEE, "LEFT_KNEE","RIGHT_HIP"))) {
+      // Draw key points over the image.
+      for (keyPoint in person.keyPoints) {
+        if (keyPoint.score > minConfidence) {
+          val position = keyPoint.position
+          val adjustedX: Float = position.x.toFloat() * widthRatio + left
+          val adjustedY: Float = position.y.toFloat() * heightRatio + top
+          canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
+          Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
+//        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
-        judgment()
-        /**
-        judgment()*/
+
+          judgment()
+          /**
+          judgment()*/
+        }
       }
-    }
+//    }
 
     for (line in bodyJoints) {
       if (
