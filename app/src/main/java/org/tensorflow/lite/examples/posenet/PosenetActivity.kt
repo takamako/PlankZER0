@@ -63,6 +63,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.example.plank.R
+import com.example.plank.judgment
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -449,10 +450,10 @@ class PosenetActivity :
       image.close()
 
       // Process an image for analysis in every 3 frames.
-      frameCounter = (frameCounter + 1) % 3
-      if (frameCounter == 0) {
+//      frameCounter = (frameCounter + 1) % 1
+//      if (frameCounter == 0) {
         processImage(rotatedBitmap)
-      }
+//      }
     }
   }
 
@@ -512,9 +513,10 @@ class PosenetActivity :
     val bottom: Int
     if (canvas.height > canvas.width) {
       screenWidth = canvas.width
-      screenHeight = canvas.width
+      screenHeight = canvas.height-canvas.width/3
       left = 0
-      top = (canvas.height - canvas.width) / 2
+      top=0
+//      top = (canvas.height - canvas.width) / 2
     } else {
       screenWidth = canvas.height
       screenHeight = canvas.height
@@ -535,15 +537,25 @@ class PosenetActivity :
     val widthRatio = screenWidth.toFloat() / MODEL_WIDTH
     val heightRatio = screenHeight.toFloat() / MODEL_HEIGHT
 
-    // Draw key points over the image.
-    for (keyPoint in person.keyPoints) {
-      if (keyPoint.score > minConfidence) {
-        val position = keyPoint.position
-        val adjustedX: Float = position.x.toFloat() * widthRatio + left
-        val adjustedY: Float = position.y.toFloat() * heightRatio + top
-        canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
+//    if(person.keyPoints.containsAll(listOf(
+//        BodyPart.RIGHT_KNEE, "LEFT_KNEE","RIGHT_HIP"))) {
+      // Draw key points over the image.
+      for (keyPoint in person.keyPoints) {
+        if (keyPoint.score > minConfidence) {
+          val position = keyPoint.position
+          val adjustedX: Float = position.x.toFloat() * widthRatio + left
+          val adjustedY: Float = position.y.toFloat() * heightRatio + top
+          canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
+          Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
+//        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
+
+
+          judgment()
+          /**
+          judgment()*/
+        }
       }
-    }
+//    }
 
     for (line in bodyJoints) {
       if (
@@ -563,21 +575,22 @@ class PosenetActivity :
     canvas.drawText(
       "Score: %.2f".format(person.score),
       (15.0f * widthRatio),
-      (30.0f * heightRatio + bottom),
+      (20.0f * heightRatio + bottom),
       paint
     )
     canvas.drawText(
       "Device: %s".format(posenet.device),
       (15.0f * widthRatio),
-      (50.0f * heightRatio + bottom),
+      (35.0f * heightRatio + bottom),
       paint
     )
     canvas.drawText(
       "Time: %.2f ms".format(posenet.lastInferenceTimeNanos * 1.0f / 1_000_000),
       (15.0f * widthRatio),
-      (70.0f * heightRatio + bottom),
+      (50.0f * heightRatio + bottom),
       paint
     )
+
 
     // Draw!
     surfaceHolder!!.unlockCanvasAndPost(canvas)
@@ -595,6 +608,7 @@ class PosenetActivity :
     val person = posenet.estimateSinglePose(scaledBitmap)
     val canvas: Canvas = surfaceHolder!!.lockCanvas()
     draw(canvas, person, scaledBitmap)
+
   }
 
   /**
@@ -710,4 +724,9 @@ class PosenetActivity :
      */
     private const val TAG = "PosenetActivity"
   }
+
+  /**肩腰膝の角度から姿勢したい*/
+//  fun judgment(){
+//
+//  }
 }

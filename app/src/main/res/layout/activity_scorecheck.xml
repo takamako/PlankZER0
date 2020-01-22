@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ScoreCheckActivity">
+
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:text="ここにスコアが出る"
+        android:textColor="#111111"
+        android:textSize="22sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="123dp" />
+
+    <Button
+        android:id="@+id/button_read"
+        android:layout_width="367dp"
+        android:layout_height="63dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/button_state"
+        android:fontFamily="sans-serif-black"
+        android:text="今までの結果+下段にtest:1"
+        android:textColor="#009688"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

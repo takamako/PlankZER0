@@ -26,6 +26,7 @@ import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import kotlin.math.exp
 import org.tensorflow.lite.Interpreter
+//import org.tensorflow.lite.experimental.GpuDelegate
 import org.tensorflow.lite.gpu.GpuDelegate
 
 enum class BodyPart {
@@ -73,7 +74,11 @@ enum class Device {
 class Posenet(
   val context: Context,
   val filename: String = "posenet_model.tflite",
-  val device: Device = Device.CPU
+//  val device: Device = Device.CPU
+  val device: Device = Device.GPU
+//  val device: Device = Device.NNAPI
+
+
 ) : AutoCloseable {
   var lastInferenceTimeNanos: Long = -1
     private set
@@ -124,16 +129,25 @@ class Posenet(
     inputBuffer.order(ByteOrder.nativeOrder())
     inputBuffer.rewind()
 
+    val pixels = IntArray(bitmap.height * bitmap.width)
+    bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+
     val mean = 128.0f
     val std = 128.0f
-    for (row in 0 until bitmap.height) {
-      for (col in 0 until bitmap.width) {
-        val pixelValue = bitmap.getPixel(col, row)
-        inputBuffer.putFloat(((pixelValue shr 16 and 0xFF) - mean) / std)
-        inputBuffer.putFloat(((pixelValue shr 8 and 0xFF) - mean) / std)
-        inputBuffer.putFloat(((pixelValue and 0xFF) - mean) / std)
-      }
+//    for (row in 0 until bitmap.height) {
+//      for (col in 0 until bitmap.width) {
+//        val pixelValue = bitmap.getPixel(col, row)
+//        inputBuffer.putFloat(((pixelValue shr 16 and 0xFF) - mean) / std)
+//        inputBuffer.putFloat(((pixelValue shr 8 and 0xFF) - mean) / std)
+//        inputBuffer.putFloat(((pixelValue and 0xFF) - mean) / std)
+//      }
+//    }
+    for (pixelValue in pixels) {
+      inputBuffer.putFloat(((pixelValue shr 16 and 0xFF) - mean) / std)
+      inputBuffer.putFloat(((pixelValue shr 8 and 0xFF) - mean) / std)
+      inputBuffer.putFloat(((pixelValue and 0xFF) - mean) / std)
     }
+
     return inputBuffer
   }
 
@@ -226,6 +240,9 @@ class Posenet(
       var maxVal = heatmaps[0][0][0][keypoint]
       var maxRow = 0
       var maxCol = 0
+
+//      val pixels = IntArray(height * width)
+
       for (row in 0 until height) {
         for (col in 0 until width) {
           heatmaps[0][row][col][keypoint] = heatmaps[0][row][col][keypoint]
@@ -236,6 +253,16 @@ class Posenet(
           }
         }
       }
+
+//      for ( in pixels) {
+//          heatmaps[0][row][col][keypoint] = heatmaps[0][row][col][keypoint]
+//          if (heatmaps[0][row][col][keypoint] > maxVal) {
+//            maxVal = heatmaps[0][row][col][keypoint]
+//            maxRow = row
+//            maxCol = col
+//          }
+//      }
+
       keypointPositions[keypoint] = Pair(maxRow, maxCol)
     }
 
