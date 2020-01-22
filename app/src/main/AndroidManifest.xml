@@ -21,7 +21,12 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:icon="@drawable/ic_launcher"
-      android:theme="@style/AppTheme">
+      android:theme="@style/AppTheme"
+
+      android:debuggable="false"
+      tools:ignore="HardcodedDebugMode"
+      tools:replace="android:debuggable">
+
       <activity android:name=".MainActivity">
           <intent-filter>
               <action android:name="android.intent.action.MAIN" />
