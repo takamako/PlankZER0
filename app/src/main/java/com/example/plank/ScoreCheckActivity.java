@@ -27,7 +27,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
         setContentView(R.layout.activity_scorecheck);
 
         textView = findViewById(R.id.text_view);
-
+        readData();
         Button readButton = findViewById(R.id.button_read);
         readButton.setOnClickListener(new View.OnClickListener() {
             @Override
