@@ -1,6 +1,6 @@
 package com.example.plank
 
-fun judgment():Boolean{
+fun plankJudg():Boolean{
     var judg_flag:Boolean =false
 
 

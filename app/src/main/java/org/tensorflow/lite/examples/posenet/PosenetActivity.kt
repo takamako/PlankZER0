@@ -63,7 +63,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.example.plank.R
-import com.example.plank.judgment
+import com.example.plank.plankJudg
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -540,21 +540,21 @@ class PosenetActivity :
 //    if(person.keyPoints.containsAll(listOf(
 //        BodyPart.RIGHT_KNEE, "LEFT_KNEE","RIGHT_HIP"))) {
       // Draw key points over the image.
-      for (keyPoint in person.keyPoints) {
-        if (keyPoint.score > minConfidence) {
-          val position = keyPoint.position
-          val adjustedX: Float = position.x.toFloat() * widthRatio + left
-          val adjustedY: Float = position.y.toFloat() * heightRatio + top
-          canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
-          Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
+    for (keyPoint in person.keyPoints) {
+      if (keyPoint.score > minConfidence) {
+        val position = keyPoint.position
+        val adjustedX: Float = position.x.toFloat() * widthRatio + left
+        val adjustedY: Float = position.y.toFloat() * heightRatio + top
+        canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
+        Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 //        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
 
-          judgment()
-          /**
-          judgment()*/
-        }
+        plankJudg()
+        /**
+        judgment()*/
       }
+    }
 //    }
 
     for (line in bodyJoints) {
