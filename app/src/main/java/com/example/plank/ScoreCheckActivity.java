@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.TableLayout;
 
 public class ScoreCheckActivity extends AppCompatActivity{
 
@@ -20,6 +22,17 @@ public class ScoreCheckActivity extends AppCompatActivity{
     private TestOpenHelper helper;
     private SQLiteDatabase db;
 
+    private int cap[];
+    private int caption[];
+    private int haiten[];
+    private int categoryPoint[];
+    private int averagePoint[];
+    private int categoryNum = 5;
+    private final int MP = TableLayout.LayoutParams.MATCH_PARENT;
+    private final int WC = TableLayout.LayoutParams.WRAP_CONTENT;
+
+    public ScoreCheckActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +106,33 @@ public class ScoreCheckActivity extends AppCompatActivity{
         values.put("score", price);
 
         db.insert("testdb", null, values);
+    }
+
+    TableLayout tableLayout = (TableLayout)findViewById(R.id.tableLayout);
+    for(int i=0; i<categoryNum; i++)
+
+    {
+        TableRow tableRow = (TableRow)getLayoutInflater().inflate(R.layout.table_row, null);
+        TextView name = (TextView)tableRow.findViewById(R.id.rowtext1);
+        
+        name.setText(cap[i]+caption[i]);
+        TextView point = (TextView)tableRow.findViewById(R.id.rowtext2);
+        
+        point.setText(Integer.toString(haiten[i]));
+        TextView score = (TextView)tableRow.findViewById(R.id.rowtext3);
+        score.setText(Integer.toString(categoryPoint[i]));
+        TextView ave = (TextView)tableRow.findViewById(R.id.rowtext4);
+        ave.setText(Integer.toString(averagePoint[i]));
+
+        if((i+1)%2 == 0){
+            int color = getResources().getColor(R.color.colorPrimary);
+            name.setBackgroundColor(color);
+            point.setBackgroundColor(color);
+            score.setBackgroundColor(color);
+            ave.setBackgroundColor(color);
+        }
+
+        tableLayout.addView(tableRow, new TableLayout.LayoutParams(MP, WC));
     }
 
 }
