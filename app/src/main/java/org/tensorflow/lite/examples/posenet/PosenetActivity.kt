@@ -550,7 +550,7 @@ class PosenetActivity :
 //        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
 
-        plankJudg()
+        plankJudg(person,widthRatio,heightRatio,top,left)
         /**
         judgment()*/
       }
