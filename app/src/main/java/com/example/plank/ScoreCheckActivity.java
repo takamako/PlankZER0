@@ -99,40 +99,41 @@ public class ScoreCheckActivity extends AppCompatActivity{
         textView.setText(sbuilder.toString());
     }
 
-    private void insertData(SQLiteDatabase db, String com, int price){
+    private void insertData(SQLiteDatabase db, String com, int price) {
 
         ContentValues values = new ContentValues();
         values.put("date", com);
         values.put("score", price);
 
         db.insert("testdb", null, values);
-    }
 
-    TableLayout tableLayout = (TableLayout)findViewById(R.id.tableLayout);
-    for(int i=0; i<categoryNum; i++)
 
-    {
-        TableRow tableRow = (TableRow)getLayoutInflater().inflate(R.layout.table_row, null);
-        TextView name = (TextView)tableRow.findViewById(R.id.rowtext1);
-        
-        name.setText(cap[i]+caption[i]);
-        TextView point = (TextView)tableRow.findViewById(R.id.rowtext2);
-        
-        point.setText(Integer.toString(haiten[i]));
-        TextView score = (TextView)tableRow.findViewById(R.id.rowtext3);
-        score.setText(Integer.toString(categoryPoint[i]));
-        TextView ave = (TextView)tableRow.findViewById(R.id.rowtext4);
-        ave.setText(Integer.toString(averagePoint[i]));
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+        for (int i = 0; i < categoryNum; i++) {
+            TableRow tableRow = (TableRow) getLayoutInflater().inflate(R.layout.table_row, null);
+            TextView name = (TextView) tableRow.findViewById(R.id.rowtext1);
 
-        if((i+1)%2 == 0){
-            int color = getResources().getColor(R.color.colorPrimary);
-            name.setBackgroundColor(color);
-            point.setBackgroundColor(color);
-            score.setBackgroundColor(color);
-            ave.setBackgroundColor(color);
+           // name.setText(cap[i] + caption[i]);配列ないに何も入ってないからエラー出る
+            name.setText("テスト");
+            TextView point = (TextView) tableRow.findViewById(R.id.rowtext2);
+
+          //  point.setText(Integer.toString(haiten[i]));
+            point.setText("test");
+            TextView score = (TextView) tableRow.findViewById(R.id.rowtext3);
+        //    score.setText(Integer.toString(categoryPoint[i]));
+            score.setText("score111");
+            TextView ave = (TextView) tableRow.findViewById(R.id.rowtext4);
+           // ave.setText(Integer.toString(averagePoint[i]));
+            ave.setText("ave");
+            if ((i + 1) % 2 == 0) {
+                int color = getResources().getColor(R.color.colorPrimary);
+                name.setBackgroundColor(color);
+                point.setBackgroundColor(color);
+                score.setBackgroundColor(color);
+                ave.setBackgroundColor(color);
+            }
+
+            tableLayout.addView(tableRow, new TableLayout.LayoutParams(MP, WC));
         }
-
-        tableLayout.addView(tableRow, new TableLayout.LayoutParams(MP, WC));
     }
-
 }
