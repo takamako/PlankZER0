@@ -537,6 +537,8 @@ class PosenetActivity :
     val widthRatio = screenWidth.toFloat() / MODEL_WIDTH
     val heightRatio = screenHeight.toFloat() / MODEL_HEIGHT
 
+    plankJudg(person,widthRatio,heightRatio,top,left)
+
 //    if(person.keyPoints.containsAll(listOf(
 //        BodyPart.RIGHT_KNEE, "LEFT_KNEE","RIGHT_HIP"))) {
       // Draw key points over the image.
@@ -550,7 +552,6 @@ class PosenetActivity :
 //        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
 
-        plankJudg(person,widthRatio,heightRatio,top,left)
         /**
         judgment()*/
       }
