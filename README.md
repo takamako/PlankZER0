@@ -16,8 +16,8 @@
 `Open an existing Android Studio project`.
 
 * From the `Open File or Project` window that appears, navigate to and select
- the `tensorflow-lite/examples/posenet/android` directory from wherever you
- cloned the TensorFlow Lite sample GitHub repo. Click `OK`.
+ the `PlankZer0` directory from wherever you
+ cloned the PlankZer0 GitHub repo. Click `OK`.
 
 * If it asks you to do a `Gradle Sync`, click `OK`.
 
@@ -109,5 +109,5 @@ Gitのルール->masterの直pushはみんな集まってる時のみで、そ�
 
 リモート時:説明責任を果たす(readに書く、コードに解説書くなど)
 
-### LICENSE
+## LICENSE
 このアプリには[tensorflow/examples](https://github.com/tensorflow/examples)を使用しています
