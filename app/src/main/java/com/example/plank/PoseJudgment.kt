@@ -45,9 +45,21 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
 
 
     }
-    Log.d("xxxxxxxxx", "sholder:  x=$sholderX y=$sholderY")
-    Log.d("xxxxxxxxx", "hip:  x=$hipX y=$hipY")
-    Log.d("xxxxxxxxx", "knee:  x=$kneeX y=$kneeY")
+    val sholderToHipX=sholderX-hipX
+    val sholderToHipY =sholderY-hipY
+    val hipToKneeX =hipX-kneeX
+    val hipToKneeY = hipY-kneeY
+    val sholderToKneeX = sholderX - kneeX
+    val sholerToKneeY = sholderY -kneeY
+    val babc = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY;
+    val ban = (sholderToHipX * sholderToHipX) + (hipToKneeX * hipToKneeX)
+    val bcn = (sholderToHipY * sholderToHipY) + (hipToKneeY * hipToKneeY)
+    val radian = Math.acos(babc / (Math.sqrt((ban * bcn).toDouble())))
+    val angle = radian * 180 / Math.PI  // 結果（ラジアンから角度に変換）
+    Log.d("xxxxxxxxx", "angle:  $angle")
+//    Log.d("xxxxxxxxx", "sholder:  x=$sholderX y=$sholderY")
+//    Log.d("xxxxxxxxx", "hip:  x=$hipX y=$hipY")
+//    Log.d("xxxxxxxxx", "knee:  x=$kneeX y=$kneeY")
 
 
 
