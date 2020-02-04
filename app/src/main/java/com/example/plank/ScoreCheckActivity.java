@@ -40,7 +40,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scorecheck);
 
-        textView = findViewById(R.id.text_view);
+      //  textView = findViewById(R.id.text_view);
         readData();
         Button readButton = findViewById(R.id.button_read);
         readButton.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +93,9 @@ public class ScoreCheckActivity extends AppCompatActivity{
             sbuilder.append(": ");
             sbuilder.append(cursor.getInt(1));
             sbuilder.append("\n");
-                if(dataNum==0) {
+
+            //上四行使わん
+                if(dataNum==0) {//この中で表示
                     TableRow tableRow = (TableRow) getLayoutInflater().inflate(R.layout.table_row, null);
                     TextView name = (TextView) tableRow.findViewById(R.id.rowtext1);
 
@@ -130,7 +132,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
         cursor.close();
 
         Log.d("debug","**********"+sbuilder.toString());
-        textView.setText(sbuilder.toString());
+       // textView.setText(sbuilder.toString());
     }
 
     private void insertData(SQLiteDatabase db, String com, int price) {
@@ -140,8 +142,6 @@ public class ScoreCheckActivity extends AppCompatActivity{
         values.put("score", price);
 
         db.insert("testdb", null, values);
-
-
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
         TableRow tableRow = (TableRow) getLayoutInflater().inflate(R.layout.table_row, null);
