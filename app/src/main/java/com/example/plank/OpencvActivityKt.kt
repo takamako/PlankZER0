@@ -22,8 +22,8 @@ import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_compare.*
-import org.opencv.android.OpenCVLoader
-import org.opencv.video.BackgroundSubtractorMOG2
+//import org.opencv.android.OpenCVLoader
+//import org.opencv.video.BackgroundSubtractorMOG2
 import java.io.File
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
@@ -48,9 +48,9 @@ class OpencvActivityKt : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_opencv)
 
-        if(!OpenCVLoader.initDebug()) {
-            Log.d("OpenCV", "error_openCV")
-        }
+//        if(!OpenCVLoader.initDebug()) {
+//            Log.d("OpenCV", "error_openCV")
+//        }
         viewFinder = findViewById(R.id.view_finder)
 
         // カメラパーミッションの要求
@@ -237,7 +237,7 @@ class OpencvActivityKt : AppCompatActivity() {
 
     /**この関数で動体検知をしたい*/
     fun motion(image: ImageProxy, rotationDegrees: Int){
-        val moG2: BackgroundSubtractorMOG2
+      //  val moG2: BackgroundSubtractorMOG2
     }
 
 }

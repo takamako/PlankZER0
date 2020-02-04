@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-PlankZer0.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-PlankZer0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/AndroidStudioProjects-PlankZer0-app.iml" filepath="$PROJECT_DIR$/app/AndroidStudioProjects-PlankZer0-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/posenet/AndroidStudioProjects-PlankZer0-posenet.iml" filepath="$PROJECT_DIR$/posenet/AndroidStudioProjects-PlankZer0-posenet.iml" />
       <module fileurl="file://$PROJECT_DIR$/OpenCV410/AndroidStudioProjects-examples-OpenCV410.iml" filepath="$PROJECT_DIR$/OpenCV410/AndroidStudioProjects-examples-OpenCV410.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/AndroidStudioProjects-examples-app.iml" filepath="$PROJECT_DIR$/app/AndroidStudioProjects-examples-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/AndroidStudioProjects-examples-posenet.iml" filepath="$PROJECT_DIR$/posenet/AndroidStudioProjects-examples-posenet.iml" />
@@ -13,6 +15,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/PlankZer0-app.iml" filepath="$PROJECT_DIR$/app/PlankZer0-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/PlankZer0-posenet.iml" filepath="$PROJECT_DIR$/posenet/PlankZer0-posenet.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/e175774-AndroidStudioProjects-PlankZer0.iml" filepath="$PROJECT_DIR$/e175774-AndroidStudioProjects-PlankZer0.iml" />
       <module fileurl="file://$PROJECT_DIR$/OpenCV410/examples-OpenCV410.iml" filepath="$PROJECT_DIR$/OpenCV410/examples-OpenCV410.iml" />
       <module fileurl="file://$PROJECT_DIR$/examples-Plank.iml" filepath="$PROJECT_DIR$/examples-Plank.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/examples-app.iml" filepath="$PROJECT_DIR$/app/examples-app.iml" />

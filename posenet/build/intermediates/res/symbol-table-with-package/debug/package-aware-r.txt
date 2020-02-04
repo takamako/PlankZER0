@@ -115,7 +115,6 @@ attr buttonStyle
 attr buttonStyleSmall
 attr buttonTint
 attr buttonTintMode
-attr camera_id
 attr cardBackgroundColor
 attr cardCornerRadius
 attr cardElevation
@@ -431,7 +430,6 @@ attr showDividers
 attr showMotionSpec
 attr showText
 attr showTitle
-attr show_fps
 attr singleChoiceItemLayout
 attr singleLine
 attr singleSelection
@@ -1073,10 +1071,8 @@ id actions
 id activity_chooser_view_content
 id add
 id alertTitle
-id any
 id async
 id auto
-id back
 id blocking
 id bottom
 id buttonPanel
@@ -1105,7 +1101,6 @@ id fill
 id filled
 id fixed
 id forever
-id front
 id ghost_view
 id gone
 id group_divider
@@ -1866,7 +1861,6 @@ styleable BottomAppBar backgroundTint fabAlignmentMode fabCradleMargin fabCradle
 styleable BottomNavigationView elevation itemBackground itemHorizontalTranslationEnabled itemIconSize itemIconTint itemTextAppearanceActive itemTextAppearanceInactive itemTextColor labelVisibilityMode menu
 styleable BottomSheetBehavior_Layout behavior_fitToContents behavior_hideable behavior_peekHeight behavior_skipCollapsed
 styleable ButtonBarLayout allowStacking
-styleable CameraBridgeViewBase camera_id show_fps
 styleable CardView android_minHeight android_minWidth cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_checkable android_ellipsize android_maxWidth android_text android_textAppearance checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipStartPadding chipStrokeColor chipStrokeWidth closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible hideMotionSpec iconEndPadding iconStartPadding rippleColor showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection
