@@ -27,7 +27,8 @@ public class ScoreCheckActivity extends AppCompatActivity{
     private int haiten[];
     private int categoryPoint[];
     private int averagePoint[];
-    private int categoryNum = 5;
+    private int categoryNum = 0;
+    private int dataNum =0;
     private final int MP = TableLayout.LayoutParams.MATCH_PARENT;
     private final int WC = TableLayout.LayoutParams.WRAP_CONTENT;
 
@@ -40,7 +41,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
         setContentView(R.layout.activity_scorecheck);
 
         textView = findViewById(R.id.text_view);
-
+        readData();
         Button readButton = findViewById(R.id.button_read);
         readButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +54,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
                 if(db == null){
                     db = helper.getWritableDatabase();
                 }
-                insertData(db, "test", 1);
+                insertData(db, "2/1(例)", 100);
                 readData();
             }
         });
@@ -84,14 +85,47 @@ public class ScoreCheckActivity extends AppCompatActivity{
 
         StringBuilder sbuilder = new StringBuilder();
 
-        for (int i = 0; i < cursor.getCount(); i++) {
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+
+
+        for (int i = 1; i < cursor.getCount()+1; i++) {
             sbuilder.append(cursor.getString(0));
             sbuilder.append(": ");
             sbuilder.append(cursor.getInt(1));
             sbuilder.append("\n");
+                if(dataNum==0) {
+                    TableRow tableRow = (TableRow) getLayoutInflater().inflate(R.layout.table_row, null);
+                    TextView name = (TextView) tableRow.findViewById(R.id.rowtext1);
+
+                    // name.setText(cap[i] + caption[i]);配列ないに何も入ってないからエラー出る
+                    name.setText(cursor.getString(0));//日付
+                    TextView point = (TextView) tableRow.findViewById(R.id.rowtext2);
+
+                    //  point.setText(Integer.toString(haiten[i]));
+                    point.setText(Integer.toString(cursor.getInt(1)));//スコア
+                    TextView score = (TextView) tableRow.findViewById(R.id.rowtext3);
+                    //    score.setText(Integer.toString(categoryPoint[i]));
+                    score.setText("score111");
+                    TextView ave = (TextView) tableRow.findViewById(R.id.rowtext4);
+                    // ave.setText(Integer.toString(averagePoint[i]));
+                    ave.setText("ave");
+                    if ((i + 1) % 2 == 0) {
+                        int color = getResources().getColor(R.color.colorPrimary);
+                        name.setBackgroundColor(color);
+                        point.setBackgroundColor(color);
+                        score.setBackgroundColor(color);
+                        ave.setBackgroundColor(color);
+                    }
+
+                    tableLayout.addView(tableRow, new TableLayout.LayoutParams(MP, WC));
+
+                }
+            categoryNum = cursor.getCount();
+
             cursor.moveToNext();
         }
 
+        dataNum=cursor.getCount();
         // 忘れずに！
         cursor.close();
 
@@ -108,32 +142,34 @@ public class ScoreCheckActivity extends AppCompatActivity{
         db.insert("testdb", null, values);
 
 
+
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-        for (int i = 0; i < categoryNum; i++) {
-            TableRow tableRow = (TableRow) getLayoutInflater().inflate(R.layout.table_row, null);
-            TextView name = (TextView) tableRow.findViewById(R.id.rowtext1);
+        TableRow tableRow = (TableRow) getLayoutInflater().inflate(R.layout.table_row, null);
+        TextView name = (TextView) tableRow.findViewById(R.id.rowtext1);
 
-           // name.setText(cap[i] + caption[i]);配列ないに何も入ってないからエラー出る
-            name.setText("テスト");
-            TextView point = (TextView) tableRow.findViewById(R.id.rowtext2);
+            // name.setText(cap[i] + caption[i]);配列ないに何も入ってないからエラー出る
+        name.setText(com);
+        TextView point = (TextView) tableRow.findViewById(R.id.rowtext2);
 
-          //  point.setText(Integer.toString(haiten[i]));
-            point.setText("test");
-            TextView score = (TextView) tableRow.findViewById(R.id.rowtext3);
-        //    score.setText(Integer.toString(categoryPoint[i]));
-            score.setText("score111");
-            TextView ave = (TextView) tableRow.findViewById(R.id.rowtext4);
-           // ave.setText(Integer.toString(averagePoint[i]));
-            ave.setText("ave");
-            if ((i + 1) % 2 == 0) {
-                int color = getResources().getColor(R.color.colorPrimary);
-                name.setBackgroundColor(color);
-                point.setBackgroundColor(color);
-                score.setBackgroundColor(color);
-                ave.setBackgroundColor(color);
+            //  point.setText(Integer.toString(haiten[i]));
+        point.setText(Integer.toString(price));
+        TextView score = (TextView) tableRow.findViewById(R.id.rowtext3);
+            //    score.setText(Integer.toString(categoryPoint[i]));
+        score.setText("score111");
+        TextView ave = (TextView) tableRow.findViewById(R.id.rowtext4);
+            // ave.setText(Integer.toString(averagePoint[i]));
+        ave.setText("ave");
+        if ((dataNum + 1) % 2 == 0) {
+            int color = getResources().getColor(R.color.colorPrimary);
+            name.setBackgroundColor(color);
+            point.setBackgroundColor(color);
+            score.setBackgroundColor(color);
+            ave.setBackgroundColor(color);
             }
-
-            tableLayout.addView(tableRow, new TableLayout.LayoutParams(MP, WC));
+        dataNum++;
+        tableLayout.addView(tableRow, new TableLayout.LayoutParams(MP, WC));
         }
+
+
     }
-}
+
