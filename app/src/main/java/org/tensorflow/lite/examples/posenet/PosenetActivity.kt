@@ -92,7 +92,7 @@ class PosenetActivity :
   )
 
   /** Threshold for confidence score. */
-  private val minConfidence = 0.5
+  private val minConfidence = 0.3
 
   /** Radius of circle used to draw keypoints.  */
   private val circleRadius = 8.0f
@@ -539,10 +539,9 @@ class PosenetActivity :
     val widthRatio = screenWidth.toFloat() / MODEL_WIDTH
     val heightRatio = screenHeight.toFloat() / MODEL_HEIGHT
 
+    /**プランク判定*/
     plankJudg(person,widthRatio,heightRatio,top,left)
 
-//    if(person.keyPoints.containsAll(listOf(
-//        BodyPart.RIGHT_KNEE, "LEFT_KNEE","RIGHT_HIP"))) {
       // Draw key points over the image.
     for (keyPoint in person.keyPoints) {
       if (keyPoint.score > minConfidence) {
@@ -553,9 +552,6 @@ class PosenetActivity :
 //        Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 //        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
-
-        /**
-        judgment()*/
       }
     }
 //    }
@@ -728,8 +724,4 @@ class PosenetActivity :
     private const val TAG = "PosenetActivity"
   }
 
-  /**肩腰膝の角度から姿勢したい*/
-//  fun judgment(){
-//
-//  }
 }

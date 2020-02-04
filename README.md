@@ -50,11 +50,11 @@ _Please do not delete the assets folder content_. If you explicitly deleted the
 
 # enpit2019_v.i.p
 
-enPiT2019のgitリポジトリです。
+enPiT2019のリポジトリです。
 
-チーム名:vip(仮)
+チーム名:vip
 
-サービス名:プランクトレーニング君
+サービス名:plankZER0
 
 ## エレベータービッチ
 
@@ -64,7 +64,7 @@ enPiT2019のgitリポジトリです。
 
 ``部活生向け``の
 
-``ストロングZER0``は
+``plankZER0``は
 
 ``プランクトレーニング用アプリ``です
 
