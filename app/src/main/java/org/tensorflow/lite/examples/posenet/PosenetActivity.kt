@@ -101,8 +101,11 @@ class PosenetActivity :
   private var paint = Paint()
 
   /** A shape for extracting frame data.   */
-  private val PREVIEW_WIDTH = 640
-  private val PREVIEW_HEIGHT = 480
+  //この値を小さくすると描画速度上がる．精度は落ちるかも
+//  private val PREVIEW_WIDTH = 640
+//  private val PREVIEW_HEIGHT = 480
+  private val PREVIEW_WIDTH = 320
+  private val PREVIEW_HEIGHT = 240
 
   /** An object for the Posenet library.    */
   private lateinit var posenet: Posenet
@@ -288,8 +291,8 @@ class PosenetActivity :
         // We don't use a front facing camera in this sample.
         val cameraDirection = characteristics.get(CameraCharacteristics.LENS_FACING)
         if (cameraDirection != null &&
-          //cameraDirection == CameraCharacteristics.LENS_FACING_FRONT
-            cameraDirection == CameraCharacteristics.LENS_FACING_BACK
+          cameraDirection == CameraCharacteristics.LENS_FACING_FRONT
+//            cameraDirection == CameraCharacteristics.LENS_FACING_BACK
 
                 ) {
           continue
@@ -549,7 +552,7 @@ class PosenetActivity :
         val adjustedX: Float = position.x.toFloat() * widthRatio + left
         val adjustedY: Float = position.y.toFloat() * heightRatio + top
         canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
-//        Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
+        Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 //        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
       }

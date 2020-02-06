@@ -3,6 +3,7 @@ package com.example.plank
 import android.util.Log
 import org.tensorflow.lite.examples.posenet.lib.BodyPart
 import org.tensorflow.lite.examples.posenet.lib.Person
+import java.lang.Float.min
 
 fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int):Boolean{
     //肩，腰，膝の三点から角度計算して姿勢判定
@@ -20,11 +21,11 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
         var y=0F
     }
     var sholderX :Float = 0F
-    var sholderY :Float = 0F
+    var sholderY :Float = 1000000F
     var hipX:Float = 0F
-    var hipY:Float = 0F
+    var hipY:Float = 1000000F
     var kneeX:Float = 0F
-    var kneeY:Float = 0F
+    var kneeY:Float = 1000000F
     //if(person.keyPoints.containsAll())
     for(keyPoint in person.keyPoints){
         var body =keyPoint.bodyPart
@@ -32,15 +33,15 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
 
         if(body== BodyPart.LEFT_SHOULDER || body== BodyPart.RIGHT_SHOULDER) {
             sholderX = position.x.toFloat() * widthRatio + left
-            sholderY = position.y.toFloat() * heightRatio + top
+            sholderY = minOf(sholderY,position.y.toFloat() * heightRatio + top)
         }
         else if(body== BodyPart.LEFT_HIP || body== BodyPart.RIGHT_HIP) {
             hipX = position.x.toFloat() * widthRatio + left
-            hipY = position.y.toFloat() * heightRatio + top
+            hipY = minOf(hipY,position.y.toFloat() * heightRatio + top)
         }
         else if(body== BodyPart.LEFT_KNEE || body== BodyPart.RIGHT_KNEE) {
             kneeX = position.x.toFloat() * widthRatio + left
-            kneeY = position.y.toFloat() * heightRatio + top
+            kneeY = minOf(kneeY,position.y.toFloat() * heightRatio + top)
         }
 
 

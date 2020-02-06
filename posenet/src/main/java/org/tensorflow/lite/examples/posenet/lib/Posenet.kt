@@ -73,9 +73,11 @@ enum class Device {
 
 class Posenet(
   val context: Context,
-  val filename: String = "posenet_model.tflite",
-  val device: Device = Device.CPU
-//  val device: Device = Device.GPU
+//  val filename: String = "posenet_model.tflite",
+  val filename: String = "1.tflite",
+
+//  val device: Device = Device.CPU
+  val device: Device = Device.GPU
 //  val device: Device = Device.NNAPI
 
 
@@ -209,23 +211,23 @@ class Posenet(
   fun estimateSinglePose(bitmap: Bitmap): Person {
     val estimationStartTimeNanos = SystemClock.elapsedRealtimeNanos()
     val inputArray = arrayOf(initInputArray(bitmap))
-    Log.i(
-      "posenet",
-      String.format(
-        "Scaling to [-1,1] took %.2f ms",
-        1.0f * (SystemClock.elapsedRealtimeNanos() - estimationStartTimeNanos) / 1_000_000
-      )
-    )
+//    Log.i(
+//      "posenet",
+//      String.format(
+//        "Scaling to [-1,1] took %.2f ms",
+//        1.0f * (SystemClock.elapsedRealtimeNanos() - estimationStartTimeNanos) / 1_000_000
+//      )
+//    )
 
     val outputMap = initOutputMap(getInterpreter())
 
     val inferenceStartTimeNanos = SystemClock.elapsedRealtimeNanos()
     getInterpreter().runForMultipleInputsOutputs(inputArray, outputMap)
     lastInferenceTimeNanos = SystemClock.elapsedRealtimeNanos() - inferenceStartTimeNanos
-    Log.i(
-      "posenet",
-      String.format("Interpreter took %.2f ms", 1.0f * lastInferenceTimeNanos / 1_000_000)
-    )
+//    Log.i(
+//      "posenet",
+//      String.format("Interpreter took %.2f ms", 1.0f * lastInferenceTimeNanos / 1_000_000)
+//    )
 
     val heatmaps = outputMap[0] as Array<Array<Array<FloatArray>>>
     val offsets = outputMap[1] as Array<Array<Array<FloatArray>>>
