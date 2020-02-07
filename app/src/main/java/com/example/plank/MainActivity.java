@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageResource(R.drawable.plank01);
 
         //カメラモードに移動
-        Button PhotoButton = findViewById(R.id.ViewImg);
+        ImageButton PhotoButton = findViewById(R.id.ViewImg);
         PhotoButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick (View v) {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //センサーようの移動ボタン
-        Button sendButton_sensor = findViewById(R.id.sensor_button);
+        ImageButton sendButton_sensor = findViewById(R.id.sensor_button);
         sendButton_sensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button helpButton = findViewById(R.id.helpButton);
+        ImageButton helpButton = findViewById(R.id.helpButton);
 
         // ボタンタップでAlertを表示させる
         helpButton.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //アンケートに移動
-        Button QuestionnaireButton = findViewById(R.id.QuestionnaireButton);
+        ImageButton QuestionnaireButton = findViewById(R.id.QuestionnaireButton);
         QuestionnaireButton.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/Zaq9huVe8jLWLCKG7"));
