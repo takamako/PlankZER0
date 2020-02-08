@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ImageView imageView = findViewById(R.id.image_view);
-        imageView.setImageResource(R.drawable.plank01);
+//        imageView.setImageResource(R.drawable.plank01);
 
         //カメラモードに移動
         ImageButton PhotoButton = findViewById(R.id.ViewImg);
