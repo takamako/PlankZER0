@@ -12,34 +12,68 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="\t『Plank ZER0』は部活中や自宅でのプランクトレーニングをサポートするアプリです。「プランク」とは体幹トレーニングの基本メニューの１つで、板(plank)のように腹筋を固めて、体幹（胴体）を真っすぐ伸ばした姿勢を一定時間キープするトレーニングです。プランクは主に腹直筋などを鍛える効果がありますが、正しい姿勢をキープできないとトレーニングの効果をあまり得られません。
-            \n\tこのアプリでは、そんなプランク中の姿勢の崩れを検知し、ユーザーに知らせてくれる機能があります。このアプリを使い続けることで自然と正しいフォームでプランクができるようになります。"
+            android:text="\t『Plank ZER0』は部活中や自宅でのプランクトレーニングをサポートするアプリです。「プランク」とは体幹トレーニングの基本メニューの１つで、板(plank)のように腹筋を固めて、体幹（胴体）を真っすぐ伸ばした姿勢を一定時間キープするトレーニングです。\n　プランクは主に腹直筋などを鍛える効果がありますが、正しい姿勢をキープできないとトレーニングの効果をあまり得られません。
+            \n\tこのアプリでは、そんなプランク中の姿勢の崩れを検知し、ユーザーに知らせてくれる機能があります。このアプリを使い続けることで自然と正しいフォームでプランクができるようになります。\n"
             android:textColor="#111111"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="___________________________________" />
+            android:text="___________________________________________________" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="この画面の使い方です。"
+            android:text="この画面の使い方です。\n"
             android:textColor="#111111"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/ViewImg"
             android:layout_width="match_parent"
-            android:layout_height="238dp"
-            android:src="@drawable/help4" />
+            android:layout_height="128dp"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="32dp"
+            android:background="#2196F3"
+            android:fontFamily="sans-serif-black"
+            android:text="2人用"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:src="@drawable/ic_camera_alt_black_24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="青いボタンはカメラを使ってトレーニングします。\n"
+            android:textColor="#111111"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/sensor_button"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_margin="8dp"
+            android:background="#FF9800"
+            android:fontFamily="sans-serif-black"
+            android:text="1人用"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:src="@drawable/ic_videocam_off_black_24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="黄色のボタンはカメラを使わずにジャイロセンサーを使ってトレーニングします。\n"
+            android:textColor="#111111"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="このアプリではプランクの基本であるフロントブリッジだけでなく、動かずに姿勢を一定時間キープするような体幹トレーニングになら何にでも応用できます。『Plank ZER0』で正しいフォームを身につけて効果的なプランクトレーニングを始めましょう！"
             android:textColor="#111111"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 </ScrollView>

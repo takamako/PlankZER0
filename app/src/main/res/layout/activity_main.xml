@@ -37,7 +37,7 @@
         <ImageButton
             android:id="@+id/ViewImg"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="128dp"
             android:layout_margin="8dp"
             android:layout_marginBottom="32dp"
             android:background="#2196F3"
@@ -58,7 +58,7 @@
         <ImageButton
             android:id="@+id/sensor_button"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="128dp"
             android:layout_margin="8dp"
             android:background="#FF9800"
             android:fontFamily="sans-serif-black"
@@ -78,7 +78,7 @@
         <ImageButton
             android:id="@+id/helpButton"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="128dp"
             android:layout_margin="8dp"
             android:background="#009688"
             android:fontFamily="sans-serif-black"
@@ -98,7 +98,7 @@
         <ImageButton
             android:id="@+id/QuestionnaireButton"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="128dp"
             android:layout_margin="8dp"
             android:background="#E2E91E63"
             app:layout_column="0"
@@ -121,7 +121,7 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
-            android:layout_height="108dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="16dp"
             android:fontFamily="sans-serif-black"
