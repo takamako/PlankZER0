@@ -63,7 +63,7 @@
         android:layout_margin="20dp"
         android:background="#00BCD4"
         android:fontFamily="sans-serif-black"
-        android:text="pn"
+        android:text="姿勢推定(β)"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
