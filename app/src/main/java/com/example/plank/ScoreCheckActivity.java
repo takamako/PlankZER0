@@ -42,10 +42,11 @@ public class ScoreCheckActivity extends AppCompatActivity{
 
       //  textView = findViewById(R.id.text_view);
         readData();
+      /**
         Button readButton = findViewById(R.id.button_read);
         readButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+           public void onClick(View v) {
 
                 if(helper == null){
                     helper = new TestOpenHelper(getApplicationContext());
@@ -58,6 +59,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
                 readData();
             }
         });
+       */
     }
 
 

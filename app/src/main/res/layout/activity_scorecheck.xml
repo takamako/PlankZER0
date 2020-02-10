@@ -16,12 +16,13 @@
         android:id="@+id/text_view"
         android:layout_width="354dp"
         android:layout_height="wrap_content"
-        android:text="ここにスコアが出る"
+        android:text=""
         android:textColor="#111111"
         android:textSize="22sp"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="123dp" />
 
+        <!--
         <Button
             android:id="@+id/button_read"
             android:layout_width="367dp"
@@ -34,7 +35,7 @@
             android:textSize="24sp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp" />
-
+        -->
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="match_parent"
