@@ -79,7 +79,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
             cursor.moveToNext();
         }
 
-        // 忘れずに！
+        // 忘れずに！!
         cursor.close();
 
         Log.d("debug","**********"+sbuilder.toString());
