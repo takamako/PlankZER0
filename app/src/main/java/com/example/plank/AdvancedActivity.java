@@ -522,7 +522,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 if(set_frag >1){
                     totalmil+=mil_count;
                     totalscore+=stop_count*2;
-                    textView.setText("合計スコア：" + totalscore + "\n合計" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
+                    textView.setText("合計スコア：" + totalscore + "\n" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
                 }else{
                     if(No1< stop_count*2){
                         SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
@@ -569,7 +569,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                     //現在の時刻
                     String date = getNowDate();
                     //return df.format(date);
-                    insertData(db, date,stop_count*2);
+                    insertData(db, date,stop_count*2,mil_count);
                 }
             }
 
@@ -586,11 +586,13 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         }
 
         //追加 dbにかきこみ
-        private void insertData(SQLiteDatabase db, String date, int score){
+        private void insertData(SQLiteDatabase db, String date, int score,double sec){
 
             ContentValues values = new ContentValues();
             values.put("date", date);
             values.put("score", score);
+            values.put("level", "上級者");
+            values.put("sec", sec);
 
             db.insert("testdb", null, values);
         }

@@ -488,7 +488,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
 
                     totalmil+=mil_count;
                     totalscore+=stop_count*2;
-                    textView.setText("合計スコア：" + totalscore + "\n合計" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
+                    textView.setText("合計スコア：" + totalscore + "\n" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
                 }else{
 
 
@@ -537,7 +537,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 //現在の時刻
                 String date = getNowDate();
                 //return df.format(date);
-                insertData(db, date,stop_count*2);
+                insertData(db, date,stop_count*2,mil_count);
             }
             stop_count=0;
             all_count=0;
@@ -560,12 +560,13 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         }
 
         //追加 dbにかきこみ
-        private void insertData(SQLiteDatabase db, String date, int score){
+        private void insertData(SQLiteDatabase db, String date, int score,double sec){
 
             ContentValues values = new ContentValues();
             values.put("date", date);
             values.put("score", score);
-
+            values.put("level", "中級者");
+            values.put("sec", sec);
             db.insert("testdb", null, values);
         }
 
