@@ -57,9 +57,9 @@
                     android:paddingTop="2dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="2dp"
-                    android:text="field"
+                    android:text="日時"
                     android:textColor="@color/colorAccent"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -73,9 +73,9 @@
                 android:paddingTop="2dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="2dp"
-                android:text="allotpoint"
+                android:text="スコア"
                 android:textColor="@color/colorAccent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -88,9 +88,9 @@
                 android:paddingTop="2dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="2dp"
-                android:text="point"
+                android:text="モード"
                 android:textColor="@color/colorAccent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -103,9 +103,9 @@
                 android:paddingTop="2dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="2dp"
-                android:text="average"
+                android:text="キープ"
                 android:textColor="@color/colorAccent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
         </TableRow>
     </TableLayout>
