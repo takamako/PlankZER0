@@ -6,6 +6,7 @@ package com.example.plank
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 import android.view.View
@@ -45,11 +46,11 @@ class ImageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //ホーム画面に戻る処理
-        val returnButton = findViewById<Button>(R.id.return_sub)
-        returnButton.setOnClickListener { finish() }
+//        //ホーム画面に戻る処理
+//        val returnButton = findViewById<ImageButton>(R.id.return_sub)
+//        returnButton.setOnClickListener { finish() }
 
-        val helpButton = findViewById<Button>(R.id.helpButton2)
+        val helpButton = findViewById<ImageButton>(R.id.helpButton2)
         helpButton.setOnClickListener {
             AlertDialog.Builder(this)
                     .setTitle("2人用の使い方！")

@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import androidx.annotation.NonNull;
+import android.widget.ImageButton;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.SharedPreferences;
@@ -104,18 +105,18 @@ public class SensorActivity extends AppCompatActivity {
 
 
 
-        //ホーム画面に戻る処理
-        Button returnButton = findViewById(R.id.return_sub);
-        returnButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        //ホーム画面に戻る処理
+//        Button returnButton = findViewById(R.id.return_sub);
+//        returnButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
 
 
 
-        Button helpButton = findViewById(R.id.helpButton);
+        ImageButton helpButton = findViewById(R.id.helpButton);
 
         // ボタンタップでAlertを表示させる
         helpButton.setOnClickListener(new OnClickListener() {

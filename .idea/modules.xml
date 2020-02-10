@@ -20,6 +20,9 @@
       <module fileurl="file://$PROJECT_DIR$/examples-Plank.iml" filepath="$PROJECT_DIR$/examples-Plank.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/examples-app.iml" filepath="$PROJECT_DIR$/app/examples-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/examples-posenet.iml" filepath="$PROJECT_DIR$/posenet/examples-posenet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gin-AndroidStudioProjects-PlankZer0.iml" filepath="$PROJECT_DIR$/gin-AndroidStudioProjects-PlankZer0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/gin-AndroidStudioProjects-PlankZer0-app.iml" filepath="$PROJECT_DIR$/app/gin-AndroidStudioProjects-PlankZer0-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/posenet/gin-AndroidStudioProjects-PlankZer0-posenet.iml" filepath="$PROJECT_DIR$/posenet/gin-AndroidStudioProjects-PlankZer0-posenet.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/posenet.iml" filepath="$PROJECT_DIR$/posenet/posenet.iml" />
     </modules>
   </component>
