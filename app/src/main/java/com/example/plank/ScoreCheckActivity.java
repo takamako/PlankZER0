@@ -78,7 +78,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
 
         Cursor cursor = db.query(
                 "testdb",
-                new String[] { "date", "score" },
+                new String[] { "date", "score","level","sec" },
                 null,
                 null,
                 null,
@@ -112,10 +112,10 @@ public class ScoreCheckActivity extends AppCompatActivity{
                     point.setText(Integer.toString(cursor.getInt(1)));//スコア
                     TextView score = (TextView) tableRow.findViewById(R.id.rowtext3);
                     //    score.setText(Integer.toString(categoryPoint[i]));
-                    score.setText("score111");
+                    score.setText(cursor.getString(2));
                     TextView ave = (TextView) tableRow.findViewById(R.id.rowtext4);
                     // ave.setText(Integer.toString(averagePoint[i]));
-                    ave.setText("ave");
+                    ave.setText(Integer.toString(cursor.getInt(3)));
                     if ((i + 1) % 2 == 0) {
                         int color = getResources().getColor(R.color.colorPrimary);
                         name.setBackgroundColor(color);
