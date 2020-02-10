@@ -569,7 +569,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                     //現在の時刻
                     String date = getNowDate();
                     //return df.format(date);
-                    insertData(db, date,stop_count*2);
+                    insertData(db, date,stop_count*2,mil_count);
                 }
             }
 
@@ -586,12 +586,13 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         }
 
         //追加 dbにかきこみ
-        private void insertData(SQLiteDatabase db, String date, int score){
+        private void insertData(SQLiteDatabase db, String date, int score,double sec){
 
             ContentValues values = new ContentValues();
             values.put("date", date);
             values.put("score", score);
-
+            values.put("level", "上級者");
+            values.put("sec", sec);
             db.insert("testdb", null, values);
         }
 
