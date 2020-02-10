@@ -78,7 +78,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
 
         Cursor cursor = db.query(
                 "testdb",
-                new String[] { "date", "score" ,"level","sec"},
+                new String[] { "date", "score","level","sec" },
                 null,
                 null,
                 null,

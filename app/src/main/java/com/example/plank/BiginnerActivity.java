@@ -598,7 +598,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             ContentValues values = new ContentValues();
             values.put("date", date);
             values.put("score", score);
-            values.put("level", "初級者");
+
+            values.put("level", "初心者");
             values.put("sec", sec);
             db.insert("testdb", null, values);
         }

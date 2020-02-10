@@ -593,6 +593,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             values.put("score", score);
             values.put("level", "上級者");
             values.put("sec", sec);
+
             db.insert("testdb", null, values);
         }
 
