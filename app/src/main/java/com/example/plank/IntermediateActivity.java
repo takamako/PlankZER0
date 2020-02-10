@@ -488,7 +488,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
 
                     totalmil+=mil_count;
                     totalscore+=stop_count*2;
-                    textView.setText("合計スコア：" + totalscore + "\n合計" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
+                    textView.setText("合計スコア：" + totalscore + "\n" + String.valueOf((int)totalmil)+ "秒キープできたよ！");
                 }else{
 
 
