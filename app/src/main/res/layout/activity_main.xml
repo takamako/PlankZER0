@@ -7,131 +7,138 @@
     android:background="#00FFFFFF"
     tools:context=".MainActivity">
 
-
-    <androidx.gridlayout.widget.GridLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        app:columnCount="1"
-        app:rowCount="5"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <!--        <ImageView-->
-        <!--            android:id="@+id/image_view"-->
-        <!--            android:layout_width="350dp"-->
-        <!--            android:layout_height="250dp"-->
-        <!--            app:layout_column="0"-->
-        <!--            app:layout_columnSpan="0"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintHorizontal_bias="0.491"-->
-        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:layout_constraintVertical_bias="0.22"-->
-        <!--            app:layout_row="1"-->
-        <!--            app:layout_rowSpan="5"-->
-        <!--            tools:ignore="MissingConstraints" />-->
+        android:id="@+id/scrollView">
 
 
-        <ImageButton
-            android:id="@+id/ViewImg"
+        <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="32dp"
-            android:background="#2196F3"
-            android:fontFamily="sans-serif-black"
-            android:text="2人用"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_column="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.161"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.89"
-            app:layout_row="4"
-            app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            app:columnCount="1"
+            app:rowCount="5"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
-        <ImageButton
-            android:id="@+id/sensor_button"
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:layout_margin="8dp"
-            android:background="#FF9800"
-            android:fontFamily="sans-serif-black"
-            android:text="1人用"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_column="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.931"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.884"
-            app:layout_row="3"
-            app:srcCompat="@drawable/ic_videocam_off_black_24dp" />
-
-        <ImageButton
-            android:id="@+id/helpButton"
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:layout_margin="8dp"
-            android:background="#009688"
-            android:fontFamily="sans-serif-black"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_column="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_row="1"
-            app:srcCompat="@drawable/ic_live_help_black_24dp" />
+            <!--        <ImageView-->
+            <!--            android:id="@+id/image_view"-->
+            <!--            android:layout_width="350dp"-->
+            <!--            android:layout_height="250dp"-->
+            <!--            app:layout_column="0"-->
+            <!--            app:layout_columnSpan="0"-->
+            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--            app:layout_constraintHorizontal_bias="0.491"-->
+            <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--            app:layout_constraintRight_toRightOf="parent"-->
+            <!--            app:layout_constraintTop_toTopOf="parent"-->
+            <!--            app:layout_constraintVertical_bias="0.22"-->
+            <!--            app:layout_row="1"-->
+            <!--            app:layout_rowSpan="5"-->
+            <!--            tools:ignore="MissingConstraints" />-->
 
 
-        <ImageButton
-            android:id="@+id/QuestionnaireButton"
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:layout_margin="8dp"
-            android:background="#E2E91E63"
-            app:layout_column="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/helpButton"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.032"
-            app:layout_row="0"
-            app:srcCompat="@drawable/ic_local_post_office_black_24dp" />
+            <ImageButton
+                android:id="@+id/ViewImg"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="32dp"
+                android:background="#2196F3"
+                android:fontFamily="sans-serif-black"
+                android:text="2人用"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_column="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.161"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.89"
+                app:layout_row="4"
+                app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/imageButton2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="120dp"-->
-<!--            app:layout_column="0"-->
-<!--            app:layout_row="2"-->
-<!--            app:srcCompat="@drawable/action" />-->
+            <ImageButton
+                android:id="@+id/sensor_button"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:layout_margin="8dp"
+                android:background="#FF9800"
+                android:fontFamily="sans-serif-black"
+                android:text="1人用"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_column="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.931"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.884"
+                app:layout_row="3"
+                app:srcCompat="@drawable/ic_videocam_off_black_24dp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="16dp"
-            android:fontFamily="sans-serif-black"
-            android:text="PlankZER0"
-            android:textSize="68dp"
-            app:layout_column="0"
-            app:layout_row="2" />
+            <ImageButton
+                android:id="@+id/helpButton"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:layout_margin="8dp"
+                android:background="#009688"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_column="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_row="1"
+                app:srcCompat="@drawable/ic_live_help_black_24dp" />
 
-    </androidx.gridlayout.widget.GridLayout>
+
+            <ImageButton
+                android:id="@+id/QuestionnaireButton"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:layout_margin="8dp"
+                android:background="#E2E91E63"
+                app:layout_column="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/helpButton"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.032"
+                app:layout_row="0"
+                app:srcCompat="@drawable/ic_local_post_office_black_24dp" />
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/imageButton2"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="120dp"-->
+    <!--            app:layout_column="0"-->
+    <!--            app:layout_row="2"-->
+    <!--            app:srcCompat="@drawable/action" />-->
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="sans-serif-black"
+                android:text="PlankZER0"
+                android:textSize="68dp"
+                app:layout_column="0"
+                app:layout_row="2" />
+
+        </androidx.gridlayout.widget.GridLayout>
 
 
-    app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

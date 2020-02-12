@@ -7,6 +7,11 @@
     android:background="@color/colorPrimary"
     tools:context=".ImageActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
@@ -79,12 +84,12 @@
             app:layout_row="3"
             app:srcCompat="@drawable/ic_live_help_black_24dp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/ScoreCheckButton"
-            android:layout_width="270dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="#00BCD4"
+            android:layout_margin="8dp"
+            android:background="#E2E91E63"
             android:fontFamily="sans-serif-black"
             android:text="日々の記録"
             android:textSize="20sp"
@@ -93,8 +98,11 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.368" />
+            app:layout_constraintVertical_bias="0.368"
+            app:srcCompat="@drawable/ic_memory_black_24dp" />
 
     </androidx.gridlayout.widget.GridLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
