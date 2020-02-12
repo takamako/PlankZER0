@@ -1,5 +1,6 @@
+[Android端末にインストール](https://drive.google.com/open?id=1f81UBDmH4cshi4L3_VLPpsDE2K6xx1Nr)
 
-# enpit2019_v.i.p
+# PlankZER0
 
 enPiT2019のリポジトリです。
 
