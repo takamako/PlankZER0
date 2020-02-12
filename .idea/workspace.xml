@@ -13,24 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b981ed02-1816-4cca-9106-7fdbd038f8d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_event_note_black_24dp.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_advanced.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_advanced.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_biginner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_biginner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_image.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_image.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_compare.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_compare.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_intermediate.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_intermediate.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_opencv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_opencv.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_scorecheck.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_scorecheck.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugAssets/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/incremental/packageDebugResources/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posenet/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/posenet/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,18 +44,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/plank/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_help_main.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
@@ -88,21 +63,31 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
+            <state relative-caret-position="156">
+              <caret line="293" column="68" lean-forward="true" selection-start-line="293" selection-start-column="68" selection-end-line="293" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_compare.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="429">
+              <caret line="61" column="33" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_intermediate.xml">
           <provider selected="true" editor-type-id="android-designer2" />
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="2340">
-              <caret line="156" selection-start-line="156" selection-end-line="159" />
+            <state relative-caret-position="2310">
+              <caret line="154" selection-start-line="154" selection-end-line="157" />
             </state>
           </provider>
         </entry>
@@ -158,7 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>draw</find>
       <find>log</find>
       <find>context</find>
       <find>hei</find>
@@ -188,6 +172,7 @@
       <find>ic_menu_camera</find>
       <find>head</find>
       <find>@drawable/button_state</find>
+      <find>front</find>
     </findStrings>
     <replaceStrings>
       <replace>#00BCD4</replace>
@@ -199,7 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/ConfirmationDialog.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/TestActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_help2.xml" />
@@ -238,8 +222,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/plank/ImageActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_memory_black_24dp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_compare.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_intermediate.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_scorecheck.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/table_row.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/plank/TestOpenHelper.java" />
@@ -247,9 +229,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/plank/SensorActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sensor.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_image.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_advanced.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_opencv.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_compare.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_advanced.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_biginner.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_intermediate.xml" />
       </list>
     </option>
   </component>
@@ -304,8 +289,16 @@
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="posenet" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Plank" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PlankZer0" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -804,14 +797,6 @@
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_compare.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="78" column="59" selection-start-line="78" selection-start-column="59" selection-end-line="78" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_memory_black_24dp.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -884,14 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_intermediate.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="2340">
-          <caret line="156" selection-start-line="156" selection-end-line="159" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_scorecheck.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
@@ -904,14 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_biginner.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_advanced.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_opencv.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -922,8 +891,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
+        <state relative-caret-position="156">
+          <caret line="293" column="68" lean-forward="true" selection-start-line="293" selection-start-column="68" selection-end-line="293" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_compare.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="61" column="33" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_advanced.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_biginner.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_intermediate.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="154" selection-start-line="154" selection-end-line="157" />
         </state>
       </provider>
     </entry>

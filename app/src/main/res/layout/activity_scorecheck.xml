@@ -3,24 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="#8DFFC107"
     tools:context=".ScoreCheckActivity">
 
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="0" >
+        android:stretchColumns="0">
 
         <TextView
-        android:id="@+id/text_view"
-        android:layout_width="354dp"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#111111"
-        android:textSize="22sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="123dp" />
+            android:id="@+id/text_view"
+            android:layout_width="354dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#111111"
+            android:textSize="22sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="123dp" />
 
         <!--
         <Button
