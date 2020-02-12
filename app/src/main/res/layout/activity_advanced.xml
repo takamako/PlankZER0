@@ -2,9 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:padding="16dp"
-    >
+    android:background="#D5BDBD"
+    android:padding="16dp">
 
 
     <LinearLayout
@@ -21,9 +20,9 @@
                 android:id="@+id/return_button_sensor"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:autoSizeTextType="uniform"
                 android:layout_margin="10dp"
-                android:background="@drawable/button_state"
+                android:autoSizeTextType="uniform"
+                android:background="#00BCD4"
                 android:fontFamily="sans-serif-black"
                 android:text="戻る"
                 android:textSize="14sp" />
@@ -32,8 +31,7 @@
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
                 android:layout_height="197dp"
-                android:layout_weight="3"
-                />
+                android:layout_weight="3" />
 
             <TextView
                 android:id="@+id/text_view"
@@ -118,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginLeft="1dp"
-                android:background="@drawable/button_state"
+                android:background="#00BCD4"
                 android:enabled="true"
                 android:fontFamily="sans-serif-black"
                 android:text="セットを追加"
@@ -136,7 +134,7 @@
                 android:layout_width="148dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/button_state"
+                android:background="#00BCD4"
                 android:enabled="true"
                 android:fontFamily="sans-serif-black"
                 android:text="スタート"
@@ -147,7 +145,7 @@
                 android:layout_width="148dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/button_state"
+                android:background="#00BCD4"
                 android:fontFamily="sans-serif-black"
                 android:text="リセット"
                 android:textSize="18sp" />

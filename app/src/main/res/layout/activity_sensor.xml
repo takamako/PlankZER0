@@ -8,100 +8,101 @@
     tools:context=".ImageActivity">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView">
+        android:background="#FFFFFF">
 
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        app:columnCount="1"
-        app:rowCount="5"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <Button
-            android:id="@+id/biginnermode_button"
+        <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_margin="20dp"
-            android:background="#00BCD4"
-            android:fontFamily="sans-serif-black"
-            android:text="初心者モード"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            app:columnCount="1"
+            app:rowCount="5"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
-        <Button
-            android:id="@+id/intermediatemode_button"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_margin="20dp"
-            android:background="#00BCD4"
-            android:fontFamily="sans-serif-black"
-            android:text="中級者モード"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.475"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.677" />
+            <Button
+                android:id="@+id/biginnermode_button"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="8dp"
+                android:background="#00BCD4"
+                android:fontFamily="sans-serif-black"
+                android:text="初心者モード"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/advancedmode_button"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_margin="20dp"
-            android:background="#00BCD4"
-            android:fontFamily="sans-serif-black"
-            android:text="上級者モード"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.462"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.846" />
+            <Button
+                android:id="@+id/intermediatemode_button"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="8dp"
+                android:background="#00BCD4"
+                android:fontFamily="sans-serif-black"
+                android:text="中級者モード"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.475"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.677" />
 
-        <ImageButton
-            android:id="@+id/helpButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#009688"
-            android:fontFamily="sans-serif-black"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_column="0"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_row="3"
-            app:srcCompat="@drawable/ic_live_help_black_24dp" />
+            <Button
+                android:id="@+id/advancedmode_button"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="8dp"
+                android:background="#00BCD4"
+                android:fontFamily="sans-serif-black"
+                android:text="上級者モード"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.846" />
 
-        <ImageButton
-            android:id="@+id/ScoreCheckButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#E2E91E63"
-            android:fontFamily="sans-serif-black"
-            android:text="日々の記録"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.475"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.368"
-            app:srcCompat="@drawable/ic_memory_black_24dp" />
+            <ImageButton
+                android:id="@+id/helpButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#009688"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_column="0"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_row="3"
+                app:srcCompat="@drawable/ic_live_help_black_24dp" />
 
-    </androidx.gridlayout.widget.GridLayout>
+            <ImageButton
+                android:id="@+id/ScoreCheckButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#4CAF50"
+                android:fontFamily="sans-serif-black"
+                android:text="日々の記録"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.475"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.368"
+                app:srcCompat="@drawable/ic_event_note_black_24dp" />
+
+        </androidx.gridlayout.widget.GridLayout>
 
     </ScrollView>
 

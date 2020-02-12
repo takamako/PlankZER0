@@ -28,7 +28,7 @@
             android:layout_width="367dp"
             android:layout_height="63dp"
             android:layout_margin="20dp"
-            android:background="@drawable/button_state"
+            android:background="#00BCD4"
             android:fontFamily="sans-serif-black"
             android:text="今までの結果+下段にtest:1"
             android:textColor="#009688"

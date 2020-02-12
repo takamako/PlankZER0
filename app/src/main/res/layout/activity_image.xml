@@ -8,9 +8,10 @@
     tools:context=".ImageActivity">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView">
+        android:background="#FFFFFF">
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                 android:id="@+id/opencv_button"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
-                android:layout_margin="20dp"
+                android:layout_margin="8dp"
                 android:background="#00BCD4"
                 android:fontFamily="sans-serif-black"
                 android:text="姿勢の崩れを検知する"
@@ -44,7 +45,7 @@
                 android:id="@+id/image_compare"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
-                android:layout_margin="20dp"
+                android:layout_margin="8dp"
                 android:background="#00BCD4"
                 android:fontFamily="sans-serif-black"
                 android:text="フォームを比較する"
@@ -60,10 +61,10 @@
                 android:id="@+id/pose_button"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
-                android:layout_margin="20dp"
+                android:layout_margin="8dp"
                 android:background="#00BCD4"
                 android:fontFamily="sans-serif-black"
-                android:text="姿勢推定(β)"
+                android:text="姿勢推定(βeta)"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
