@@ -5,7 +5,7 @@ import org.tensorflow.lite.examples.posenet.lib.BodyPart
 import org.tensorflow.lite.examples.posenet.lib.Person
 import java.lang.Float.min
 
-fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int):Boolean{
+fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int): Double {
     //肩，腰，膝の三点から角度計算して姿勢判定
     var judg_flag:Boolean =false
     class sholder{
@@ -20,28 +20,28 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
         var x=0F
         var y=0F
     }
-    var sholderX :Float = 0F
-    var sholderY :Float = 1000000F
-    var hipX:Float = 0F
-    var hipY:Float = 1000000F
-    var kneeX:Float = 0F
-    var kneeY:Float = 1000000F
+    var sholderX :Float = 1000000F
+    var sholderY :Float = 0F
+    var hipX:Float = 1000000F
+    var hipY:Float = 0F
+    var kneeX:Float = 1000000F
+    var kneeY:Float = 0F
     //if(person.keyPoints.containsAll())
     for(keyPoint in person.keyPoints){
         var body =keyPoint.bodyPart
         val position = keyPoint.position
 
         if(body== BodyPart.LEFT_SHOULDER || body== BodyPart.RIGHT_SHOULDER) {
-            sholderX = position.x.toFloat() * widthRatio + left
-            sholderY = minOf(sholderY,position.y.toFloat() * heightRatio + top)
+            sholderX = minOf(sholderX,position.x.toFloat() * widthRatio + left)
+            sholderY = position.y.toFloat() * heightRatio + top
         }
         else if(body== BodyPart.LEFT_HIP || body== BodyPart.RIGHT_HIP) {
-            hipX = position.x.toFloat() * widthRatio + left
-            hipY = minOf(hipY,position.y.toFloat() * heightRatio + top)
+            hipX = minOf(hipX,position.x.toFloat() * widthRatio + left)
+            hipY = position.y.toFloat() * heightRatio + top
         }
         else if(body== BodyPart.LEFT_KNEE || body== BodyPart.RIGHT_KNEE) {
-            kneeX = position.x.toFloat() * widthRatio + left
-            kneeY = minOf(kneeY,position.y.toFloat() * heightRatio + top)
+            kneeX = minOf(kneeX,position.x.toFloat() * widthRatio + left)
+            kneeY = position.y.toFloat() * heightRatio + top
         }
 
 
@@ -52,7 +52,7 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
     val hipToKneeY = hipY-kneeY
     val sholderToKneeX = sholderX - kneeX
     val sholerToKneeY = sholderY -kneeY
-    val babc = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY;
+    val babc = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY
     val ban = (sholderToHipX * sholderToHipX) + (hipToKneeX * hipToKneeX)
     val bcn = (sholderToHipY * sholderToHipY) + (hipToKneeY * hipToKneeY)
     val radian = Math.acos(babc / (Math.sqrt((ban * bcn).toDouble())))
@@ -65,5 +65,6 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
 
 
 
-    return judg_flag
+//    return judg_flag
+    return angle
 }

@@ -543,7 +543,7 @@ class PosenetActivity :
     val heightRatio = screenHeight.toFloat() / MODEL_HEIGHT
 
     /**プランク判定*/
-    plankJudg(person,widthRatio,heightRatio,top,left)
+    val angle= plankJudg(person,widthRatio,heightRatio,top,left)
 
       // Draw key points over the image.
     for (keyPoint in person.keyPoints) {
@@ -552,7 +552,7 @@ class PosenetActivity :
         val adjustedX: Float = position.x.toFloat() * widthRatio + left
         val adjustedY: Float = position.y.toFloat() * heightRatio + top
         canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
-        Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
+//        Log.d("xxxxxxxxx", "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 //        Log.d("xxxxxxxxx" , "keypoints: ${keyPoint.bodyPart}  x=$adjustedX y=$adjustedY")
 
       }
@@ -573,6 +573,13 @@ class PosenetActivity :
         )
       }
     }
+
+    canvas.drawText(
+      "Amgle: %.2f".format(angle),
+      (1.0f * widthRatio),
+      (5.0f * heightRatio + bottom),
+      paint
+    )
 
     canvas.drawText(
       "Score: %.2f".format(person.score),
@@ -601,7 +608,13 @@ class PosenetActivity :
   /** Process image using Posenet library.   */
   private fun processImage(bitmap: Bitmap) {
     // Crop bitmap.
-    val croppedBitmap = cropBitmap(bitmap)
+    val rotateMatrix = Matrix()
+    rotateMatrix.postRotate(0.0f)
+
+    val rotatedBitmap = Bitmap.createBitmap(
+      bitmap, 0, 0,  previewHeight,previewWidth,
+      rotateMatrix, true)
+    val croppedBitmap = cropBitmap(rotatedBitmap)
 
     // Created scaled version of bitmap for model input.
     val scaledBitmap = Bitmap.createScaledBitmap(croppedBitmap, MODEL_WIDTH, MODEL_HEIGHT, true)

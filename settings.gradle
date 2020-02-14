@@ -1,3 +1,2 @@
 include ':app', ':posenet'
-include ':app'
 rootProject.name='PlankZer0'

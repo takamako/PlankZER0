@@ -16,6 +16,7 @@
 
 package org.tensorflow.lite.examples.posenet
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 //import android.support.v7.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,8 @@ class CameraActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+//    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
     setContentView(R.layout.activity_camera)
     savedInstanceState ?: supportFragmentManager.beginTransaction()
       .replace(R.id.container, PosenetActivity())
