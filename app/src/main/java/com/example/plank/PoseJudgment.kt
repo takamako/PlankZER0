@@ -4,6 +4,9 @@ import android.util.Log
 import org.tensorflow.lite.examples.posenet.lib.BodyPart
 import org.tensorflow.lite.examples.posenet.lib.Person
 import java.lang.Float.min
+import java.lang.Math.atan2
+import java.lang.Math.floor
+import kotlin.math.atan2
 
 fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int): Double {
     //肩，腰，膝の三点から角度計算して姿勢判定
@@ -46,25 +49,47 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
 
 
     }
-    val sholderToHipX=sholderX-hipX
-    val sholderToHipY =sholderY-hipY
+    val sholderToHipX=hipX-sholderX
+    val sholderToHipY =hipY-sholderY
     val hipToKneeX =hipX-kneeX
     val hipToKneeY = hipY-kneeY
     val sholderToKneeX = sholderX - kneeX
     val sholerToKneeY = sholderY -kneeY
-    val babc = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY
-    val ban = (sholderToHipX * sholderToHipX) + (hipToKneeX * hipToKneeX)
-    val bcn = (sholderToHipY * sholderToHipY) + (hipToKneeY * hipToKneeY)
-    val radian = Math.acos(babc / (Math.sqrt((ban * bcn).toDouble())))
-    val angle = radian * 180 / Math.PI  // 結果（ラジアンから角度に変換）
-    Log.d("xxxxxxxxx", "angle:  $angle")
-//    Log.d("xxxxxxxxx", "sholder:  x=$sholderX y=$sholderY")
-//    Log.d("xxxxxxxxx", "hip:  x=$hipX y=$hipY")
-//    Log.d("xxxxxxxxx", "knee:  x=$kneeX y=$kneeY")
 
+    val dot = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY// dot product
+    val cross = sholderToHipX * hipToKneeY- sholderToHipY * hipToKneeX // cross product
 
+    val alpha = atan2(cross, dot)
 
+    return floor(alpha * 180.0 / Math.PI + 0.5)
 
-//    return judg_flag
-    return angle
+//    val babc = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY
+//    val ban = (sholderToHipX * sholderToHipX) + (hipToKneeX * hipToKneeX)
+//    val bcn = (sholderToHipY * sholderToHipY) + (hipToKneeY * hipToKneeY)
+//    val radian = Math.acos(babc / (Math.sqrt((ban * bcn).toDouble())))
+//    val angle = radian * 180 / Math.PI  // 結果（ラジアンから角度に変換）
+//    Log.d("xxxxxxxxx", "angle:  $angle")
+////    Log.d("xxxxxxxxx", "sholder:  x=$sholderX y=$sholderY")
+////    Log.d("xxxxxxxxx", "hip:  x=$hipX y=$hipY")
+////    Log.d("xxxxxxxxx", "knee:  x=$kneeX y=$kneeY")
+//
+//
+//
+//
+//
+////    return judg_flag
+//    return angle
 }
+
+//int CGlEngineFunctions::GetAngleABC( POINTFLOAT a, POINTFLOAT b, POINTFLOAT c )
+//{
+//    POINTFLOAT ab = { b.x - a.x, b.y - a.y };
+//    POINTFLOAT cb = { b.x - c.x, b.y - c.y };
+//
+//    float dot = (ab.x * cb.x + ab.y * cb.y); // dot product
+//    float cross = (ab.x * cb.y - ab.y * cb.x); // cross product
+//
+//    float alpha = atan2(cross, dot);
+//
+//    return (int) floor(alpha * 180. / pi + 0.5);
+//}
