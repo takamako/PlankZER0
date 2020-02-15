@@ -26,6 +26,9 @@
       <module fileurl="file://$PROJECT_DIR$/gin-AndroidStudioProjects-PlankZer0.iml" filepath="$PROJECT_DIR$/gin-AndroidStudioProjects-PlankZer0.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/gin-AndroidStudioProjects-PlankZer0-app.iml" filepath="$PROJECT_DIR$/app/gin-AndroidStudioProjects-PlankZer0-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/gin-AndroidStudioProjects-PlankZer0-posenet.iml" filepath="$PROJECT_DIR$/posenet/gin-AndroidStudioProjects-PlankZer0-posenet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/makoto-AndroidStudioProjects-PlankZer0.iml" filepath="$PROJECT_DIR$/makoto-AndroidStudioProjects-PlankZer0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/makoto-AndroidStudioProjects-PlankZer0-app.iml" filepath="$PROJECT_DIR$/app/makoto-AndroidStudioProjects-PlankZer0-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/posenet/makoto-AndroidStudioProjects-PlankZer0-posenet.iml" filepath="$PROJECT_DIR$/posenet/makoto-AndroidStudioProjects-PlankZer0-posenet.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/posenet.iml" filepath="$PROJECT_DIR$/posenet/posenet.iml" />
     </modules>
   </component>
