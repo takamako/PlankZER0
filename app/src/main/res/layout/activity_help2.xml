@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="_________________________________" />
+            android:text="___________________________________________________" />
 
         <TextView
             android:layout_width="match_parent"
@@ -33,6 +33,10 @@
             android:layout_height="300dp"
             android:src="@drawable/help8" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="___________________________________________________" />
 
         <TextView
             android:layout_width="match_parent"
@@ -77,7 +81,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="" />
+            android:text="___________________________________________________" />
 
         <TextView
             android:layout_width="match_parent"
@@ -135,10 +139,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:text="" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="※このモードでは画面内の輝度の変化で動きを判定しています。そのため、姿勢の変化だけでなく画面内で何かが動くだけで姿勢が崩れたと判定されることがあります。ご使用の際は、スマートフォンをできるだけ動かさずにお使いください。"
             android:textColor="#111111"
             android:textSize="15sp" />
-
 
     </LinearLayout>
 </ScrollView>

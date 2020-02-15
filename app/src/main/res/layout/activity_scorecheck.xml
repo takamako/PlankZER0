@@ -43,7 +43,7 @@
                     android:paddingTop="2dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="2dp"
-                    android:text="日時"
+                    android:text="日付"
                     android:textColor="@color/colorAccent"
                     android:textSize="24sp" />
 

@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="____________________________________" />
+            android:text="___________________________________________________" />
 
         <TextView
             android:layout_width="match_parent"
@@ -35,16 +35,20 @@
             android:textColor="#111111"
             android:textSize="18sp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="___________________________________________________" />
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="238dp"
+            android:layout_height="280dp"
             android:src="@drawable/help2" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="初心者モードの初期画面の説明です。"
+            android:text="初心者モードの初期画面の説明"
             android:textColor="#111111"
             android:textSize="18sp" />
 
@@ -65,12 +69,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="____________________________________" />
+            android:text="___________________________________________________" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="トレーニングを終えた後の状態です。"
+            android:text="トレーニング後の状態"
             android:textColor="#111111"
             android:textSize="18sp" />
 
@@ -89,7 +93,31 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="____________________________________" />
+            android:text="___________________________________________________" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="記録モードの説明"
+            android:textColor="#111111"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/help14" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="トレーニングをした日付、その時のスコア、選択したモード、姿勢をキープできた秒数が上から記録されていきます。"
+            android:textColor="#111111"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="___________________________________________________" />
 
         <TextView
             android:layout_width="match_parent"
