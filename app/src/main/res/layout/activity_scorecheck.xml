@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8DFFC107"
+    android:background="@color/colorPrimaryDark"
     tools:context=".ScoreCheckActivity">
 
     <TableLayout
@@ -22,20 +22,6 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="123dp" />
 
-        <!--
-        <Button
-            android:id="@+id/button_read"
-            android:layout_width="367dp"
-            android:layout_height="63dp"
-            android:layout_margin="20dp"
-            android:background="#00BCD4"
-            android:fontFamily="sans-serif-black"
-            android:text="今までの結果+下段にtest:1"
-            android:textColor="#009688"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
-        -->
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="match_parent"
@@ -49,17 +35,17 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/color_blue"
                     android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingTop="2dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="2dp"
-                    android:text="日時"
+                    android:text="日付"
                     android:textColor="@color/colorAccent"
-                    android:textSize="16sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
@@ -67,7 +53,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@color/color_blue"
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingTop="2dp"
@@ -75,14 +61,14 @@
                 android:paddingBottom="2dp"
                 android:text="スコア"
                 android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/color_blue"
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingTop="2dp"
@@ -90,14 +76,14 @@
                 android:paddingBottom="2dp"
                 android:text="モード"
                 android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/color_blue"
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingTop="2dp"
@@ -105,7 +91,7 @@
                 android:paddingBottom="2dp"
                 android:text="キープ"
                 android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
 
         </TableRow>
     </TableLayout>

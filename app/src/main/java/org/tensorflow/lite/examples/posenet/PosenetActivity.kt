@@ -502,7 +502,7 @@ class PosenetActivity :
   /** Set the paint color and size.    */
   private fun setPaint() {
     paint.color = Color.CYAN
-    paint.textSize = 380.0f
+    paint.textSize = 220.0f
     paint.strokeWidth = 8.0f
   }
 
