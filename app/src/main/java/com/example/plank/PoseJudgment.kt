@@ -29,6 +29,8 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
     var hipY:Float = 0F
     var kneeX:Float = 1000000F
     var kneeY:Float = 0F
+    var ankleX:Float = 1000000F
+    var ankleY:Float = 0F
     //if(person.keyPoints.containsAll())
     for(keyPoint in person.keyPoints){
         var body =keyPoint.bodyPart
@@ -46,6 +48,10 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
             kneeX = minOf(kneeX,position.x.toFloat() * widthRatio + left)
             kneeY = position.y.toFloat() * heightRatio + top
         }
+        else if(body== BodyPart.LEFT_ANKLE || body== BodyPart.RIGHT_ANKLE) {
+            ankleX = minOf(kneeX,position.x.toFloat() * widthRatio + left)
+            ankleY = position.y.toFloat() * heightRatio + top
+        }
 
 
     }
@@ -53,8 +59,8 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
     val sholderToHipY =hipY-sholderY
     val hipToKneeX =hipX-kneeX
     val hipToKneeY = hipY-kneeY
-    val sholderToKneeX = sholderX - kneeX
-    val sholerToKneeY = sholderY -kneeY
+    val sholderToAnkleX = sholderX - kneeX
+    val sholderToAnkleY = sholderY -kneeY
 
     val dot = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY// dot product
     val cross = sholderToHipX * hipToKneeY- sholderToHipY * hipToKneeX // cross product
@@ -69,15 +75,15 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
 //    val radian = Math.acos(babc / (Math.sqrt((ban * bcn).toDouble())))
 //    val angle = radian * 180 / Math.PI  // 結果（ラジアンから角度に変換）
 //    Log.d("xxxxxxxxx", "angle:  $angle")
-////    Log.d("xxxxxxxxx", "sholder:  x=$sholderX y=$sholderY")
-////    Log.d("xxxxxxxxx", "hip:  x=$hipX y=$hipY")
-////    Log.d("xxxxxxxxx", "knee:  x=$kneeX y=$kneeY")
-//
-//
-//
-//
-//
-////    return judg_flag
+//    Log.d("xxxxxxxxx", "sholder:  x=$sholderX y=$sholderY")
+//    Log.d("xxxxxxxxx", "hip:  x=$hipX y=$hipY")
+//    Log.d("xxxxxxxxx", "knee:  x=$kneeX y=$kneeY")
+
+
+
+
+
+//    return judg_flag
 //    return angle
 }
 

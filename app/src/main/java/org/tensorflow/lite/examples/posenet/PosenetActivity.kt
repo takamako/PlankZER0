@@ -290,12 +290,10 @@ class PosenetActivity :
 
         // We don't use a front facing camera in this sample.
         val cameraDirection = characteristics.get(CameraCharacteristics.LENS_FACING)
-        if (cameraDirection != null &&
-          cameraDirection == CameraCharacteristics.LENS_FACING_FRONT
-//            cameraDirection == CameraCharacteristics.LENS_FACING_BACK
-
-                ) {
-          continue
+        if (cameraDirection != null&&
+//          cameraDirection == CameraCharacteristics.LENS_FACING_FRONT
+          cameraDirection == CameraCharacteristics.LENS_FACING_BACK){
+            continue
         }
 
         previewSize = Size(PREVIEW_WIDTH, PREVIEW_HEIGHT)
@@ -447,6 +445,8 @@ class PosenetActivity :
       // Create rotated version for portrait display
       val rotateMatrix = Matrix()
       rotateMatrix.postRotate(90.0f)
+      rotateMatrix.preScale(1.0f, -1.0f)
+
 
       val rotatedBitmap = Bitmap.createBitmap(
         imageBitmap, 0, 0, previewWidth, previewHeight,
@@ -501,8 +501,8 @@ class PosenetActivity :
 
   /** Set the paint color and size.    */
   private fun setPaint() {
-    paint.color = Color.RED
-    paint.textSize = 80.0f
+    paint.color = Color.CYAN
+    paint.textSize = 380.0f
     paint.strokeWidth = 8.0f
   }
 
@@ -520,7 +520,8 @@ class PosenetActivity :
       screenWidth = canvas.width
       screenHeight = canvas.height-canvas.width/3
       left = 0
-      top=0
+      top=canvas.width/3
+//      top=0
 //      top = (canvas.height - canvas.width) / 2
     } else {
       screenWidth = canvas.height
@@ -557,7 +558,6 @@ class PosenetActivity :
 
       }
     }
-//    }
 
     for (line in bodyJoints) {
       if (
@@ -574,31 +574,31 @@ class PosenetActivity :
       }
     }
 
-    canvas.drawText(
-      "Amgle: %.2f".format(angle),
-      (1.0f * widthRatio),
-      (5.0f * heightRatio + bottom),
-      paint
-    )
+//    canvas.drawText(
+//      "Amgle: %.2f".format(angle),
+//      (1.0f * widthRatio),
+//      (5.0f * heightRatio + bottom),
+//      paint
+//    )
 
     canvas.drawText(
       "Score: %.2f".format(person.score),
       (15.0f * widthRatio),
-      (20.0f * heightRatio + bottom),
+      (20.0f * heightRatio),
       paint
     )
-    canvas.drawText(
-      "Device: %s".format(posenet.device),
-      (15.0f * widthRatio),
-      (35.0f * heightRatio + bottom),
-      paint
-    )
-    canvas.drawText(
-      "Time: %.2f ms".format(posenet.lastInferenceTimeNanos * 1.0f / 1_000_000),
-      (15.0f * widthRatio),
-      (50.0f * heightRatio + bottom),
-      paint
-    )
+//    canvas.drawText(
+//      "Device: %s".format(posenet.device),
+//      (15.0f * widthRatio),
+//      (35.0f * heightRatio + bottom),
+//      paint
+//    )
+//    canvas.drawText(
+//      "Time: %.2f ms".format(posenet.lastInferenceTimeNanos * 1.0f / 1_000_000),
+//      (15.0f * widthRatio),
+//      (50.0f * heightRatio + bottom),
+//      paint
+//    )
 
 
     // Draw!
@@ -607,14 +607,17 @@ class PosenetActivity :
 
   /** Process image using Posenet library.   */
   private fun processImage(bitmap: Bitmap) {
-    // Crop bitmap.
-    val rotateMatrix = Matrix()
-    rotateMatrix.postRotate(0.0f)
 
-    val rotatedBitmap = Bitmap.createBitmap(
-      bitmap, 0, 0,  previewHeight,previewWidth,
-      rotateMatrix, true)
-    val croppedBitmap = cropBitmap(rotatedBitmap)
+
+//    val rotateMatrix = Matrix()
+////    rotateMatrix.preScale(1.0F, -1.0F)
+//    rotateMatrix.postRotate(0.0f)
+//    val bitmap = Bitmap.createBitmap(
+//      bitmap, 0, 0,  previewHeight,previewWidth,
+//      rotateMatrix, true)
+
+    // Crop bitmap.
+    val croppedBitmap = cropBitmap(bitmap)
 
     // Created scaled version of bitmap for model input.
     val scaledBitmap = Bitmap.createScaledBitmap(croppedBitmap, MODEL_WIDTH, MODEL_HEIGHT, true)
