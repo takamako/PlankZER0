@@ -86,7 +86,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
                 null
         );
 
-        cursor.moveToFirst();
+        cursor.moveToLast();
 
         StringBuilder sbuilder = new StringBuilder();
 
@@ -129,7 +129,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
                 }
             categoryNum = cursor.getCount();
 
-            cursor.moveToNext();
+            cursor.moveToPrevious();
         }
 
         dataNum=cursor.getCount();
