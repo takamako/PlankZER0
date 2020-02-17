@@ -13,9 +13,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b981ed02-1816-4cca-9106-7fdbd038f8d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/plank/PoseJudgment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/plank/PoseJudgment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/how2use.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_image.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_image.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,11 +42,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="107" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="107" selection-end-column="21" />
+            <state relative-caret-position="235">
+              <caret line="239" column="19" lean-forward="true" selection-start-line="239" selection-start-column="19" selection-end-line="239" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="45" column="10" lean-forward="true" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/plank/BiginnerActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="687" column="39" selection-start-line="687" selection-start-column="18" selection-end-line="687" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -81,7 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>48</find>
       <find>640</find>
       <find>PREVIEW_WIDTH</find>
       <find>previewSize</find>
@@ -111,6 +129,7 @@
       <find>co</find>
       <find>min</find>
       <find>draw</find>
+      <find>onOpened</find>
     </findStrings>
     <replaceStrings>
       <replace>#00BCD4</replace>
@@ -171,11 +190,11 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/posenet/src/main/java/org/tensorflow/lite/examples/posenet/lib/Posenet.kt" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_posenet.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_image.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/plank/PoseJudgment.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt" />
       </list>
     </option>
   </component>
@@ -349,7 +368,8 @@
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="posenet" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Plank" type="b2602c69:ProjectViewProjectNode" />
@@ -358,7 +378,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Plank" type="b2602c69:ProjectViewProjectNode" />
@@ -415,7 +434,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -723,7 +742,7 @@
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.3583691" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3583691" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -731,7 +750,7 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" weight="0.3297568" />
       <window_info id="Capture Tool" order="8" />
-      <window_info active="true" anchor="bottom" id="Run" order="0" sideWeight="0.53539824" visible="true" weight="0.3306011" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.53539824" weight="0.3306011" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49785408" weight="0.329235" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49785408" weight="0.329235" />
@@ -999,13 +1018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/plank/OpencvActivityKt.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1045,13 +1057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/plank/BiginnerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="155" column="33" lean-forward="true" selection-start-line="155" selection-end-line="156" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_image.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
@@ -1068,8 +1073,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/PosenetActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="107" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="107" selection-end-column="21" />
+        <state relative-caret-position="235">
+          <caret line="239" column="19" lean-forward="true" selection-start-line="239" selection-start-column="19" selection-end-line="239" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/plank/BiginnerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="687" column="39" selection-start-line="687" selection-start-column="18" selection-end-line="687" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/tensorflow/lite/examples/posenet/CameraActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="45" column="10" lean-forward="true" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
         </state>
       </provider>
     </entry>

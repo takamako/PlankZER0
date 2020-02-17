@@ -21,6 +21,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -169,6 +170,8 @@ class PosenetActivity :
 
   /** [CameraDevice.StateCallback] is called when [CameraDevice] changes its state.   */
   private val stateCallback = object : CameraDevice.StateCallback() {
+
+
 
     override fun onOpened(cameraDevice: CameraDevice) {
       cameraOpenCloseLock.release()

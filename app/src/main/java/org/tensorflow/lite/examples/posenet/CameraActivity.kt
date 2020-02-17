@@ -16,8 +16,13 @@
 
 package org.tensorflow.lite.examples.posenet
 
+import android.app.AlertDialog
+import android.app.ProgressDialog.show
+import android.content.DialogInterface
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.Toast
 //import android.support.v7.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatActivity
 import com.example.plank.R
@@ -27,7 +32,21 @@ class CameraActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 //    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-
+    AlertDialog.Builder(this).apply {
+      val imageView = ImageView(context)
+      imageView.setImageResource(R.drawable.how2use)
+      imageView.scaleType = ImageView.ScaleType.FIT_XY
+      imageView.adjustViewBounds = true
+      setView(  imageView )
+//      setTitle("Title")
+//      setMessage("Message")
+//      setPositiveButton("OK", DialogInterface.OnClickListener { _, _ ->
+//        // OKをタップしたときの処理
+//        Toast.makeText(context, "Dialog OK", Toast.LENGTH_LONG).show()
+//      })
+//      setNegativeButton("Cancel", null)
+      show()
+    }
     setContentView(R.layout.activity_camera)
     savedInstanceState ?: supportFragmentManager.beginTransaction()
       .replace(R.id.container, PosenetActivity())
