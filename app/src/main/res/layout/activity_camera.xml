@@ -14,9 +14,20 @@
  limitations under the License.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="org.tensorflow.lite.examples.posenet.CameraActivity" />
+    tools:context="org.tensorflow.lite.examples.posenet.CameraActivity" >
+
+    <ImageButton
+        android:id="@+id/helpPose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="-90"
+        android:translationZ="4dp"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+</FrameLayout>
+

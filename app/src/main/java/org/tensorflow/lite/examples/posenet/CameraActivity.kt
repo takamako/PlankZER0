@@ -19,19 +19,23 @@ package org.tensorflow.lite.examples.posenet
 import android.app.AlertDialog
 import android.app.ProgressDialog.show
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 //import android.support.v7.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatActivity
+import com.example.plank.CompareActivity
+import com.example.plank.ImageActivity
 import com.example.plank.R
 
 class CameraActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-//    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+  fun showHelp(){
     AlertDialog.Builder(this).apply {
       val imageView = ImageView(context)
       imageView.setImageResource(R.drawable.how2use)
@@ -47,9 +51,23 @@ class CameraActivity : AppCompatActivity() {
 //      setNegativeButton("Cancel", null)
       show()
     }
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+//    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
+    showHelp()
+
     setContentView(R.layout.activity_camera)
     savedInstanceState ?: supportFragmentManager.beginTransaction()
       .replace(R.id.container, PosenetActivity())
       .commit()
+
+    val PhotoButton = findViewById<ImageButton>(R.id.helpPose)
+    PhotoButton.setOnClickListener {
+      showHelp()
+    }
+
   }
 }
