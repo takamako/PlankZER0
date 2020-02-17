@@ -39,13 +39,7 @@
       android:layout_marginBottom="0dp"
       android:background="#00CCBEBE" />
 
-<!--  <ImageButton-->
-<!--      android:id="@+id/helpPose"-->
-<!--      android:layout_width="wrap_content"-->
-<!--      android:layout_height="wrap_content"-->
-<!--      android:rotation="-90"-->
-<!--      android:translationZ="2dp"-->
-<!--      app:srcCompat="@android:drawable/ic_menu_help" />-->
+
 
 
 </RelativeLayout>
