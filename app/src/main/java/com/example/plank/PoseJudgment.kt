@@ -6,6 +6,7 @@ import org.tensorflow.lite.examples.posenet.lib.Person
 import java.lang.Float.min
 import java.lang.Math.atan2
 import java.lang.Math.floor
+import kotlin.math.abs
 import kotlin.math.atan2
 
 fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int): Double {
@@ -30,6 +31,10 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
     var kneeX:Float = 1000000F
     var kneeY:Float = 0F
     var elbowX:Float = 1000000F
+    var elbowY =0.0f
+    var wristX:Float = 1000000F
+    var wristY =0.0f
+
     //if(person.keyPoints.containsAll())
     for(keyPoint in person.keyPoints){
         var body =keyPoint.bodyPart
@@ -47,9 +52,16 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
             kneeX = minOf(kneeX,position.x.toFloat() * widthRatio + left)
             kneeY = position.y.toFloat() * heightRatio + top
         }
-//        else if(body== BodyPart.LEFT_ELBOW || body== BodyPart.RIGHT_ELBOW) {
-//            elbowX = minOf(elbowX,position.x.toFloat() * widthRatio + left)
-//        }
+        else if(body== BodyPart.LEFT_ELBOW || body== BodyPart.RIGHT_ELBOW) {
+            elbowX = minOf(elbowX,position.x.toFloat() * widthRatio + left)
+            elbowY = position.y.toFloat() * heightRatio + top
+
+        }
+        else if(body== BodyPart.LEFT_WRIST || body== BodyPart.RIGHT_WRIST) {
+            wristX = minOf(wristX,position.x.toFloat() * widthRatio + left)
+            wristY = position.y.toFloat() * heightRatio + top
+
+        }
 
 
     }
@@ -60,14 +72,37 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
 //    val sholderToAnkleX = sholderX - kneeX
 //    val sholderToAnkleY = sholderY -kneeY
 
-    val dot = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY// dot product
-    val cross = sholderToHipX * hipToKneeY- sholderToHipY * hipToKneeX // cross product
-    val alpha = atan2(cross, dot)
+    var dot = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY// dot product
+    var cross = sholderToHipX * hipToKneeY- sholderToHipY * hipToKneeX // cross product
+    var alpha = atan2(cross, dot)
     var angle=floor(alpha * 180.0 / Math.PI + 0.5)
 
-    if(kneeX<hipX){
+    val elbowToShlderX=elbowX-sholderX
+    val elbowToSholderY =elbowY-sholderY
+    val elbowToWristX =elbowX-wristX
+    val elbowToWristY = elbowY-wristY
+
+
+    dot = elbowToShlderX * elbowToWristX+ elbowToSholderY* elbowToWristY// dot product
+    cross = elbowToShlderX  * elbowToWristY- elbowToSholderY * elbowToWristX // cross product
+    alpha = atan2(cross, dot)
+    var elbowAngle=floor(alpha * 180.0 / Math.PI + 0.5)
+
+    if(abs(elbowAngle)>105){
         angle=0.0
+        Log.d("xxxxxxxxx","hoge")
     }
+    else if(kneeX<hipX){
+        angle=0.0
+        Log.d("xxxxxxxxx","hogehoge")
+
+    }
+//    else if(elbowX<wristX){
+//        angle=0.0
+//        Log.d("xxxxxxxxx","ooooooooooooooooo")
+//
+//    }
+
 
     return angle
 

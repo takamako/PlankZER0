@@ -104,8 +104,8 @@ class PosenetActivity :
   //この値を小さくすると描画速度上がる．精度は落ちるかも
   private val PREVIEW_WIDTH = 640
   private val PREVIEW_HEIGHT = 480
-//  private val PREVIEW_WIDTH = 320
-//  private val PREVIEW_HEIGHT = 240
+//  private val PREVIEW_WIDTH = 360
+//  private val PREVIEW_HEIGHT = 270
 
   /** An object for the Posenet library.    */
   private lateinit var posenet: Posenet
@@ -574,8 +574,8 @@ class PosenetActivity :
       }
     }
     var ans="⚪"
-    if(person.score>0.4){
-      if(180-abs(angle)<23){
+    if(person.score>minConfidence){
+      if(abs(angle)>155){
         ans="🔵"
       }
       else {

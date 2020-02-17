@@ -76,7 +76,7 @@
                 android:layout_margin="8dp"
                 android:background="#00BCD4"
                 android:fontFamily="sans-serif-black"
-                android:text="姿勢推定(βeta)"
+                android:text="姿勢推定"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
