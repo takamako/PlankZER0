@@ -92,7 +92,7 @@ class PosenetActivity :
   )
 
   /** Threshold for confidence score. */
-  private val minConfidence = 0.3
+  private val minConfidence = 0.4
 
   /** Radius of circle used to draw keypoints.  */
   private val circleRadius = 8.0f
@@ -102,10 +102,10 @@ class PosenetActivity :
 
   /** A shape for extracting frame data.   */
   //この値を小さくすると描画速度上がる．精度は落ちるかも
-//  private val PREVIEW_WIDTH = 640
-//  private val PREVIEW_HEIGHT = 480
-  private val PREVIEW_WIDTH = 320
-  private val PREVIEW_HEIGHT = 240
+  private val PREVIEW_WIDTH = 640
+  private val PREVIEW_HEIGHT = 480
+//  private val PREVIEW_WIDTH = 320
+//  private val PREVIEW_HEIGHT = 240
 
   /** An object for the Posenet library.    */
   private lateinit var posenet: Posenet
@@ -502,7 +502,7 @@ class PosenetActivity :
   /** Set the paint color and size.    */
   private fun setPaint() {
     paint.color = Color.CYAN
-    paint.textSize = 220.0f
+    paint.textSize = 250.0f
     paint.strokeWidth = 8.0f
   }
 
@@ -573,7 +573,21 @@ class PosenetActivity :
         )
       }
     }
-
+    var ans="⚪"
+    if(person.score>0.4){
+      if(180-abs(angle)<23){
+        ans="🔵"
+      }
+      else {
+        ans="🔴"
+      }
+    }
+    canvas.drawText(
+      "$ans",
+      (200.0f * widthRatio),
+      (40.0f * heightRatio),
+      paint
+    )
 //    canvas.drawText(
 //      "Amgle: %.2f".format(angle),
 //      (1.0f * widthRatio),
@@ -581,12 +595,12 @@ class PosenetActivity :
 //      paint
 //    )
 
-    canvas.drawText(
-      "Score: %.2f".format(person.score),
-      (15.0f * widthRatio),
-      (20.0f * heightRatio),
-      paint
-    )
+//    canvas.drawText(
+//      "Score: %.2f".format(person.score),
+//      (15.0f * widthRatio),
+//      (20.0f * heightRatio),
+//      paint
+//    )
 //    canvas.drawText(
 //      "Device: %s".format(posenet.device),
 //      (15.0f * widthRatio),

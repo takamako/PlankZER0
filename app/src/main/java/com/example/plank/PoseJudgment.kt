@@ -29,8 +29,7 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
     var hipY:Float = 0F
     var kneeX:Float = 1000000F
     var kneeY:Float = 0F
-    var ankleX:Float = 1000000F
-    var ankleY:Float = 0F
+    var elbowX:Float = 1000000F
     //if(person.keyPoints.containsAll())
     for(keyPoint in person.keyPoints){
         var body =keyPoint.bodyPart
@@ -48,10 +47,9 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
             kneeX = minOf(kneeX,position.x.toFloat() * widthRatio + left)
             kneeY = position.y.toFloat() * heightRatio + top
         }
-        else if(body== BodyPart.LEFT_ANKLE || body== BodyPart.RIGHT_ANKLE) {
-            ankleX = minOf(kneeX,position.x.toFloat() * widthRatio + left)
-            ankleY = position.y.toFloat() * heightRatio + top
-        }
+//        else if(body== BodyPart.LEFT_ELBOW || body== BodyPart.RIGHT_ELBOW) {
+//            elbowX = minOf(elbowX,position.x.toFloat() * widthRatio + left)
+//        }
 
 
     }
@@ -59,15 +57,19 @@ fun plankJudg(person:Person,widthRatio:Float,heightRatio:Float,top:Int,left:Int)
     val sholderToHipY =hipY-sholderY
     val hipToKneeX =hipX-kneeX
     val hipToKneeY = hipY-kneeY
-    val sholderToAnkleX = sholderX - kneeX
-    val sholderToAnkleY = sholderY -kneeY
+//    val sholderToAnkleX = sholderX - kneeX
+//    val sholderToAnkleY = sholderY -kneeY
 
     val dot = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY// dot product
     val cross = sholderToHipX * hipToKneeY- sholderToHipY * hipToKneeX // cross product
-
     val alpha = atan2(cross, dot)
+    var angle=floor(alpha * 180.0 / Math.PI + 0.5)
 
-    return floor(alpha * 180.0 / Math.PI + 0.5)
+    if(kneeX<hipX){
+        angle=0.0
+    }
+
+    return angle
 
 //    val babc = sholderToHipX * hipToKneeX+ sholderToHipY * hipToKneeY
 //    val ban = (sholderToHipX * sholderToHipX) + (hipToKneeX * hipToKneeX)
