@@ -1,4 +1,4 @@
-package com.example.plank;
+package com.vip.plank;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

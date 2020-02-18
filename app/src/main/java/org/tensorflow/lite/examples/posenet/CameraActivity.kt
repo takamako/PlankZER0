@@ -29,9 +29,9 @@ import android.widget.ImageView
 import android.widget.Toast
 //import android.support.v7.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatActivity
-import com.example.plank.CompareActivity
-import com.example.plank.ImageActivity
-import com.example.plank.R
+import com.vip.plank.CompareActivity
+import com.vip.plank.ImageActivity
+import com.vip.plank.R
 
 class CameraActivity : AppCompatActivity() {
 

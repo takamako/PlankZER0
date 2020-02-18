@@ -1,4 +1,4 @@
-package com.example.plank;
+package com.vip.plank;
 
 import android.os.Bundle;
 import androidx.annotation.RequiresApi;

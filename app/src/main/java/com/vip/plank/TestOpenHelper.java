@@ -1,4 +1,4 @@
-package com.example.plank;
+package com.vip.plank;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

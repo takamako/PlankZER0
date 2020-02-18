@@ -1,4 +1,4 @@
-package com.example.plank
+package com.vip.plank
 
 import android.util.Log
 import org.tensorflow.lite.examples.posenet.lib.BodyPart

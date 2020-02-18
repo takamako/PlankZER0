@@ -1,4 +1,4 @@
-package com.example.plank;
+package com.vip.plank;
 
 import org.junit.Test;
 
