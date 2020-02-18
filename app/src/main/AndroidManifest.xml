@@ -75,9 +75,9 @@
 <!--          </intent-filter>-->
       </activity>
 
-      <meta-data
-          android:name="com.google.android.actions"
-          android:resource="@xml/activity_image2" />
+<!--      <meta-data-->
+<!--          android:name="com.google.android.actions"-->
+<!--          android:resource="@xml/activity_image2" />-->
       <meta-data
           android:name="preloaded_fonts"
           android:resource="@array/preloaded_fonts" /> <!-- センサーボタン -->

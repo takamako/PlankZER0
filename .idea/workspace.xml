@@ -440,8 +440,8 @@
     <property name="DEBUGGABLE_DEVICE" value="huawei-nexus_6p-CVH7N15A19003465" />
     <property name="DEBUGGABLE_PROCESS" value="com.example.plank" />
     <property name="DEBUGGER_ID" value="Auto" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_29" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-18T14:40:52.132Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="CVH7N15A19003465" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-18T14:43:14.533Z" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV1" value="true" />
