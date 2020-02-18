@@ -1,4 +1,4 @@
-package com.vip.plank
+package vip.example.plank
 
 import android.content.Context
 import androidx.benchmark.junit4.BenchmarkRule
@@ -32,6 +32,6 @@ class ExampleInstrumentedTest {
     // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
-        assertEquals("com.vip.plank", appContext.packageName)
+        assertEquals("vip.example.plank", appContext.packageName)
     }
 }

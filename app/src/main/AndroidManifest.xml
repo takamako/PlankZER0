@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vip.plank"
+    package="vip.example.plank"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-sdk tools:overrideLibrary="org.tensorflow.lite.examples.posenet"/>
     <uses-permission android:name="android.permission.CAMERA" />

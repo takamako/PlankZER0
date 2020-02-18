@@ -27,7 +27,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import com.vip.plank.R
+import vip.example.plank.R
 import org.tensorflow.lite.examples.posenet.lib.Posenet as Posenet
 
 class TestActivity : AppCompatActivity() {

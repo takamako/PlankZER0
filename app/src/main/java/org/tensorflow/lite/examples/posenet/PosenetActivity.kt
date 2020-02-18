@@ -66,10 +66,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import com.vip.plank.CompareActivity
-import com.vip.plank.ImageActivity
-import com.vip.plank.R
-import com.vip.plank.plankJudg
+import vip.example.plank.CompareActivity
+import vip.example.plank.ImageActivity
+import vip.example.plank.R
+import vip.example.plank.plankJudg
 import kotlinx.android.synthetic.main.activity_compare.*
 import kotlinx.android.synthetic.main.activity_posenet.*
 import java.util.concurrent.Semaphore
