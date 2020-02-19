@@ -452,7 +452,7 @@ class PosenetActivity :
 
       // Create rotated version for portrait display
       val rotateMatrix = Matrix()
-      rotateMatrix.postRotate(90.0f)
+      rotateMatrix.postRotate(-90.0f)
       rotateMatrix.preScale(1.0f, -1.0f)
 
 
