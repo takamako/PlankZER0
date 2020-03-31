@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+ADDED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
 	package
-		ADDED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:2:3-53
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
+		ADDED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:2:3-53
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
-		ADDED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
+		ADDED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
-		ADDED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
+		ADDED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:1-6:12
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:1:11-69
 uses-sdk
-ADDED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
-INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
+ADDED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
+INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
 	android:targetSdkVersion
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
-		ADDED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
+		ADDED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
-		ADDED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
-		INJECTED from /Users/e175774/AndroidStudioProjects/PlankZer0/posenet/src/main/AndroidManifest.xml
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml
+		ADDED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml:4:3-15
+		INJECTED from /Users/makoto/Desktop/PlankZer0/posenet/src/main/AndroidManifest.xml

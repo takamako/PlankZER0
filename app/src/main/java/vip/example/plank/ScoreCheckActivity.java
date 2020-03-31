@@ -42,29 +42,7 @@ public class ScoreCheckActivity extends AppCompatActivity{
 
       //  textView = findViewById(R.id.text_view);
         readData();
-      /**
-
-        textView = findViewById(R.id.text_view);
-        readData();
-        Button readButton = findViewById(R.id.button_read);
-        readButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-           public void onClick(View v) {
-
-                if(helper == null){
-                    helper = new TestOpenHelper(getApplicationContext());
-                }
-
-                if(db == null){
-                    db = helper.getWritableDatabase();
-                }
-                insertData(db, "2/1(例)", 100);
-                readData();
-            }
-        });
-       */
     }
-
 
     private void readData(){
         if(helper == null){
@@ -91,7 +69,6 @@ public class ScoreCheckActivity extends AppCompatActivity{
         StringBuilder sbuilder = new StringBuilder();
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-
 
         for (int i = 1; i < cursor.getCount()+1; i++) {
             sbuilder.append(cursor.getString(0));
@@ -174,7 +151,5 @@ public class ScoreCheckActivity extends AppCompatActivity{
         dataNum++;
         tableLayout.addView(tableRow, new TableLayout.LayoutParams(MP, WC));
         }
-
-
     }
 

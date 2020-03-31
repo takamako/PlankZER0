@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/OpenCV410/AndroidStudioProjects-examples-OpenCV410.iml" filepath="$PROJECT_DIR$/OpenCV410/AndroidStudioProjects-examples-OpenCV410.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/AndroidStudioProjects-examples-app.iml" filepath="$PROJECT_DIR$/app/AndroidStudioProjects-examples-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/AndroidStudioProjects-examples-posenet.iml" filepath="$PROJECT_DIR$/posenet/AndroidStudioProjects-examples-posenet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Desktop-PlankZer0.iml" filepath="$PROJECT_DIR$/Desktop-PlankZer0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Desktop-PlankZer0-app.iml" filepath="$PROJECT_DIR$/app/Desktop-PlankZer0-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/posenet/Desktop-PlankZer0-posenet.iml" filepath="$PROJECT_DIR$/posenet/Desktop-PlankZer0-posenet.iml" />
       <module fileurl="file://$PROJECT_DIR$/OpenCV410/OpenCV410.iml" filepath="$PROJECT_DIR$/OpenCV410/OpenCV410.iml" />
       <module fileurl="file://$PROJECT_DIR$/Plank.iml" filepath="$PROJECT_DIR$/Plank.iml" />
       <module fileurl="file://$PROJECT_DIR$/PlankZer0.iml" filepath="$PROJECT_DIR$/PlankZer0.iml" />
@@ -29,9 +32,6 @@
       <module fileurl="file://$PROJECT_DIR$/gin-AndroidStudioProjects-PlankZer0.iml" filepath="$PROJECT_DIR$/gin-AndroidStudioProjects-PlankZer0.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/gin-AndroidStudioProjects-PlankZer0-app.iml" filepath="$PROJECT_DIR$/app/gin-AndroidStudioProjects-PlankZer0-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/gin-AndroidStudioProjects-PlankZer0-posenet.iml" filepath="$PROJECT_DIR$/posenet/gin-AndroidStudioProjects-PlankZer0-posenet.iml" />
-      <module fileurl="file://$PROJECT_DIR$/makoto-AndroidStudioProjects-PlankZer0.iml" filepath="$PROJECT_DIR$/makoto-AndroidStudioProjects-PlankZer0.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/makoto-AndroidStudioProjects-PlankZer0-app.iml" filepath="$PROJECT_DIR$/app/makoto-AndroidStudioProjects-PlankZer0-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/posenet/makoto-AndroidStudioProjects-PlankZer0-posenet.iml" filepath="$PROJECT_DIR$/posenet/makoto-AndroidStudioProjects-PlankZer0-posenet.iml" />
       <module fileurl="file://$PROJECT_DIR$/posenet/posenet.iml" filepath="$PROJECT_DIR$/posenet/posenet.iml" />
     </modules>
   </component>

@@ -103,19 +103,6 @@ public class SensorActivity extends AppCompatActivity {
             }
         });
 
-
-
-//        //ホーム画面に戻る処理
-//        Button returnButton = findViewById(R.id.return_sub);
-//        returnButton.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
-
-
-
         ImageButton helpButton = findViewById(R.id.helpButton);
 
         // ボタンタップでAlertを表示させる
@@ -167,14 +154,6 @@ public class SensorActivity extends AppCompatActivity {
             alert.setView(  imageView );
             alert.setView(R.layout.activity_help1);
             alert.setPositiveButton( "OK", null );
-            //alert.show();
-            //alert.setItems(menulist, new DialogInterface.OnClickListener() {
-               // @Override
-                //public void onClick(DialogInterface dialog, int idx) {
-
-                //    }
-                //}
-           // });
 
             return alert.create();
         }

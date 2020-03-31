@@ -55,7 +55,6 @@ import android.content.SharedPreferences.Editor;
 
 public class BiginnerActivity extends AppCompatActivity implements SensorEventListener {
 
-
     private TestOpenHelper helper;
     private SQLiteDatabase db;
     private DateFormat df = new SimpleDateFormat("yyyy/MM/dd ");
@@ -63,7 +62,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
     private TextView timerText;//タイマーの表示ぶん
     private TextView timerText＿trainig;
     private SimpleDateFormat dataFormat =
-            new SimpleDateFormat("mm:ss", Locale.US);//https://akira-watson.com/android/countdowntimer.html
+            new SimpleDateFormat("mm:ss", Locale.US);
     //"mm:ss.SSS", Locale.US
     private TextView textView, textInfo;
     private SoundPool soundPool;
@@ -114,7 +113,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             Color.MAGENTA};
     private boolean lineardata = true;
 
-
     private int No1;
     private int No2;
     private int No3;
@@ -131,10 +129,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         No2 = sp.getInt("int_No2", 0);
         No3 = sp.getInt("int_No3", 0);
 
-
-
-
-
+        //レイアウト関連
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         setCountButton = findViewById(R.id.set_button);
@@ -147,10 +142,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         setCount = findViewById(R.id.settime);
         setCount.setText("×" + set_frag +"セット");
 
-        // CountDownTimer(long millisInFuture, long countDownInterval)
-
         final CountDown countDown_before = new CountDown(10000, interval);
-
 
         // 縦画面
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -178,7 +170,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setEnabled(false);//x軸のラベル消す
 
-
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTextColor(Color.BLACK);
         leftAxis.setAxisMaxValue(4.0f);
@@ -188,7 +179,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         // textInfo = findViewById(R.id.text_info);
-
 
         //スタートボタンの処理
         startButton.setOnClickListener(new OnClickListener() {
@@ -206,11 +196,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 // DialogFragmentの表示
                 dialogFragment_setpoketto.show(fragmentManager2, "setpoketto alert dialog");
 
-
                     countDown_before.start();
-                    //wait_time();
                     //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
-                    //timing = 1;
+
                     delayStartCountDown = new Runnable() {//遅延定義 10/31
                         @Override
                         public void run() {
@@ -239,7 +227,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                             timing = 0;
                             startButton.setEnabled(false);
                         }
-                        // }
                     };
                     handler.postDelayed(delayStartCountDown, 7000);//遅延実行
                     handler.postDelayed(delayStartCountDown, 8000);//遅延実行
@@ -263,15 +250,13 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             public void onClick(View v) {
                 // 中止
                 startButton.setEnabled(true);
-                //if(frag==1){
                     countDown.cancel();
-            //}
-                //if(frag ==0){
+
                     countDown_before.cancel();
-            //}
+
                 handler.removeCallbacks(delay);
                 frag=0;
-              //  timing =0;
+
                 handler.removeCallbacks(delayStartCountDown);
                 handler.removeCallbacks(delay);
                 timerText.setText(dataFormat.format(10000));
@@ -284,7 +269,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 setCount.setText("×" + set_frag +"セット");
             }
         });
-
 
         Button returnButton_sensor = findViewById(R.id.return_button_sensor);
         returnButton_sensor.setOnClickListener(new OnClickListener() {
@@ -303,7 +287,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             }
         });
 
-
         setCountButton.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -313,9 +296,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                     setCountButton.setEnabled(false);
                 }
             }
-
         });
-
 
         //以下追加
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
@@ -343,7 +324,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 Log.d("debug","status="+status);
             }
         });
-
     }
 
     @Override
@@ -354,9 +334,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 Sensor.TYPE_ACCELEROMETER);
 
         sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_NORMAL);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_FASTEST);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_GAME);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_UI);
+
     }
 
     @Override
@@ -379,7 +357,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         sensorManager.unregisterListener(this);
     }
 
-
     @Override
     public void onSensorChanged(SensorEvent event) {
         float sensorX, sensorY, sensorZ;
@@ -394,7 +371,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             sensorX = event.values[0];
             sensorY = event.values[1];
             sensorZ = event.values[2];
-
 
             if(frag==1) {
                 if (FirstZ - nextZ < -1.5 || FirstZ - nextZ > 1.5) {
@@ -413,9 +389,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             nextX = sensorX;
             nextY = sensorY;
             nextZ = sensorZ;
-
         }
-
 
         float gravity[] = new float[3];
         float linear_acceleration[] = new float[1];
@@ -424,10 +398,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
 
         if(frag==1) {
             if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER ) {
-
-                // alpha is calculated as t / (t + dT)
-                // with t, the low-pass filter's time-constant
-                // and dT, the event delivery rate
 
                 gravity[0] = (FirstX - nextX);
                 gravity[1] = (FirstY - nextY);
@@ -444,12 +414,7 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                     linear_acceleration[0] =y2;
                 }
 
-
-                //linear_acceleration[1] = gravity[1];
-                //linear_acceleration[2] = gravity[2];
-
                 String accelero;
-
 
                 LineData data = mChart.getLineData();
 
@@ -565,13 +530,9 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                     db = helper.getWritableDatabase();
                 }
 
-                //String key = editTextKey.getText().toString();
-                //String value = editTextValue.getText().toString();
-
-                //insertData(db, key, Integer.valueOf(value));
                 //現在の時刻
                 String date = getNowDate();
-                //return df.format(date);
+
                 insertData(db, date,stop_count*2,mil_count);
             }
             if(mil_count>18){
@@ -631,12 +592,8 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
                 if(move_frag==0){
                 stop_count++;
                 }
-
             }
-
-
         }
-
     }
 
     public static class AlertDialogFragment extends DialogFragment {
@@ -666,8 +623,6 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
         }
     }
 
-
-
     public static class AlertDialogFragment_setpoketto extends DialogFragment {
         final Handler handler = new Handler();
         private Runnable delayClose;
@@ -686,12 +641,11 @@ public class BiginnerActivity extends AppCompatActivity implements SensorEventLi
             // タイトル
             alert.setTitle("ポケットか背中にスマホを入れましょう！");
             alert.setView(  imageView );
-           // alert.setPositiveButton( "OK", null );
+
             delayClose = new Runnable() {//遅延定義 10/31
                 @Override
                 public void run() {
                     dismiss();
-
                 }
             };
             handler.postDelayed(delayClose, 3000);

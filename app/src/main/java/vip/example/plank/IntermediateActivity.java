@@ -65,7 +65,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
     private TextView timerText;//タイマーの表示ぶん
     private TextView timerText＿trainig;
     private SimpleDateFormat dataFormat =
-            new SimpleDateFormat("mm:ss", Locale.US);//https://akira-watson.com/android/countdowntimer.html
+            new SimpleDateFormat("mm:ss", Locale.US);
     //"mm:ss.SSS", Locale.US
     private TextView textView, textInfo;
     private SoundPool soundPool;
@@ -128,14 +128,11 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intermediate);
 
-
-
         SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
         Editor editor = sp.edit();
         No1 = sp.getInt("int_No1", 0);
         No2 = sp.getInt("int_No2", 0);
         No3 = sp.getInt("int_No3", 0);
-
 
         //レイアウト関連
         startButton = findViewById(R.id.start_button);//タイマーのボタン
@@ -201,7 +198,8 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 dialogFragment_setpoketto.show(fragmentManager2, "setpoketto alert dialog");
                 startButton.setEnabled(false);
                 countDown_before.start();
-               // timing =1;
+                //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
+
                 delayStartCountDown =  new Runnable(){//遅延定義 10/31
                     @Override
                     public void run() {
@@ -231,7 +229,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                         timing = 0;
                         startButton.setEnabled(false);
                     }
-                    // }
                 };
                 handler.postDelayed(delayStartCountDown, 7000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 8000);//遅延実行
@@ -274,7 +271,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             }
         });
 
-
         Button returnButton_sensor = findViewById(R.id.return_button_sensor);
         returnButton_sensor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,7 +288,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             }
         });
 
-
         setCountButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -302,7 +297,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                     setCountButton.setEnabled(false);
                 }
             }
-
         });
 
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
@@ -315,7 +309,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 // ストリーム数に応じて
                 .setMaxStreams(2)
                 .build();
-
 
         soundOne = soundPool.load(this, R.raw.one, 1);
         soundTwo = soundPool.load(this, R.raw.two, 1);
@@ -330,7 +323,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 Log.d("debug","status="+status);
             }
         });
-
     }
 
     @Override
@@ -359,7 +351,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
         super.onPause();
         sensorManager.unregisterListener(this);
     }
-
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -409,9 +400,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                     linear_acceleration[0] =y2;
                 }
 
-
                 String accelero;
-
 
                 LineData data = mChart.getLineData();
 
@@ -440,7 +429,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                         data.notifyDataChanged();
                     }
 
-
                     mChart.notifyDataSetChanged(); // 表示の更新のために変更を通知する
                     mChart.setVisibleXRangeMaximum(180); // 表示の幅を決定する
                     mChart.moveViewToX(data.getEntryCount()); // 最新のデータまで表示を移動させる
@@ -449,10 +437,7 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             nextX = sensorX;
             nextY = sensorY;
             nextZ = sensorZ;
-
-
         }
-
     }
 
     @Override
@@ -481,7 +466,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             if(timing ==1) {
                 startButton.setEnabled(true);
             }else{
-               // startButton.setEnabled(true);
                 textView.setTextColor(Color.RED);
 
                 if(set_frag >1){
@@ -530,13 +514,9 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                     db = helper.getWritableDatabase();
                 }
 
-                //String key = editTextKey.getText().toString();
-                //String value = editTextValue.getText().toString();
-
-                //insertData(db, key, Integer.valueOf(value));
                 //現在の時刻
                 String date = getNowDate();
-                //return df.format(date);
+
                 insertData(db, date,stop_count*2,mil_count);
             }
             stop_count=0;
@@ -598,7 +578,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
                 }
             }
         }
-
     }
 
     public static class AlertDialogFragment extends DialogFragment {
@@ -618,14 +597,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             alert.setTitle("上の難易度を目指しましょう！");
             alert.setView(  imageView );
             alert.setPositiveButton( "OK", null );
-            //alert.show();
-            //alert.setItems(menulist, new DialogInterface.OnClickListener() {
-            // @Override
-            //public void onClick(DialogInterface dialog, int idx) {
-
-            //    }
-            //}
-            // });
 
             return alert.create();
         }
@@ -635,8 +606,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             // mainActivity.setTextView(message);
         }
     }
-
-
 
     public static class AlertDialogFragment_setpoketto extends DialogFragment {
 
@@ -654,7 +623,6 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             alert.setView(  imageView );
             alert.setPositiveButton( "OK", null );
 
-
             return alert.create();
         }
 
@@ -663,6 +631,4 @@ public class IntermediateActivity extends AppCompatActivity implements SensorEve
             // mainActivity.setTextView(message);
         }
     }
-
-
 }

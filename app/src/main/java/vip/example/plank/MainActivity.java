@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ImageView imageView = findViewById(R.id.image_view);
-//        imageView.setImageResource(R.drawable.plank01);
 
         //カメラモードに移動
         ImageButton PhotoButton = findViewById(R.id.ViewImg);
@@ -50,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
                    Intent intent = new Intent(getApplication(), ImageActivity.class);
                    startActivity(intent);
                 }
-
         });
 
         //センサーようの移動ボタン

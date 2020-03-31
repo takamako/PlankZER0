@@ -85,14 +85,9 @@ class CompareActivity : AppCompatActivity() {
 
                 //メンバ変数を取れない
 
-                //11/23追加
-//                if (luma <= 100){
-//                    soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1.0f)
-//                }
             }
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -166,8 +161,6 @@ class CompareActivity : AppCompatActivity() {
             Log.d("debug", "sampleId=$sampleId")
             Log.d("debug", "status=$status")
         }
-
-
 
 
 //        //11/11ポッキーの日
@@ -390,13 +383,10 @@ class CompareActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
-
                 }
-
             }
         }
     }
-
 
     //以下の関数10/2追加
     // アンドロイドのデータベースへ登録する
@@ -414,5 +404,4 @@ class CompareActivity : AppCompatActivity() {
         private val RESULT_CAMERA = 1001
         //private val REQUEST_PERMISSION = 1002//10/2追加
     }
-
 }

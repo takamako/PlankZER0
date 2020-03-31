@@ -53,9 +53,7 @@ import android.preference.PreferenceManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-
 public class AdvancedActivity extends AppCompatActivity implements SensorEventListener {
-
 
     private TestOpenHelper helper;
     private SQLiteDatabase db;
@@ -64,7 +62,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
     private TextView timerText;//タイマーの表示文
     private TextView timerText＿trainig;
     private SimpleDateFormat dataFormat =
-            new SimpleDateFormat("mm:ss", Locale.US);//https://akira-watson.com/android/countdowntimer.html
+            new SimpleDateFormat("mm:ss", Locale.US);
     //"mm:ss.SSS", Locale.US
     private TextView textView, textInfo;
     private SoundPool soundPool;
@@ -126,14 +124,13 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced);
 
-
         SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
         Editor editor = sp.edit();
         No1 = sp.getInt("int_No1", 0);
         No2 = sp.getInt("int_No2", 0);
         No3 = sp.getInt("int_No3", 0);
 
-
+        //レイアウト関連
         startButton = findViewById(R.id.start_button);//タイマーのボタン
         stopButton = findViewById(R.id.stop_button);//タイマーのボタン
         setCountButton = findViewById(R.id.set_button);
@@ -147,20 +144,13 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         setCount = findViewById(R.id.settime);
         setCount.setText("×" + set_frag +"セット");
 
-
-        // CountDownTimer(long millisInFuture, long countDownInterval)
-
         final AdvancedActivity.CountDown countDown_before = new AdvancedActivity.CountDown(countbefore, interval);
-
 
         // 縦画面
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-        // Get an instance of the TextView
-        //textGraph = findViewById(R.id.text_view);
 
         mChart = findViewById(R.id.chart);
         // インスタンス生成
@@ -178,7 +168,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         xAxis.enableGridDashedLine(10f, 10f, 0f);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setEnabled(false);//x軸のラベル消す
-
 
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTextColor(Color.BLACK);
@@ -207,9 +196,8 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 dialogFragment_setpoketto.show(fragmentManager2, "setpoketto alert dialog");
                 startButton.setEnabled(false);
                 countDown_before.start();
-                //wait_time();
                 //countDown_beforeで終わるときにスタートボタンが押せるの防ぐ
-              //  timing =1;
+
                 delayStartCountDown =  new Runnable(){//遅延定義 10/31
                     @Override
                     public void run() {
@@ -238,9 +226,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                         countDown.start();
                         timing = 0;
                         startButton.setEnabled(false);
-
                     }
-                    // }
                 };
                 handler.postDelayed(delayStartCountDown, 7000);//遅延実行
                 handler.postDelayed(delayStartCountDown, 8000);//遅延実行
@@ -276,8 +262,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 timerText.setText(dataFormat.format(10000));
                 timerText＿trainig.setText(dataFormat.format(countNumber));
 
-                //Intent intent = new Intent(getApplication(), ImageActivity.class);
-                //startActivity(intent);
                 stop_count=0;
                 all_count=0;
                 setCountButton.setEnabled(true);
@@ -285,7 +269,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 setCount.setText("×" + set_frag +"セット");
             }
         });
-
 
         Button returnButton_sensor = findViewById(R.id.return_button_sensor);
         returnButton_sensor.setOnClickListener(new View.OnClickListener() {
@@ -313,17 +296,11 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                     setCountButton.setEnabled(false);
                 }
             }
-
         });
-
 
         //以下追加
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                // USAGE_MEDIA
-                // USAGE_GAME
                 .setUsage(AudioAttributes.USAGE_GAME)
-                // CONTENT_TYPE_MUSIC
-                // CONTENT_TYPE_SPEECH, etc.
                 .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                 .build();
 
@@ -347,7 +324,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 Log.d("debug","status="+status);
             }
         });
-
     }
 
     @Override
@@ -358,11 +334,8 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                 Sensor.TYPE_ACCELEROMETER);
 
         sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_NORMAL);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_FASTEST);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_GAME);
-        //sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_UI);
-    }
 
+    }
 
     // 解除するコードも入れる!
     @Override
@@ -397,7 +370,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             sensorY = event.values[1];
             sensorZ = event.values[2];
 
-
             if(frag==1) {
                 if (FirstZ - nextZ < -0.5 || FirstZ - nextZ > 0.5) {
                     soundPool.play(soundOne, 1.0f, 1.0f, 0, 0, 1);
@@ -415,7 +387,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             nextX = sensorX;
             nextY = sensorY;
             nextZ = sensorZ;
-
         }
 
         float gravity[] = new float[3];
@@ -425,10 +396,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
 
         if(frag==1) {
             if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER ) {
-
-                // alpha is calculated as t / (t + dT)
-                // with t, the low-pass filter's time-constant
-                // and dT, the event delivery rate
 
                 gravity[0] = (FirstX - nextX);
                 gravity[1] = (FirstY - nextY);
@@ -445,12 +412,7 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                     linear_acceleration[0] =y2;
                 }
 
-
-                //linear_acceleration[1] = gravity[1];
-                //linear_acceleration[2] = gravity[2];
-
                 String accelero;
-
 
                 LineData data = mChart.getLineData();
 
@@ -479,14 +441,12 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                         data.notifyDataChanged();
                     }
 
-
                     mChart.notifyDataSetChanged(); // 表示の更新のために変更を通知する
                     mChart.setVisibleXRangeMaximum(180); // 表示の幅を決定する
                     mChart.moveViewToX(data.getEntryCount()); // 最新のデータまで表示を移動させる
                 }
             }
         }
-
     }
 
     @Override
@@ -511,9 +471,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             x=Math.floor(x);
             double mil =all_count*1000/countNumber;
             double mil_count = stop_count/mil;
-
-
-
 
             if(timing ==1) {
                 startButton.setEnabled(true);
@@ -562,23 +519,17 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
                         db = helper.getWritableDatabase();
                     }
 
-                    //String key = editTextKey.getText().toString();
-                    //String value = editTextValue.getText().toString();
-
-                    //insertData(db, key, Integer.valueOf(value));
                     //現在の時刻
                     String date = getNowDate();
-                    //return df.format(date);
+
                     insertData(db, date,stop_count*2,mil_count);
                 }
             }
-
 
             stop_count=0;
             all_count=0;
             if(timing ==2){}else{   soundPool.play(soundFour, 1.0f, 1.0f, 0, 0, 1);}
         }
-
 
         public  String getNowDate(){
             final Date date = new Date(System.currentTimeMillis());
@@ -596,8 +547,6 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
 
             db.insert("testdb", null, values);
         }
-
-
 
         // インターバルで呼ばれる
         @Override
@@ -634,18 +583,10 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
         private int No2;
         private int No3;
 
-
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         @NonNull
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-
-          //  SharedPreferences sp = getSharedPreferences("DataStore", MODE_PRIVATE);
-          //  Editor editor = sp.edit();
-           // No1 = sp.getInt("int_No1", 0);
-          //  No2 = sp.getInt("int_No2", 0);
-          //  No3 = sp.getInt("int_No3", 0);
 
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
@@ -653,10 +594,8 @@ public class AdvancedActivity extends AppCompatActivity implements SensorEventLi
             imageView.setImageResource( R.drawable.poket);
             // タイトル
             alert.setTitle("スコアランキング！");
-            //alert.setView(  imageView );
             alert.setMessage(""+ No1 );
             alert.setPositiveButton( "OK", null );
-
 
             return alert.create();
         }
