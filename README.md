@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 [Android端末にインストール](https://drive.google.com/open?id=1f81UBDmH4cshi4L3_VLPpsDE2K6xx1Nr)
 
 # PlankZER0
@@ -112,7 +111,3 @@ If you explicitly want to download the model, you can download it from
 _Please do not delete the assets folder content_. If you explicitly deleted the
  files, then please choose `Build` > `Rebuild` from menu to re-download the
  deleted model files into assets folder.
-=======
-# PlankZER0
-プランクサポートアプリ
->>>>>>> origin/master
